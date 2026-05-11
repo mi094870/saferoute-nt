@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>SafeRoute NT：用 AI 幫南投學生找到更安全的通學路線</title>
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="theme-color" content="#edf3f7">
+  <meta name="color-scheme" content="light">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="SafeRoute NT：用 AI 幫南投學生找到更安全的通學路線">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" href="safe-route-icon-192.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-block">
+        <p class="eyebrow">SafeRoute NT：用 AI 幫南投學生找到更安全的通學路線</p>
+        <h1>SafeRoute NT：用 AI<span class="mobile-title-break"> 幫南投學生找到更安全的通學路線</span></h1>
+        <p class="hero-subtitle">整合學校位置、通學方式、路線風險、時段變化與公開交通影像，協助學生、家長與學校判斷每日通學安全。</p>
+      </div>
+      <div class="topbar-summary">
+        <div class="summary-pill"><span>學校</span><strong id="heroSchoolCount">0</strong></div>
+        <div class="summary-pill"><span>熱點</span><strong id="heroHotspotCount">0</strong></div>
+        <div class="summary-pill"><span>模式</span><strong id="heroAdviceMode">安全優先</strong></div>
+      </div>
+      <div class="status-row">
+        <div class="status-chip live"><span class="dot"></span><span id="liveModeLabel">固定 15 秒更新</span></div>
+        <div class="status-chip subtle" id="runningStateLabel">自動更新中</div>
+      </div>
+    </header>
+
+    <div class="mobile-menu-shell">
+      <button type="button" class="mobile-menu-toggle" id="mobileMenuButton" aria-expanded="false" aria-controls="mobilePageMenu">
+        <span class="mobile-menu-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span class="mobile-menu-copy"><span>功能選單</span><strong id="mobileMenuLabel">地圖</strong></span>
+      </button>
+      <nav class="mobile-tabbar" id="mobilePageMenu" aria-label="手機頁面導覽">
+        <a class="mobile-tabbar__link active" href="#mobileMapSection" data-mobile-section="mobileMapSection" data-mobile-page="map" data-mobile-label="地圖" aria-current="page">
+          <span class="mobile-tabbar__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 4 4.8 5.6A1.4 1.4 0 0 0 4 6.85v12.1c0 .8.84 1.33 1.56.97L8 18.7l8 1.6 3.2-1.6c.49-.25.8-.73.8-1.28V5.32c0-.8-.84-1.33-1.56-.97L16 5.55 8 4Z"></path><path d="M8 4v14.7M16 5.55V20.3"></path></svg></span>
+          <span>地圖</span>
+        </a>
+        <a class="mobile-tabbar__link" href="#mobileInsightSection" data-mobile-section="mobileInsightSection" data-mobile-page="insight" data-mobile-label="洞察">
+          <span class="mobile-tabbar__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 19V9"></path><path d="M12 19V5"></path><path d="M19 19v-7"></path><path d="M3.8 19h16.4"></path></svg></span>
+          <span>洞察</span>
+        </a>
+        <a class="mobile-tabbar__link" href="#mobileControlsSection" data-mobile-section="mobileControlsSection" data-mobile-page="controls" data-mobile-label="地圖設定">
+          <span class="mobile-tabbar__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h10"></path><path d="M18 7h2"></path><path d="M4 17h2"></path><path d="M10 17h10"></path><circle cx="16" cy="7" r="2"></circle><circle cx="8" cy="17" r="2"></circle></svg></span>
+          <span>地圖設定</span>
+        </a>
+        <a class="mobile-tabbar__link" href="#mobileMonitorSection" data-mobile-section="mobileMonitorSection" data-mobile-page="monitor" data-mobile-label="監視">
+          <span class="mobile-tabbar__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 8.5A2.5 2.5 0 0 1 6.5 6h7A2.5 2.5 0 0 1 16 8.5v7A2.5 2.5 0 0 1 13.5 18h-7A2.5 2.5 0 0 1 4 15.5v-7Z"></path><path d="m16 10 4-2.2v8.4L16 14"></path><circle cx="10" cy="12" r="2.5"></circle></svg></span>
+          <span>監視</span>
+        </a>
+        <a class="mobile-tabbar__link" href="#mobileInfoSection" data-mobile-section="mobileInfoSection" data-mobile-page="info" data-mobile-label="資料">
+          <span class="mobile-tabbar__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 4.8A1.8 1.8 0 0 1 7.8 3h8.4A1.8 1.8 0 0 1 18 4.8v14.4a1.2 1.2 0 0 1-1.84 1.02L12 17.6l-4.16 2.62A1.2 1.2 0 0 1 6 19.2V4.8Z"></path><path d="M9 8h6"></path><path d="M9 12h4"></path></svg></span>
+          <span>資料</span>
+        </a>
+      </nav>
+    </div>
+
+    <main class="workspace">
+      <aside class="side-panel controls-panel" id="mobileControlsSection">
+        <div class="panel-title-row"><h2>路線設定</h2><span class="panel-badge">Live</span></div>
+        <p class="host-warning" id="hostWarningText" hidden>若直接用檔案開啟，定位與部分即時資料可能無法使用；建議使用 HTTPS 或本機伺服器瀏覽。</p>
+        <div class="stage-filter" id="stageFilter">
+          <button type="button" class="stage-button active" data-stage="all">全部</button>
+          <button type="button" class="stage-button" data-stage="kindergarten">幼兒園</button>
+          <button type="button" class="stage-button" data-stage="elementary">國小</button>
+          <button type="button" class="stage-button" data-stage="senior">高中職</button>
+          <button type="button" class="stage-button" data-stage="junior">國中</button>
+          <button type="button" class="stage-button" data-stage="university">大學</button>
+        </div>
+        <label class="field"><span>搜尋學校</span><input id="schoolSearch" class="text-field" type="search" placeholder="輸入學校、鄉鎮或地址"></label>
+        <label class="field"><span>選擇學校</span><select id="schoolSelect"></select></label>
+        <p class="helper-text" id="filterSummary">正在載入學校資料</p>
+        <div class="field-grid">
+          <label class="field"><span>通學方式</span><select id="commuteMode"><option value="walk">步行</option><option value="bike">自行車</option><option value="scooter">機車</option><option value="car">開車</option><option value="bus">公車</option></select></label>
+          <label class="field"><span>路線模式</span><select id="displayMode"><option value="safe">安全優先</option><option value="fast">時間優先</option></select></label>
+        </div>
+        <div class="control-actions">
+          <button type="button" id="toggleRunButton" class="action-button primary">暫停更新</button>
+          <button type="button" id="manualRefreshButton" class="action-button">立即更新</button>
+        </div>
+        <div class="location-tools">
+          <button type="button" id="locateMeButton" class="action-button primary">取得我的定位</button>
+          <button type="button" id="clearLocationButton" class="action-button">清除定位</button>
+          <button type="button" id="openNavigationButton" class="action-button">啟用站內導航</button>
+        </div>
+        <p class="helper-text" id="locationStatusText">尚未使用定位，會先以學校周邊基準路徑估算。</p>
+        <div class="location-summary">
+          <div class="location-item"><span>定位</span><strong id="locationPermissionText">尚未授權</strong></div>
+          <div class="location-item"><span>距離</span><strong id="routeDistanceValue">等待定位</strong></div>
+          <div class="location-item"><span>時間</span><strong id="routeEstimateValue">等待定位</strong></div>
+        </div>
+        <div class="refresh-box fixed-refresh"><span>固定更新頻率</span><strong id="refreshValue">15 秒</strong></div>
+        <div class="countdown-block"><span>下次更新</span><strong id="countdownValue">15.0 秒</strong></div>
+        <div class="school-profile">
+          <p class="section-label">學校資訊</p>
+          <strong id="schoolStageLabel">尚未選定</strong>
+          <span id="schoolTownLabel">--</span>
+          <p id="schoolFocusText">正在整理選定學校的通學安全資訊。</p>
+        </div>
+        <div class="data-policy visually-compact">
+          <p class="section-label">資料狀態</p>
+          <div class="policy-item"><strong>學校</strong><span id="baseDataLabel">南投縣學校資料</span></div>
+          <div class="policy-item"><strong>影像</strong><span id="liveDataLabel">公開交通影像</span></div>
+          <div class="policy-item"><strong>路線</strong><span id="dataSyncLabel">地圖路線同步</span></div>
+        </div>
+      </aside>
+
+      <section class="map-stage" id="mobileMapSection">
+        <div class="map-header"><div><h2>南投學校地圖</h2><p>顯示南投各級學校位置、即時路線與通學安全判斷。</p></div><span id="lastUpdated">尚未更新</span></div>
+        <div class="map-toolbar">
+          <div class="map-chip">學校 <strong id="mapSchoolCount">0</strong></div>
+          <div class="map-chip">鄉鎮 <strong id="mapTownCount">0</strong></div>
+          <div class="map-chip">目前 <strong id="mapSelectedTown">--</strong></div>
+          <div class="map-chip">學制 <strong id="overviewStage">全部學制</strong></div>
+        </div>
+        <article class="mobile-weather-info-card" aria-label="選定學校即時天氣">
+          <div><span>選定學校天氣</span><strong id="mapWeatherSummary">天氣載入中</strong></div>
+          <div class="mobile-weather-stats"><span><b id="mapWeatherTemperature">--</b> 溫度</span><span><b id="mapWeatherRain">--</b> 降雨</span></div>
+        </article>
+        <div class="map-frame county">
+          <div id="countyMap" class="leaflet-map" role="img" aria-label="南投縣學校互動地圖"></div>
+          <div class="map-navigation-overlay" id="mapNavigationOverlay" aria-live="polite">
+            <div class="map-nav-top-row">
+              <span class="map-nav-pill status" id="mapNavStatus">尚未導航</span>
+              <span class="map-nav-pill" id="mapNavSpeed">時速 --</span>
+              <span class="map-nav-pill" id="mapNavAccuracy">GPS --</span>
+              <span class="map-nav-pill" id="mapNavHeading">方向 --</span>
+            </div>
+            <div class="map-mode-notice" id="mapModeNotice" hidden>公車班次資料尚未接入，先以候車緩衝估算。</div>
+            <div class="map-transit-panel" id="mapTransitPanel" hidden>
+              <span id="mapTransitStatus">正在查詢公車站</span>
+              <strong id="mapTransitRoute">尚未找到候選公車</strong>
+              <small id="mapTransitStops">允許定位後會查詢最近站牌。</small>
+              <ul class="map-transit-list" id="mapTransitList"></ul>
+              <div class="map-transit-detail" id="mapTransitDetail" hidden></div>
+            </div>
+            <div class="map-nav-bottom-row">
+              <div>
+                <span>剩餘</span>
+                <strong id="mapNavRemaining">等待定位</strong>
+              </div>
+              <div>
+                <span>預估</span>
+                <strong id="mapNavEta">--</strong>
+              </div>
+              <button type="button" class="map-follow-button" id="mapFollowButton">跟隨位置</button>
+            </div>
+          </div>
+        </div>
+        <div class="map-legend">
+          <div class="legend-item"><span class="legend-swatch school-senior"></span>高中職</div>
+          <div class="legend-item"><span class="legend-swatch school-junior"></span>國中</div>
+          <div class="legend-item"><span class="legend-swatch school-elementary"></span>國小</div>
+          <div class="legend-item"><span class="legend-swatch school-kindergarten"></span>幼兒園</div>
+          <div class="legend-item"><span class="legend-swatch school-university"></span>大學</div>
+          <div class="legend-item"><span class="legend-swatch school-selected"></span>選定學校</div>
+        </div>
+      </section>
+
+      <aside class="side-panel insight-panel" id="mobileInsightSection">
+        <div class="panel-title-row"><h2>即時洞察</h2><span class="panel-badge accent">Predict</span></div>
+        <div class="overview-strip">
+          <div class="overview-item"><span>學校</span><strong id="overviewSchoolCount">0</strong></div>
+          <div class="overview-item"><span>模式</span><strong id="overviewMode">安全優先</strong></div>
+          <div class="overview-item"><span>頻率</span><strong id="overviewFrequency">15 秒</strong></div>
+        </div>
+        <div class="metrics-grid">
+          <article class="metric-card"><p>風險</p><strong id="riskScore">--</strong><span id="riskLevelText">載入中</span></article>
+          <article class="metric-card"><p>時間</p><strong id="commuteTime">等待資料</strong><span id="routeModeText">等待路線</span></article>
+          <article class="metric-card"><p>事件</p><strong id="recentEvents">0</strong><span id="weatherText">載入中</span></article>
+          <article class="metric-card"><p>監看</p><strong id="hotspots">0</strong><span id="cameraText">等待影像</span></article>
+        </div>
+        <div class="mini-grid">
+          <article class="mini-card"><p>時段</p><strong id="futureTrafficText">--</strong></article>
+          <article class="mini-card"><p>主要因素</p><strong id="factorText">--</strong></article>
+        </div>
+        <div class="alert-card"><p class="section-label">安全判斷</p><p id="alertMessage">正在整理選定學校的通學風險。</p><strong id="actionText">載入中</strong></div>
+        <div class="weather-card">
+          <p class="section-label">選定學校天氣</p>
+          <div class="weather-grid"><span>溫度 <strong id="weatherTemperature">--</strong></span><span>降雨 <strong id="weatherRain">--</strong></span><span>概況 <strong id="weatherSummary">天氣載入中</strong></span></div>
+          <small id="weatherUpdated">Open-Meteo 即時天氣資料載入中</small>
+        </div>
+        <div class="route-card">
+          <div><p class="section-label">建議路線</p><strong id="recommendedRoute">等待路線資料</strong><span id="riskSourceText">開啟定位後可依你的目前位置重算。</span></div>
+          <div class="route-tags"><span id="safetyTag">安全判斷</span><span id="timeTag">等待時間</span></div>
+        </div>
+        <div class="in-app-navigation-card">
+          <div class="panel-title-row compact"><p class="section-label">站內安全導航</p><span id="navigationModeTag">SafeRoute</span></div>
+          <div class="navigation-summary-grid"><article><span>起點</span><strong id="navStartText">校區周邊</strong></article><article><span>目的地</span><strong id="navDestinationText">--</strong></article><article><span>距離 / 時間</span><strong id="navDistanceTimeText">--</strong></article></div>
+          <div class="navigation-live-strip" aria-live="polite"><span id="navLiveStatusText">尚未啟用即時追蹤</span><strong id="navProgressText">等待定位</strong><em id="navArrivalText">抵達後自動停止追蹤</em></div>
+          <ol class="navigation-step-list" id="navigationStepList"></ol>
+          <button type="button" id="openNavigationSecondaryButton" class="action-button">在地圖中顯示路線</button>
+        </div>
+        <div class="integration-grid">
+          <article class="integration-card"><p>學制平均風險</p><strong id="stageAverageRisk">--</strong></article>
+          <article class="integration-card"><p>學校數</p><strong id="stageSchoolCount">--</strong></article>
+          <article class="integration-card"><p>改善重點</p><strong id="stageFocusAction">載入中</strong></article>
+        </div>
+        <div class="panel-title-row minor"><h2>路線動態</h2></div>
+        <ul class="feed-list" id="recentList"></ul>
+      </aside>
+
+      <section class="lower-grid" id="mobileInfoSection">
+        <article class="surface-panel weather-decision-panel">
+          <div class="panel-title-row"><h2>天氣安全資訊卡</h2><span class="panel-badge accent" id="weatherRiskBadge">Weather</span></div>
+          <div class="weather-hero-grid">
+            <article><span>目前天氣</span><strong id="weatherDecisionSummary">天氣載入中</strong><small id="weatherDecisionUpdated">Open-Meteo 即時資料</small></article>
+            <article><span>溫度</span><strong id="weatherDecisionTemp">--</strong><small>影響通學體感</small></article>
+            <article><span>降雨</span><strong id="weatherDecisionRain">--</strong><small>影響煞車與視線</small></article>
+          </div>
+          <div class="weather-chart-card"><div class="bars-title-row"><p class="section-label">未來 4 小時天氣風險</p><span id="weatherRiskText">載入中</span></div><div class="weather-risk-bars" id="weatherRiskBars"></div></div>
+          <div class="weather-advice-card"><strong id="weatherAdviceTitle">天氣建議</strong><p id="weatherAdviceText">系統會依溫度、降雨與時段更新通學安全建議。</p></div>
+        </article>
+
+        <article class="surface-panel detail-map-panel">
+          <div class="panel-title-row"><h2>學校周邊動線</h2><span class="panel-badge accent" id="selectedRiskBadge">分析中</span></div>
+          <div class="map-frame detail">
+            <svg id="detailMapSvg" viewBox="0 0 900 580" role="img" aria-label="學校周邊動線示意">
+              <defs><linearGradient id="detailRoadFill" x1="0%" x2="100%" y1="0%" y2="100%"><stop offset="0%" stop-color="#dfe8ef"></stop><stop offset="100%" stop-color="#c9d7e1"></stop></linearGradient><pattern id="detailScenePatternSvg" patternUnits="userSpaceOnUse" width="24" height="24"><path d="M0 24 24 0" stroke="rgba(18,36,62,.08)" stroke-width="2"></path></pattern></defs>
+              <rect width="900" height="580" class="detail-pavement"></rect>
+              <g id="detailGroundLayer"></g><g id="detailRoadBaseLayer"></g><g id="detailCrosswalkLayer"></g><g id="detailStreetLayer"></g><g id="routeLayer"></g><g id="incidentLayer"></g><g id="cameraLayer"></g>
+              <circle id="schoolPulse" cx="690" cy="316" r="36"></circle><circle id="schoolMarker" cx="690" cy="316" r="17"></circle><text id="schoolLabel" x="690" y="338" text-anchor="middle">學校</text>
+            </svg>
+          </div>
+          <div class="detail-scene-strip"><article><span>動線</span><strong id="detailScenePattern">等待定位</strong></article><article><span>風險</span><strong id="detailSceneHazard">等待分析</strong></article><article><span>覆蓋</span><strong id="detailSceneCoverage">等待影像</strong></article></div>
+        </article>
+
+        <article class="surface-panel school-detail-panel">
+          <div class="panel-title-row"><h2>學校資料</h2><span class="panel-badge" id="selectedSchoolMeta">--</span></div>
+          <div class="school-detail-head"><div class="detail-highlight"><span>選定學校</span><strong id="selectedSchoolName">尚未選定</strong></div><div class="detail-highlight"><span>建議策略</span><strong id="improvementText">載入中</strong></div></div>
+          <div class="school-meta-grid">
+            <div class="meta-item"><span>地址</span><strong id="selectedSchoolAddress">--</strong></div>
+            <div class="meta-item"><span>電話</span><strong id="selectedSchoolPhone">--</strong></div>
+            <div class="meta-item"><span>路線距離</span><strong id="detailRouteName">--</strong></div>
+            <div class="meta-item"><span>使用者</span><strong id="audienceText">通學者</strong></div>
+          </div>
+          <div class="detail-summary-grid"><div class="detail-card"><p class="section-label">安全建議</p><ul class="detail-list compact" id="recommendationList"></ul></div><div class="detail-card"><p class="section-label">風險提醒</p><ul class="detail-list compact" id="incidentList"></ul></div></div>
+        </article>
+
+        <article class="surface-panel traffic-monitor-panel" id="mobileMonitorSection">
+          <div class="panel-title-row"><h2>路口公開影像</h2><span class="panel-badge accent">Camera</span></div>
+          <div class="monitor-summary"><article class="monitor-stat"><span>時段</span><strong id="monitorCongestion">載入中</strong></article><article class="monitor-stat"><span>影像</span><strong id="monitorWatchCount">0</strong></article><article class="monitor-stat"><span>時間</span><strong id="monitorTravelWindow">載入中</strong></article></div>
+          <div class="monitor-grid">
+            <article class="camera-card"><div class="camera-screen" id="cameraScreenA"><a id="cameraLinkA" class="camera-live-link" href="#" target="_blank" rel="noreferrer"><img id="cameraImageA" class="camera-live-image" alt="路口公開影像 A"></a><div class="camera-fallback" id="cameraFallbackA"><strong>等待可用影像</strong><span>若附近無公開影像，系統會顯示資料狀態。</span></div><p class="screen-tag">CAM A</p><span class="camera-pulse"></span></div><strong id="cameraTitleA">等待影像</strong><span id="cameraMetaA">--</span><p id="cameraStatusA">尚未載入</p></article>
+            <article class="camera-card"><div class="camera-screen camera-screen-b" id="cameraScreenB"><a id="cameraLinkB" class="camera-live-link" href="#" target="_blank" rel="noreferrer"><img id="cameraImageB" class="camera-live-image" alt="路口公開影像 B"></a><div class="camera-fallback" id="cameraFallbackB"><strong>等待可用影像</strong><span>若附近無公開影像，系統會顯示資料狀態。</span></div><p class="screen-tag">CAM B</p><span class="camera-pulse"></span></div><strong id="cameraTitleB">等待影像</strong><span id="cameraMetaB">--</span><p id="cameraStatusB">尚未載入</p></article>
+          </div>
+          <article class="traffic-bars-card"><div class="bars-title-row"><p class="section-label">未來車流推估</p><span id="trafficFlowLabel">載入中</span></div><div class="traffic-bars" id="trafficBars"></div></article>
+          <article class="route-logic-card"><strong id="routeLogicTitle">路線邏輯說明</strong><p id="routeLogicText">系統會整合距離、通學方式、時段、天氣與路口複雜度估算風險。</p><ul class="detail-list compact" id="routeReasonList"></ul></article>
+        </article>
+
+        <article class="surface-panel stage-summary-panel" id="mobileMoreSection"><div class="panel-title-row"><h2>學制總覽</h2><span class="panel-badge">Summary</span></div><div class="stage-summary-grid" id="stageSummaryGrid"></div></article>
+        <article class="surface-panel pain-points-panel"><div class="panel-title-row"><h2>南投通學痛點</h2><span class="panel-badge accent">Problem</span></div><div class="pain-list"><article><strong>山城地形</strong><span>南投地形多山，通學可能受山路、彎道、車流與天候影響。</span></article><article><strong>缺少數據輔助</strong><span>家長多靠經驗判斷路線安全，缺少即時數據輔助。</span></article><article><strong>學校難掌握</strong><span>學校難以掌握周邊通學熱點與高風險路段。</span></article><article><strong>最快不等於安全</strong><span>一般導航多以最快路線為主，不一定最安全。</span></article></div></article>
+        <article class="surface-panel ai-assistant-panel"><div class="panel-title-row"><h2>AI 安全判斷助手</h2><span class="panel-badge accent">AI</span></div><div class="assistant-risk"><span>目前風險</span><strong id="aiRiskLevel">載入中</strong></div><p id="aiRiskReason">系統會依選定學校、通學方式、路線、天氣與時段分析主要風險。</p><div class="assistant-suggestion" id="aiSuggestion">建議會依即時條件更新，例如提早出門、避開主要車流路口或改走較安全路線。</div></article>
+        <article class="surface-panel route-compare-panel"><div class="panel-title-row"><h2>安全路線 vs 最快路線</h2><span class="panel-badge">Compare</span></div><div class="route-compare-grid"><article><p>安全路線</p><strong id="safeRouteTime">--</strong><span id="safeRouteDistance">--</span><em id="safeRouteRisk">--</em><small id="safeRouteReason">優先降低路口與車流風險。</small></article><article><p>最快路線</p><strong id="fastRouteTime">--</strong><span id="fastRouteDistance">--</span><em id="fastRouteRisk">--</em><small id="fastRouteReason">時間較短，但可能增加通學風險。</small></article></div><p class="compare-note">本平台不是取代 Google Maps，而是補上通學安全判斷。</p></article>
+        <article class="surface-panel data-model-panel"><div class="panel-title-row"><h2>資料來源與模型邏輯</h2><span class="panel-badge">Open Data</span></div><div class="data-source-list"><span>南投縣學校資料</span><span>地圖路網資料</span><span>公開交通影像或路口監視器資訊</span><span>使用者定位資料</span><span>時段與通學方式參數</span></div><p class="formula-text">風險分數 = 車流風險 + 路口複雜度 + 距離時間 + 監看覆蓋 + 時段風險</p><div class="source-note"><strong>展示定位</strong><span>作品以可解釋模型呈現，讓學生、家長與學校理解每次通學建議的原因。</span></div><div class="credibility-list"><span><strong>真實資料</strong>學校位置、地圖路網、天氣與公開站牌/影像來源。</span><span><strong>模型推估</strong>風險、通學時間、公車上下車時間為可解釋估算。</span><span><strong>可擴充</strong>未來可串接 TDX 即時班表、事故資料與學校回報。</span></div></article>
+        <article class="surface-panel award-strategy-panel"><div class="panel-title-row"><h2>黑客松展示亮點</h2><span class="panel-badge accent">Win Story</span></div><div class="award-grid"><article><strong>站內即時導航</strong><span>在網站內顯示路線、剩餘距離與定位狀態，不外開其他地圖。</span></article><article><strong>不只是最快</strong><span>補上最快路線沒有處理的通學安全、時段與天候判斷。</span></article><article><strong>可展示可驗證</strong><span>整合學校、地圖、天氣與公開影像，展示流程完整。</span></article><article><strong>可持續擴充</strong><span>未來可串接更多路口影像、事故資料與學校回報。</span></article></div></article>
+        <article class="surface-panel impact-panel"><div class="panel-title-row"><h2>預期效益</h2><span class="panel-badge">Impact</span></div><div class="impact-grid"><article><strong id="impactSchoolCount">283</strong><span>南投學校與幼兒園資料</span></article><article><strong id="impactTownCount">13</strong><span>涵蓋主要鄉鎮</span></article><article><strong>15 秒</strong><span>固定更新展示</span></article><article><strong>5 類</strong><span>核心資料維度</span></article></div><div class="outcome-grid"><article><strong id="impactExposureValue">18%</strong><span>高風險路口暴露可降低</span></article><article><strong id="impactEarlyValue">8 分</strong><span>雨天/尖峰提早出門建議</span></article><article><strong id="impactDecisionValue">3 方</strong><span>學生、家長、學校共同決策</span></article></div><p class="impact-note">這不是只做漂亮頁面，而是把定位、學校資料、天氣、路線與安全風險邏輯串成可展示的通學安全平台。</p></article>
+        <article class="surface-panel demo-flow-panel"><div class="panel-title-row"><h2>3 分鐘 Demo 流程</h2><span class="panel-badge accent">Pitch</span></div><div class="demo-control-row"><button type="button" id="demoModeButton" class="action-button primary">啟動評審模式</button><span id="demoStatusText">依照 10 分鐘簡報節奏快速展示核心價值。</span></div><ol class="demo-steps" id="demoSteps"><li><strong>30 秒</strong>說明南投通學痛點，為什麼最快路線不等於最安全。</li><li><strong>60 秒</strong>選定學校，展示天氣、風險、監看與路線建議。</li><li><strong>60 秒</strong>切換安全路線與最快路線，說明 AI 判斷原因。</li><li><strong>30 秒</strong>收斂到可擴充資料來源與對學校、家長的實際價值。</li></ol></article>
+        <article class="surface-panel sdg-panel"><div class="panel-title-row"><h2>SDGs 與社會影響</h2><span class="panel-badge">Sustainability</span></div><div class="sdg-grid"><article><strong>SDG 3</strong><span>降低通學事故風險，支持健康與福祉。</span></article><article><strong>SDG 4</strong><span>讓學生能更安全地抵達學校。</span></article><article><strong>SDG 11</strong><span>提升山城交通與校園周邊安全韌性。</span></article><article><strong>SDG 13</strong><span>把天候變化納入每日通學決策。</span></article></div></article>
+      </section>
+    </main>
+  </div>
+  <script src="school-data.js"></script>
+  <script src="app-config.js"></script>
+  <script src="vendor/leaflet/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

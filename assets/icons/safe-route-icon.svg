@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="SafeRoute NT">
+  <defs>
+    <linearGradient id="bg" x1="72" x2="440" y1="52" y2="460" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffffff"/>
+      <stop offset="0.46" stop-color="#edf7f1"/>
+      <stop offset="1" stop-color="#dceaf7"/>
+    </linearGradient>
+    <linearGradient id="road" x1="96" x2="416" y1="384" y2="128" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#dc5f2e"/>
+      <stop offset="0.5" stop-color="#16815c"/>
+      <stop offset="1" stop-color="#2563eb"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <path d="M96 366c82-76 136-56 164-110 24-48 8-98 84-136 24-12 49-16 72-16" fill="none" stroke="#12243e" stroke-opacity=".12" stroke-width="70" stroke-linecap="round"/>
+  <path d="M96 366c82-76 136-56 164-110 24-48 8-98 84-136 24-12 49-16 72-16" fill="none" stroke="url(#road)" stroke-width="34" stroke-linecap="round"/>
+  <circle cx="112" cy="352" r="34" fill="#dc5f2e" stroke="#fff" stroke-width="14"/>
+  <circle cx="262" cy="250" r="32" fill="#16815c" stroke="#fff" stroke-width="14"/>
+  <circle cx="402" cy="112" r="34" fill="#2563eb" stroke="#fff" stroke-width="14"/>
+  <path d="M256 154l74 42v76c0 54-30 96-74 116-44-20-74-62-74-116v-76l74-42z" fill="#fff" stroke="#12243e" stroke-opacity=".16" stroke-width="10"/>
+  <path d="M224 266l26 27 50-68" fill="none" stroke="#16815c" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
