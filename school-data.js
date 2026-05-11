@@ -3506,6 +3506,46 @@ window.NANTOU_SCHOOL_DATA = [
     "parentCampus": "都達國小"
   },
   {
+    "id": "kg-092",
+    "name": "水里鄉立幼兒園",
+    "stage": "kindergarten",
+    "town": "水里鄉",
+    "address": "[553]南投縣水里鄉玉峰村6鄰萬壽巷43號",
+    "phone": "(049)2773845",
+    "lat": 23.803984,
+    "lng": 120.837263,
+    "geoSource": "public-map-manual-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "dataSource": "南投縣114學年度公立及非營利幼兒園招收2歲專班名冊 / 水里鄉公所招生公告"
+  },
+  {
+    "id": "kg-093",
+    "name": "南投縣私立小名人幼兒園",
+    "stage": "kindergarten",
+    "town": "水里鄉",
+    "address": "[553]南投縣水里鄉南光村8鄰民族路102號",
+    "phone": "(049)2776066",
+    "lat": 23.80902,
+    "lng": 120.856897,
+    "geoSource": "public-map-manual-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "dataSource": "幼兒園名錄 / 幼園通"
+  },
+  {
+    "id": "kg-094",
+    "name": "永昌國民小學附設幼兒園",
+    "stage": "kindergarten",
+    "town": "集集鎮",
+    "address": "[55242]南投縣集集鎮永昌里東昌巷4號",
+    "phone": "(049)2762524",
+    "lat": 23.8272584,
+    "lng": 120.7990326,
+    "geoSource": "matched-elementary-campus-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "dataSource": "永昌國小新設幼兒園工程公開資訊 / 永昌國小校區資料",
+    "parentCampus": "永昌國小"
+  },
+  {
     "id": "uni-001",
     "name": "國立暨南國際大學",
     "stage": "university",
