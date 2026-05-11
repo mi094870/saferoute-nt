@@ -4,1812 +4,2129 @@ window.NANTOU_SCHOOL_DATA = [
     "name": "旭光高中",
     "stage": "senior",
     "town": "草屯鎮",
-    "address": "[54243]南投縣草屯鎮中正路568之23號",
+    "address": "[542]南投縣草屯鎮中正路568之23號",
     "phone": "(049)2563472",
     "lat": 23.9795219,
     "lng": 120.6945993,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "84309",
+    "dataSource": "教育部統計處 114 學年度高中職名錄"
   },
   {
     "id": "nt-002",
     "name": "南投國中",
     "stage": "junior",
     "town": "南投市",
-    "address": "[54061]南投縣南投市漳和里祖祠路361號",
+    "address": "[540]南投縣南投市漳和里祖祠路361號",
     "phone": "(049)2222549",
     "lat": 23.9131302,
     "lng": 120.6754934,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084501",
+    "dataSource": "教育部統計處 113 學年度國中名錄"
   },
   {
     "id": "nt-003",
     "name": "南崗國中",
     "stage": "junior",
     "town": "南投市",
-    "address": "[54060]南投縣南投市大庄路94號",
+    "address": "[540]南投縣南投市大庄路94號",
     "phone": "(049)2222460",
     "lat": 23.8957687,
     "lng": 120.6829636,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084502",
+    "dataSource": "教育部統計處 113 學年度國中名錄"
   },
   {
     "id": "nt-004",
     "name": "中興國中",
     "stage": "junior",
     "town": "南投市",
-    "address": "[54042]南投縣南投市內興里新興路309號",
+    "address": "[540]南投縣南投市內興里新興路309號",
     "phone": "(049)2335283",
     "lat": 23.9315688,
     "lng": 120.693658,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084503",
+    "dataSource": "教育部統計處 113 學年度國中名錄"
   },
   {
     "id": "nt-005",
     "name": "鳳鳴國中",
     "stage": "junior",
     "town": "南投市",
-    "address": "[54070]南投縣南投市鳳鳴里八卦路896號",
+    "address": "[540]南投縣南投市鳳鳴里八卦路896號",
     "phone": "(049)2291831",
     "lat": 23.9252487,
     "lng": 120.6394506,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084504",
+    "dataSource": "教育部統計處 113 學年度國中名錄"
   },
   {
     "id": "nt-006",
     "name": "埔里國中",
     "stage": "junior",
     "town": "埔里鎮",
-    "address": "[54555]南投縣埔里鎮西安路一段193號",
+    "address": "[545]南投縣埔里鎮西安路一段193號",
     "phone": "(049)2982055",
     "lat": 23.968138,
     "lng": 120.96847,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084505",
+    "dataSource": "教育部統計處 113 學年度國中名錄"
   },
   {
     "id": "nt-007",
     "name": "大成國中",
     "stage": "junior",
     "town": "埔里鎮",
-    "address": "[54545]南投縣埔里鎮大城路169號",
+    "address": "[545]南投縣埔里鎮大城路169號",
     "phone": "(049)2915550",
     "lat": 23.9720494,
     "lng": 120.9526286,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084506",
+    "dataSource": "教育部統計處 113 學年度國中名錄"
   },
   {
     "id": "nt-008",
     "name": "宏仁國中",
     "stage": "junior",
     "town": "埔里鎮",
-    "address": "[54557]南投縣埔里鎮東門里公園路20號",
+    "address": "[545]南投縣埔里鎮東門里公園路20號",
     "phone": "(049)2982548",
     "lat": 23.9614151,
     "lng": 120.9728156,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084507",
+    "dataSource": "教育部統計處 113 學年度國中名錄"
   },
   {
     "id": "nt-009",
     "name": "草屯國中",
     "stage": "junior",
     "town": "草屯鎮",
-    "address": "[54265]南投縣草屯鎮炎峰里虎山路808號",
+    "address": "[542]南投縣草屯鎮炎峰里虎山路808號",
     "phone": "(049)2362050",
     "lat": 23.9773088,
     "lng": 120.685998,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084508",
+    "dataSource": "教育部統計處 113 學年度國中名錄"
   },
   {
     "id": "nt-010",
     "name": "日新國中",
     "stage": "junior",
     "town": "草屯鎮",
-    "address": "[54252]南投縣草屯鎮新豐里稻香路45號",
+    "address": "[542]南投縣草屯鎮新豐里稻香路45號",
     "phone": "(049)2333480",
     "lat": 23.9947408,
     "lng": 120.6769951,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084510",
+    "dataSource": "教育部統計處 113 學年度國中名錄"
   },
   {
     "id": "nt-011",
     "name": "竹山國中",
     "stage": "junior",
     "town": "竹山鎮",
-    "address": "[55747]南投縣竹山鎮中山里竹山路217號",
+    "address": "[557]南投縣竹山鎮中山里竹山路217號",
     "phone": "(049)2642068",
     "lat": 23.7533668,
     "lng": 120.6818346,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084511",
+    "dataSource": "教育部統計處 113 學年度國中名錄"
   },
   {
     "id": "nt-012",
     "name": "延和國中",
     "stage": "junior",
     "town": "竹山鎮",
-    "address": "[55776]南投縣竹山鎮延和里鹿山路40號",
+    "address": "[557]南投縣竹山鎮延和里鹿山路40號",
     "phone": "(049)2658641",
     "lat": 23.7604828,
     "lng": 120.6950715,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084512",
+    "dataSource": "教育部統計處 113 學年度國中名錄"
   },
   {
     "id": "nt-013",
     "name": "社寮國中",
     "stage": "junior",
     "town": "竹山鎮",
-    "address": "[55783]南投縣竹山鎮集山路一段1729號",
+    "address": "[557]南投縣竹山鎮集山路一段1729號",
     "phone": "(049)2622010",
     "lat": 23.8087654,
     "lng": 120.7204455,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084513",
+    "dataSource": "教育部統計處 113 學年度國中名錄"
   },
   {
     "id": "nt-014",
     "name": "瑞竹國中",
     "stage": "junior",
     "town": "竹山鎮",
-    "address": "[55772]南投縣竹山鎮瑞竹里瑞東巷20號",
+    "address": "[557]南投縣竹山鎮瑞竹里瑞東巷20號",
     "phone": "(049)2711014",
     "lat": 23.6675165,
     "lng": 120.6715814,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084514",
+    "dataSource": "教育部統計處 113 學年度國中名錄"
   },
   {
     "id": "nt-015",
     "name": "集集國中",
     "stage": "junior",
     "town": "集集鎮",
-    "address": "[55244]南投縣集集鎮集集里成功路200號",
+    "address": "[552]南投縣集集鎮集集里成功路200號",
     "phone": "(049)2762013",
     "lat": 23.8319253,
     "lng": 120.7843689,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084515",
+    "dataSource": "教育部統計處 113 學年度國中名錄"
   },
   {
     "id": "nt-016",
     "name": "名間國中",
     "stage": "junior",
     "town": "名間鄉",
-    "address": "[55146]南投縣名間鄉中山村彰南路237號",
+    "address": "[551]南投縣名間鄉中山村彰南路237號",
     "phone": "(049)2732046",
     "lat": 23.844906,
     "lng": 120.6951144,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084516",
+    "dataSource": "教育部統計處 113 學年度國中名錄"
   },
   {
     "id": "nt-017",
     "name": "三光國中",
     "stage": "junior",
     "town": "名間鄉",
-    "address": "[55151]南投縣名間鄉新光村名山路50號",
+    "address": "[551]南投縣名間鄉新光村名山路50號",
     "phone": "(049)2732074",
     "lat": 23.8502778,
     "lng": 120.6691667,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084517",
+    "dataSource": "教育部統計處 113 學年度國中名錄"
   },
   {
     "id": "nt-018",
     "name": "鹿谷國中",
     "stage": "junior",
     "town": "鹿谷鄉",
-    "address": "[55841]南投縣鹿谷鄉彰雅村仁義路94之1號",
+    "address": "[558]南投縣鹿谷鄉彰雅村仁義路94之1號",
     "phone": "(049)2752001",
     "lat": 23.7490928,
     "lng": 120.7589191,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084518",
+    "dataSource": "教育部統計處 113 學年度國中名錄"
   },
   {
     "id": "nt-019",
     "name": "瑞峰國中",
     "stage": "junior",
     "town": "鹿谷鄉",
-    "address": "[55855]南投縣鹿谷鄉仁愛路154之1號",
+    "address": "[558]南投縣鹿谷鄉仁愛路154之1號",
     "phone": "(049)2671712",
     "lat": 23.7826308,
     "lng": 120.7758379,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084519",
+    "dataSource": "教育部統計處 113 學年度國中名錄"
   },
   {
     "id": "nt-020",
     "name": "中寮國中",
     "stage": "junior",
     "town": "中寮鄉",
-    "address": "[54154]南投縣中寮鄉復興村初中巷50號",
+    "address": "[541]南投縣中寮鄉復興村初中巷50號",
     "phone": "(049)2691247",
     "lat": 23.884147,
     "lng": 120.7667965,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084520",
+    "dataSource": "教育部統計處 113 學年度國中名錄"
   },
   {
     "id": "nt-021",
     "name": "爽文國中",
     "stage": "junior",
     "town": "中寮鄉",
-    "address": "[54153]南投縣中寮鄉爽文村4 鄰竹坪巷40號",
+    "address": "[541]南投縣中寮鄉爽文村4 鄰竹坪巷40號",
     "phone": "(049)2601030",
     "lat": 23.9340457,
     "lng": 120.7623977,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084521",
+    "dataSource": "教育部統計處 113 學年度國中名錄"
   },
   {
     "id": "nt-022",
     "name": "魚池國中",
     "stage": "junior",
     "town": "魚池鄉",
-    "address": "[55541]南投縣魚池鄉魚池村魚池街441-6號",
+    "address": "[555]南投縣魚池鄉魚池村魚池街441之6號",
     "phone": "(049)2895527",
     "lat": 23.8943691,
     "lng": 120.9317932,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084522",
+    "dataSource": "教育部統計處 113 學年度國中名錄"
   },
   {
     "id": "nt-023",
     "name": "明潭國中",
     "stage": "junior",
     "town": "魚池鄉",
-    "address": "[55548]南投縣魚池鄉水社村中山路190號",
+    "address": "[555]南投縣魚池鄉水社村中山路190號",
     "phone": "(049)2855145",
     "lat": 23.8676601,
     "lng": 120.9104448,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084523",
+    "dataSource": "教育部統計處 113 學年度國中名錄"
   },
   {
     "id": "nt-024",
     "name": "國姓國中",
     "stage": "junior",
     "town": "國姓鄉",
-    "address": "[54443]南投縣國姓鄉石門村國姓路237號",
+    "address": "[544]南投縣國姓鄉石門村國姓路237號",
     "phone": "(049)2721144",
     "lat": 24.042665,
     "lng": 120.858612,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084524",
+    "dataSource": "教育部統計處 113 學年度國中名錄"
   },
   {
     "id": "nt-025",
     "name": "北梅國中",
     "stage": "junior",
     "town": "國姓鄉",
-    "address": "[54446]南投縣國姓鄉北港村國姓路62號",
+    "address": "[544]南投縣國姓鄉北港村國姓路62號",
     "phone": "(049)2461004",
     "lat": 24.0572269,
     "lng": 120.9116462,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084525",
+    "dataSource": "教育部統計處 113 學年度國中名錄"
   },
   {
     "id": "nt-026",
     "name": "北山國中",
     "stage": "junior",
     "town": "國姓鄉",
-    "address": "[54448]南投縣國姓鄉北山村中正路四段157號",
+    "address": "[544]南投縣國姓鄉北山村中正路四段157號",
     "phone": "(049)2451028#26",
     "lat": 23.9804765,
     "lng": 120.8733344,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084526",
+    "dataSource": "教育部統計處 113 學年度國中名錄"
   },
   {
     "id": "nt-027",
     "name": "水里國中",
     "stage": "junior",
     "town": "水里鄉",
-    "address": "[55349]南投縣水里鄉民生路68號",
+    "address": "[553]南投縣水里鄉民生路68號",
     "phone": "(049)2770134",
     "lat": 23.8104697,
     "lng": 120.8568926,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084527",
+    "dataSource": "教育部統計處 113 學年度國中名錄"
   },
   {
     "id": "nt-028",
     "name": "民和國中",
     "stage": "junior",
     "town": "水里鄉",
-    "address": "[55382]南投縣水里鄉民和村中學路29號",
+    "address": "[553]南投縣水里鄉中學路29號",
     "phone": "(049)2741138",
     "lat": 23.7990131,
     "lng": 120.9178466,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084528",
+    "dataSource": "教育部統計處 113 學年度國中名錄"
   },
   {
     "id": "nt-029",
     "name": "信義國中",
     "stage": "junior",
     "town": "信義鄉",
-    "address": "[55646]南投縣信義鄉明德村玉山路20號",
+    "address": "[556]南投縣信義鄉明德村玉山路20號",
     "phone": "(049)2791129",
     "lat": 23.6964893,
     "lng": 120.8538589,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084529",
+    "dataSource": "教育部統計處 113 學年度國中名錄"
   },
   {
     "id": "nt-030",
     "name": "同富國中",
     "stage": "junior",
     "town": "信義鄉",
-    "address": "[55652]南投縣信義鄉同富村同和巷7號",
+    "address": "[556]南投縣信義鄉同富村同和巷7號",
     "phone": "(049)2701317",
     "lat": 23.59513,
     "lng": 120.8874004,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084530",
+    "dataSource": "教育部統計處 113 學年度國中名錄"
   },
   {
     "id": "nt-031",
     "name": "仁愛國中",
     "stage": "junior",
     "town": "仁愛鄉",
-    "address": "[54641]南投縣仁愛鄉大同村信義巷28號",
+    "address": "[546]南投縣仁愛鄉大同村信義巷28號",
     "phone": "(049)2802206",
     "lat": 24.0317914,
     "lng": 121.141863,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084531",
+    "dataSource": "教育部統計處 113 學年度國中名錄"
   },
   {
     "id": "nt-032",
     "name": "營北國中",
     "stage": "junior",
     "town": "南投市",
-    "address": "[54045]南投縣南投市營北里向上路2號",
+    "address": "[540]南投縣南投市營北里向上路2號",
     "phone": "(049)2392683",
     "lat": 23.9522405,
     "lng": 120.686685,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084532",
+    "dataSource": "教育部統計處 113 學年度國中名錄"
+  },
+  {
+    "id": "nt-junior-081502",
+    "officialCode": "081502",
+    "name": "私立均頭國中(小)",
+    "stage": "junior",
+    "town": "埔里鎮",
+    "address": "[545]南投縣埔里鎮水頭里4鄰水頭路48號",
+    "phone": "(049)2980723",
+    "lat": 23.9503079,
+    "lng": 120.9729562,
+    "dataSource": "教育部統計處 113 學年度國中名錄",
+    "geoSource": "matched-senior-campus-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoMatchAddress": "均頭中學校區"
   },
   {
     "id": "nt-033",
     "name": "南投國小",
     "stage": "elementary",
     "town": "南投市",
-    "address": "[54056]南投縣南投市彰南路一段1059號",
+    "address": "[540]南投縣南投市彰南路一段1059號",
     "phone": "(049)2222038",
     "lat": 23.9064326,
     "lng": 120.6850378,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084601",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-034",
     "name": "平和國小",
     "stage": "elementary",
     "town": "南投市",
-    "address": "[54049]南投縣南投市平和里育樂路62號",
+    "address": "[540]南投縣南投市平和里育樂路62號",
     "phone": "(049)2222028",
     "lat": 23.9126231,
     "lng": 120.6916297,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084602",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-035",
     "name": "新豐國小",
     "stage": "elementary",
     "town": "南投市",
-    "address": "[54068]南投縣南投市彰南路三段221號",
+    "address": "[540]南投縣南投市彰南路三段221號",
     "phone": "(049)2251804",
     "lat": 23.928925,
     "lng": 120.6729889,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084603",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-036",
     "name": "營盤國小",
     "stage": "elementary",
     "town": "南投市",
-    "address": "[54047]南投縣南投市營南里營盤路136號",
+    "address": "[540]南投縣南投市營盤路136號",
     "phone": "(049)2335882",
     "lat": 23.9446739,
     "lng": 120.6747888,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084604",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-037",
     "name": "西嶺國小",
     "stage": "elementary",
     "town": "南投市",
-    "address": "[54070]南投縣南投市鳳鳴里八卦路894號",
+    "address": "[540]南投縣南投市鳳鳴里八卦路894號",
     "phone": "(049)2291354",
     "lat": 23.9250281,
     "lng": 120.6385053,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084605",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-038",
     "name": "德興國小",
     "stage": "elementary",
     "town": "南投市",
-    "address": "[54041]南投縣南投市內興里中興路200號",
+    "address": "[540]南投縣南投市內興里中興路200號",
     "phone": "(049)2359050",
     "lat": 23.9324283,
     "lng": 120.6929931,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084606",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-039",
     "name": "光華國小",
     "stage": "elementary",
     "town": "南投市",
-    "address": "[54044]南投縣南投市中興新村光華四路2號",
+    "address": "[540]南投縣南投市中興新村光華四路2號",
     "phone": "(049)2332549",
     "lat": 23.9527519,
     "lng": 120.6914781,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084607",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-040",
     "name": "光榮國小",
     "stage": "elementary",
     "town": "南投市",
-    "address": "[54043]南投縣南投市光榮里八鄰光榮北路19號",
+    "address": "[540]南投縣南投市中興新村光榮北路19號",
     "phone": "(049)2332550",
     "lat": 23.9458444,
     "lng": 120.6966986,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084608",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-041",
     "name": "文山國小",
     "stage": "elementary",
     "town": "南投市",
-    "address": "[54070]南投縣南投市福山里八卦路349號",
+    "address": "[540]南投縣南投市福山里八卦路349號",
     "phone": "(049)2291394",
     "lat": 23.90636,
     "lng": 120.638038,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084609",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-042",
     "name": "僑建國小",
     "stage": "elementary",
     "town": "南投市",
-    "address": "[54069]南投縣南投市彰南路三段847號",
+    "address": "[540]南投縣南投市彰南路三段847號",
     "phone": "(049)2253245",
     "lat": 23.9407356,
     "lng": 120.6677349,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084610",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-043",
     "name": "漳和國小",
     "stage": "elementary",
     "town": "南投市",
-    "address": "[54061]南投縣南投市文林路16號",
+    "address": "[540]南投縣南投市文林路16號",
     "phone": "(049)2224087",
     "lat": 23.9132403,
     "lng": 120.6770194,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084611",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-044",
     "name": "嘉和國小",
     "stage": "elementary",
     "town": "南投市",
-    "address": "[54056]南投縣南投市彰南路一段639巷80號",
+    "address": "[540]南投縣南投市彰南路一段639巷80號",
     "phone": "(049)2222430",
     "lat": 23.8966434,
     "lng": 120.6844667,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084612",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-045",
     "name": "光復國小",
     "stage": "elementary",
     "town": "南投市",
-    "address": "[54043]南投縣南投市光明里光明一路67號",
+    "address": "[540]南投縣南投市光明里光明一路67號",
     "phone": "(049)2332587",
     "lat": 23.9418468,
     "lng": 120.7019642,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084613",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-046",
     "name": "千秋國小",
     "stage": "elementary",
     "town": "南投市",
-    "address": "[54051]南投縣南投市千秋里千秋路131巷1號",
+    "address": "[540]南投縣南投市千秋里千秋路131巷1號",
     "phone": "(049)2229405",
     "lat": 23.8918965,
     "lng": 120.7130993,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084614",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-047",
     "name": "埔里國小",
     "stage": "elementary",
     "town": "埔里鎮",
-    "address": "[54555]南投縣埔里鎮西門里西康路127號",
+    "address": "[545]南投縣埔里鎮西門里西康路127號",
     "phone": "(049)2982034",
     "lat": 23.9687466,
     "lng": 120.9665366,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084615",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-048",
     "name": "南光國小",
     "stage": "elementary",
     "town": "埔里鎮",
-    "address": "[54550]南投縣埔里鎮中正路251號",
+    "address": "[545]南投縣埔里鎮中正路251號",
     "phone": "(049)2982025",
     "lat": 23.9604225,
     "lng": 120.9702682,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084616",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-049",
     "name": "育英國小",
     "stage": "elementary",
     "town": "埔里鎮",
-    "address": "[54547]南投縣埔里鎮清新里育英街20號",
+    "address": "[545]南投縣埔里鎮清新里育英街20號",
     "phone": "(049)2982144",
     "lat": 23.962412,
     "lng": 120.962037,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084617",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-050",
     "name": "史港國小",
     "stage": "elementary",
     "town": "埔里鎮",
-    "address": "[54558]南投縣埔里鎮史港里獅子路9號",
+    "address": "[545]南投縣埔里鎮史港里獅子路9號",
     "phone": "(049)2931521",
     "lat": 24.0124683,
     "lng": 120.9573135,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084618",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-051",
     "name": "愛蘭國小",
     "stage": "elementary",
     "town": "埔里鎮",
-    "address": "[54546]南投縣埔里鎮愛蘭里鐵山路7號",
+    "address": "[545]南投縣埔里鎮愛蘭里鐵山路7號",
     "phone": "(049)2912514",
     "lat": 23.9738549,
     "lng": 120.943992,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084619",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-052",
     "name": "溪南國小",
     "stage": "elementary",
     "town": "埔里鎮",
-    "address": "[54548]南投縣埔里鎮溪南里珠生路68號",
+    "address": "[545]南投縣埔里鎮溪南里珠生路68號",
     "phone": "(049)2904517",
     "lat": 23.9477995,
     "lng": 120.9556906,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084620",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-053",
     "name": "水尾國小",
     "stage": "elementary",
     "town": "埔里鎮",
-    "address": "[54544]南投縣埔里鎮一新里永豐路92號",
+    "address": "[545]南投縣埔里鎮一新里永豐路92號",
     "phone": "(049)2932506",
     "lat": 23.9988749,
     "lng": 120.9295995,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084621",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-054",
     "name": "桃源國小",
     "stage": "elementary",
     "town": "埔里鎮",
-    "address": "[54561]南投縣埔里鎮桃米里桃米巷68號",
+    "address": "[545]南投縣埔里鎮桃米里桃米巷68號",
     "phone": "(049)2913450",
     "lat": 23.9421361,
     "lng": 120.9261694,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084622",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-055",
     "name": "麒麟國小",
     "stage": "elementary",
     "town": "埔里鎮",
-    "address": "[54550]南投縣埔里鎮麒麟里武界路7號",
+    "address": "[545]南投縣埔里鎮麒麟里武界路7號",
     "phone": "(049)2925941",
     "lat": 23.9313889,
     "lng": 120.9902778,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084623",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-056",
     "name": "太平國小",
     "stage": "elementary",
     "town": "埔里鎮",
-    "address": "[54559]南投縣埔里鎮合成里西安路三段167巷35號",
+    "address": "[545]南投縣埔里鎮合成里西安路三段167巷35號",
     "phone": "(049)2931385",
     "lat": 24.0265352,
     "lng": 120.9217117,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084624",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-057",
     "name": "忠孝國小",
     "stage": "elementary",
     "town": "埔里鎮",
-    "address": "[54558]南投縣埔里鎮牛眠里守城路28號",
+    "address": "[545]南投縣埔里鎮牛眠里守城路28號",
     "phone": "(049)2931582",
     "lat": 23.991811,
     "lng": 120.979959,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084625",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-058",
     "name": "中峰國小",
     "stage": "elementary",
     "town": "埔里鎮",
-    "address": "[54560]南投縣埔里鎮中山路一段228號",
+    "address": "[545]南投縣埔里鎮中山路一段228號",
     "phone": "(049)2982542",
     "lat": 23.9761608,
     "lng": 120.9845458,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084626",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-059",
     "name": "大成國小",
     "stage": "elementary",
     "town": "埔里鎮",
-    "address": "[54551]南投縣埔里鎮中山路三段565號",
+    "address": "[545]南投縣埔里鎮中山路三段565號",
     "phone": "(049)2916517",
     "lat": 23.9703004,
     "lng": 120.951057,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084627",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-060",
     "name": "草屯國小",
     "stage": "elementary",
     "town": "草屯鎮",
-    "address": "[54249]南投縣草屯鎮玉峰里玉屏路210號",
+    "address": "[542]南投縣草屯鎮玉峰里玉屏路210號",
     "phone": "(049)2362007",
     "lat": 23.9816808,
     "lng": 120.6869592,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084629",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-061",
     "name": "敦和國小",
     "stage": "elementary",
     "town": "草屯鎮",
-    "address": "[54257]南投縣草屯鎮敦和路72-6號",
+    "address": "[542]南投縣草屯鎮敦和路72-6號",
     "phone": "(049)2365074",
     "lat": 23.9817248,
     "lng": 120.6778648,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084630",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-062",
     "name": "新庄國小",
     "stage": "elementary",
     "town": "草屯鎮",
-    "address": "[54253]南投縣草屯鎮新庄里新庄三路32號",
+    "address": "[542]南投縣草屯鎮新庄里新庄三路32號",
     "phone": "(049)2333104",
     "lat": 23.9948839,
     "lng": 120.6679214,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084631",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-063",
     "name": "碧峰國小",
     "stage": "elementary",
     "town": "草屯鎮",
-    "address": "[54259]南投縣草屯鎮碧峰里立人路439號",
+    "address": "[542]南投縣草屯鎮碧峰里立人路439號",
     "phone": "(049)2334304",
     "lat": 23.969859,
     "lng": 120.6654673,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084632",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-064",
     "name": "土城國小",
     "stage": "elementary",
     "town": "草屯鎮",
-    "address": "[54246]南投縣草屯鎮土城里中正路189號",
+    "address": "[542]南投縣草屯鎮土城里中正路189號",
     "phone": "(049)2552024",
     "lat": 23.9843328,
     "lng": 120.7428825,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084633",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-065",
     "name": "雙冬國小",
     "stage": "elementary",
     "town": "草屯鎮",
-    "address": "[54245]南投縣草屯鎮雙冬里中正路34號",
+    "address": "[542]南投縣草屯鎮雙冬里中正路34號",
     "phone": "(049)2571362",
     "lat": 23.984445,
     "lng": 120.795493,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084634",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-066",
     "name": "炎峰國小",
     "stage": "elementary",
     "town": "草屯鎮",
-    "address": "[54261]南投縣草屯鎮中興路101號",
+    "address": "[542]南投縣草屯鎮中興路101號",
     "phone": "(049)2333221",
     "lat": 23.9744913,
     "lng": 120.6843782,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084635",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-067",
     "name": "中原國小",
     "stage": "elementary",
     "town": "草屯鎮",
-    "address": "[54248]南投縣草屯鎮中原里坪腳巷20號",
+    "address": "[542]南投縣草屯鎮中原里坪腳巷20號",
     "phone": "(049)2554631",
     "lat": 23.9851678,
     "lng": 120.7202673,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084636",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-068",
     "name": "平林國小",
     "stage": "elementary",
     "town": "草屯鎮",
-    "address": "[54245]南投縣草屯鎮健行路65巷90號",
+    "address": "[542]南投縣草屯鎮健行路65巷90號",
     "phone": "(049)2571761",
     "lat": 23.992086,
     "lng": 120.762598,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084637",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-069",
     "name": "坪頂國小",
     "stage": "elementary",
     "town": "草屯鎮",
-    "address": "[54244]南投縣草屯鎮坪頂里南坪路40號",
+    "address": "[542]南投縣草屯鎮坪頂里南坪路40號",
     "phone": "(049)2552074",
     "lat": 23.9669523,
     "lng": 120.7393559,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084638",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-070",
     "name": "僑光國小",
     "stage": "elementary",
     "town": "草屯鎮",
-    "address": "[54252]南投縣草屯鎮稻香路20-2號",
+    "address": "[542]南投縣草屯鎮稻香路20-2號",
     "phone": "(049)2333684",
     "lat": 23.9939958,
     "lng": 120.686643,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084639",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-071",
     "name": "北投國小",
     "stage": "elementary",
     "town": "草屯鎮",
-    "address": "[54257]南投縣草屯鎮北投路文教巷43號",
+    "address": "[542]南投縣草屯鎮北投里文教巷43號",
     "phone": "(049)2333614",
     "lat": 23.9868024,
     "lng": 120.6581555,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084640",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-072",
     "name": "富功國小",
     "stage": "elementary",
     "town": "草屯鎮",
-    "address": "[54243]南投縣草屯鎮富寮里中正路567號",
+    "address": "[542]南投縣草屯鎮富寮里中正路567號",
     "phone": "(049)2569213",
     "lat": 23.979073,
     "lng": 120.698243,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084641",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-073",
     "name": "竹山國小",
     "stage": "elementary",
     "town": "竹山鎮",
-    "address": "[55751]南投縣竹山鎮延和里向學街32號",
+    "address": "[557]南投縣竹山鎮延和里向學街32號",
     "phone": "(049)2642016",
     "lat": 23.7611494,
     "lng": 120.6873067,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084642",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-074",
     "name": "延平國小",
     "stage": "elementary",
     "town": "竹山鎮",
-    "address": "[55782]南投縣竹山鎮集山路二段1161號",
+    "address": "[557]南投縣竹山鎮集山路二段1161號",
     "phone": "(049)2642450",
     "lat": 23.7683324,
     "lng": 120.7079205,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084643",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-075",
     "name": "社寮國小",
     "stage": "elementary",
     "town": "竹山鎮",
-    "address": "[55792]南投縣竹山鎮集山路一段1723號",
+    "address": "[557]南投縣竹山鎮集山路一段1723號",
     "phone": "(049)2622020",
     "lat": 23.8103756,
     "lng": 120.7219048,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084644",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-076",
     "name": "過溪國小",
     "stage": "elementary",
     "town": "竹山鎮",
-    "address": "[55759]南投縣竹山鎮福興里鯉南路136號",
+    "address": "[557]南投縣竹山鎮福興里鯉南路136號",
     "phone": "(049)2642573",
     "lat": 23.7276397,
     "lng": 120.6665435,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084645",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-077",
     "name": "大鞍國小",
     "stage": "elementary",
     "town": "竹山鎮",
-    "address": "[55770]南投縣竹山鎮大鞍里竹寮巷21號",
+    "address": "[557]南投縣竹山鎮大鞍里竹寮巷21號",
     "phone": "(049)2841009",
     "lat": 23.699319,
     "lng": 120.716895,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084646",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-078",
     "name": "瑞竹國小",
     "stage": "elementary",
     "town": "竹山鎮",
-    "address": "[55772]南投縣竹山鎮瑞竹里鯉南里251號",
+    "address": "[557]南投縣竹山鎮瑞竹里鯉南里251號",
     "phone": "(049)2711024",
     "lat": 23.6644285,
     "lng": 120.6664297,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084647",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-079",
     "name": "秀林國小",
     "stage": "elementary",
     "town": "竹山鎮",
-    "address": "[55769]南投縣竹山鎮頂林路456號",
+    "address": "[557]南投縣竹山鎮頂林路456號",
     "phone": "(049)2647285",
     "lat": 23.7332556,
     "lng": 120.6888442,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084648",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-080",
     "name": "雲林國小",
     "stage": "elementary",
     "town": "竹山鎮",
-    "address": "[55748]南投縣竹山鎮雲林里大明路666號",
+    "address": "[557]南投縣竹山鎮雲林里大明路666號",
     "phone": "(049)2643321",
     "lat": 23.7562547,
     "lng": 120.6782732,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084649",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-081",
     "name": "鯉魚國小",
     "stage": "elementary",
     "town": "竹山鎮",
-    "address": "[55761]南投縣竹山鎮鯉魚里鯉行路92號",
+    "address": "[557]南投縣竹山鎮鯉魚里鯉行路92號",
     "phone": "(049)2644984",
     "lat": 23.7144067,
     "lng": 120.6549728,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084650",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-082",
     "name": "桶頭國小",
     "stage": "elementary",
     "town": "竹山鎮",
-    "address": "[55772]南投縣竹山鎮鯉南路312之1號",
+    "address": "[557]南投縣竹山鎮鯉南路312之1號",
     "phone": "(049)2711034",
     "lat": 23.6460979,
     "lng": 120.6565047,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084651",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-083",
     "name": "中州國小",
     "stage": "elementary",
     "town": "竹山鎮",
-    "address": "[55792]南投縣竹山鎮集山路一段955號",
+    "address": "[557]南投縣竹山鎮集山路一段955號",
     "phone": "(049)2622030",
     "lat": 23.8120456,
     "lng": 120.7381175,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084652",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-084",
     "name": "中和國小",
     "stage": "elementary",
     "town": "竹山鎮",
-    "address": "[55762]南投縣竹山鎮集山路三段1394號",
+    "address": "[557]南投縣竹山鎮集山路三段1394號",
     "phone": "(049)2642424",
     "lat": 23.757509,
     "lng": 120.6681152,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084653",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-085",
     "name": "集集國小",
     "stage": "elementary",
     "town": "集集鎮",
-    "address": "[55241]南投縣集集鎮育才街147號",
+    "address": "[552]南投縣集集鎮育才街147號",
     "phone": "(049)2762027",
     "lat": 23.8277778,
     "lng": 120.7866667,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084655",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-086",
     "name": "隘寮國小",
     "stage": "elementary",
     "town": "集集鎮",
-    "address": "[55243]南投縣集集鎮田寮里田寮巷4號",
+    "address": "[552]南投縣集集鎮田寮里田寮巷4號",
     "phone": "(049)2781154",
     "lat": 23.8324641,
     "lng": 120.7507269,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084656",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-087",
     "name": "永昌國小",
     "stage": "elementary",
     "town": "集集鎮",
-    "address": "[55242]南投縣集集鎮永昌里東昌巷4號",
+    "address": "[552]南投縣集集鎮永昌里東昌巷4號",
     "phone": "(049)2762524",
     "lat": 23.8272584,
     "lng": 120.7990326,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084657",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-088",
     "name": "和平國小",
     "stage": "elementary",
     "town": "集集鎮",
-    "address": "[55241]南投縣集集鎮和平里集集街178號",
+    "address": "[552]南投縣集集鎮和平里集集街178號",
     "phone": "(049)2762036",
     "lat": 23.8293075,
     "lng": 120.7810821,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084658",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-090",
     "name": "名間國小",
     "stage": "elementary",
     "town": "名間鄉",
-    "address": "[55146]南投縣名間鄉中山村彰南路220號",
+    "address": "[551]南投縣名間鄉中山村彰南路220號",
     "phone": "(049)2732024",
     "lat": 23.8445887,
     "lng": 120.6977542,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084660",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-091",
     "name": "新街國小",
     "stage": "elementary",
     "town": "名間鄉",
-    "address": "[55147]南投縣名間鄉新街村彰南路375號",
+    "address": "[551]南投縣名間鄉新街村彰南路375號",
     "phone": "(049)2223534",
     "lat": 23.8762863,
     "lng": 120.6931745,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084661",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-092",
     "name": "名崗國小",
     "stage": "elementary",
     "town": "名間鄉",
-    "address": "[55151]南投縣名間鄉大坑村南田路222號",
+    "address": "[551]南投縣名間鄉大坑村南田路222號",
     "phone": "(049)2271864",
     "lat": 23.8703036,
     "lng": 120.6463839,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084662",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-093",
     "name": "中山國小",
     "stage": "elementary",
     "town": "名間鄉",
-    "address": "[55153]南投縣名間鄉名松路一段294號",
+    "address": "[551]南投縣名間鄉名松路一段294號",
     "phone": "(049)2582335",
     "lat": 23.8362964,
     "lng": 120.6623745,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084663",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-094",
     "name": "弓鞋國小",
     "stage": "elementary",
     "town": "名間鄉",
-    "address": "[55144]南投縣名間鄉名松路二段580號",
+    "address": "[551]南投縣名間鄉名松路二段580號",
     "phone": "(049)2581322",
     "lat": 23.8417333,
     "lng": 120.6307778,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084664",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-095",
     "name": "田豐國小",
     "stage": "elementary",
     "town": "名間鄉",
-    "address": "[55147]南投縣名間鄉田仔村田仔巷40號",
+    "address": "[551]南投縣名間鄉田仔村田仔巷40號",
     "phone": "(049)2271509",
     "lat": 23.870041,
     "lng": 120.6763251,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084665",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-096",
     "name": "僑興國小",
     "stage": "elementary",
     "town": "名間鄉",
-    "address": "[55147]南投縣名間鄉東湖村彰南路259號",
+    "address": "[551]南投縣名間鄉東湖村彰南路259號",
     "phone": "(049)2732340",
     "lat": 23.8587856,
     "lng": 120.6939034,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084666",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-097",
     "name": "新民國小",
     "stage": "elementary",
     "town": "名間鄉",
-    "address": "[55143]南投縣名間鄉新民村新民巷43號",
+    "address": "[551]南投縣名間鄉新民村新民巷43號",
     "phone": "(049)2732514",
     "lat": 23.8204163,
     "lng": 120.6867595,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084667",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-098",
     "name": "鹿谷國小",
     "stage": "elementary",
     "town": "鹿谷鄉",
-    "address": "[55843]南投縣鹿谷鄉鹿谷村中正路2段174號",
+    "address": "[558]南投縣鹿谷鄉鹿谷村中正路2段174號",
     "phone": "(049)2752048",
     "lat": 23.748885,
     "lng": 120.751526,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084668",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-099",
     "name": "秀峰國小",
     "stage": "elementary",
     "town": "鹿谷鄉",
-    "address": "[55855]南投縣鹿谷鄉秀峰村仁愛路152號",
+    "address": "[558]南投縣鹿谷鄉秀峰村仁愛路152號",
     "phone": "(049)2671953",
     "lat": 23.783555,
     "lng": 120.777515,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084669",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-100",
     "name": "文昌國小",
     "stage": "elementary",
     "town": "鹿谷鄉",
-    "address": "[55851]南投縣鹿谷鄉竹林村光復路96號",
+    "address": "[558]南投縣鹿谷鄉竹林村光復路96號",
     "phone": "(049)2676305",
     "lat": 23.7276876,
     "lng": 120.7548284,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084670",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-101",
     "name": "鳳凰國小",
     "stage": "elementary",
     "town": "鹿谷鄉",
-    "address": "[55841]南投縣鹿谷鄉鳳凰村仁義路35之1號",
+    "address": "[558]南投縣鹿谷鄉鳳凰村仁義路35之1號",
     "phone": "(049)2752214",
     "lat": 23.7429844,
     "lng": 120.7799889,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084671",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-102",
     "name": "內湖國小",
     "stage": "elementary",
     "town": "鹿谷鄉",
-    "address": "[55842]南投縣鹿谷鄉內湖村興產路51號",
+    "address": "[558]南投縣鹿谷鄉內湖村興產路51號",
     "phone": "(049)2752437",
     "lat": 23.713025,
     "lng": 120.780238,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084672",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-103",
     "name": "初鄉國小",
     "stage": "elementary",
     "town": "鹿谷鄉",
-    "address": "[55844]南投縣鹿谷鄉初鄉村仁愛路259號",
+    "address": "[558]南投縣鹿谷鄉初鄉村仁愛路259號",
     "phone": "(049)2752513",
     "lat": 23.7671285,
     "lng": 120.737259,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084673",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-104",
     "name": "瑞田國小",
     "stage": "elementary",
     "town": "鹿谷鄉",
-    "address": "[55861]南投縣鹿谷鄉瑞田村仁愛路80號",
+    "address": "[558]南投縣鹿谷鄉瑞田村仁愛路80號",
     "phone": "(049)2671284",
     "lat": 23.8024375,
     "lng": 120.7899375,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084674",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-106",
     "name": "廣興國小",
     "stage": "elementary",
     "town": "鹿谷鄉",
-    "address": "[55842]南投縣鹿谷鄉廣興村興產路97號",
+    "address": "[558]南投縣鹿谷鄉廣興村興產路97號",
     "phone": "(049)2752014",
     "lat": 23.7359557,
     "lng": 120.7643451,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084676",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-107",
     "name": "中寮國小",
     "stage": "elementary",
     "town": "中寮鄉",
-    "address": "[54155]南投縣中寮鄉永平村永平路316號",
+    "address": "[541]南投縣中寮鄉永平村永平路316號",
     "phone": "(049)2691322",
     "lat": 23.8798492,
     "lng": 120.7639198,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084677",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-108",
     "name": "爽文國小",
     "stage": "elementary",
     "town": "中寮鄉",
-    "address": "[54153]南投縣中寮鄉爽文村龍南路159號",
+    "address": "[541]南投縣中寮鄉爽文村龍南路159號",
     "phone": "(049)2601003",
     "lat": 23.936505,
     "lng": 120.76189,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084678",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-109",
     "name": "永樂國小",
     "stage": "elementary",
     "town": "中寮鄉",
-    "address": "[54155]南投縣中寮鄉福盛村永樂路88號",
+    "address": "[541]南投縣中寮鄉福盛村永樂路88號",
     "phone": "(049)2691473",
     "lat": 23.8833506,
     "lng": 120.7987338,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084679",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-110",
     "name": "永康國小",
     "stage": "elementary",
     "town": "中寮鄉",
-    "address": "[54154]南投縣中寮鄉永福村仙峰巷44號",
+    "address": "[541]南投縣中寮鄉永福村仙峰巷44號",
     "phone": "(049)2691455",
     "lat": 23.8862376,
     "lng": 120.7397771,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084680",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-111",
     "name": "清水國小",
     "stage": "elementary",
     "town": "中寮鄉",
-    "address": "[54153]南投縣中寮鄉清水村瀧林巷3號",
+    "address": "[541]南投縣中寮鄉清水村瀧林巷3號",
     "phone": "(049)2601079",
     "lat": 23.9450343,
     "lng": 120.7907225,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084681",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-112",
     "name": "至誠國小",
     "stage": "elementary",
     "town": "中寮鄉",
-    "address": "[54151]南投縣中寮鄉永平路489之1號",
+    "address": "[541]南投縣中寮鄉永平路489之1號",
     "phone": "(049)2227215",
     "lat": 23.8933991,
     "lng": 120.720726,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084682",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-113",
     "name": "永和國小",
     "stage": "elementary",
     "town": "中寮鄉",
-    "address": "[54153]南投縣中寮鄉龍南路321之1號",
+    "address": "[541]南投縣中寮鄉龍南路321之1號",
     "phone": "(049)2601068",
     "lat": 23.925197,
     "lng": 120.7319415,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084683",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-114",
     "name": "廣福國小",
     "stage": "elementary",
     "town": "中寮鄉",
-    "address": "[54154]南投縣中寮鄉廣福村內城巷3之2號",
+    "address": "[541]南投縣中寮鄉廣福村內城巷3之2號",
     "phone": "(049)2691464",
     "lat": 23.8991011,
     "lng": 120.7596725,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084684",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-115",
     "name": "魚池國小",
     "stage": "elementary",
     "town": "魚池鄉",
-    "address": "[55542]南投縣魚池鄉魚池村瓊文巷41號",
+    "address": "[555]南投縣魚池鄉魚池村瓊文巷41號",
     "phone": "(049)2895537",
     "lat": 23.8994234,
     "lng": 120.9370534,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084687",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-116",
     "name": "頭社國小",
     "stage": "elementary",
     "town": "魚池鄉",
-    "address": "[55546]南投縣魚池鄉頭社村平和巷105號",
+    "address": "[555]南投縣魚池鄉頭社村平和巷105號",
     "phone": "(049)2861237",
     "lat": 23.8372975,
     "lng": 120.9025956,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084688",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-117",
     "name": "東光國小",
     "stage": "elementary",
     "town": "魚池鄉",
-    "address": "[55545]南投縣魚池鄉東光村慶隆巷36號",
+    "address": "[555]南投縣魚池鄉東光村慶隆巷36號",
     "phone": "(049)2880584",
     "lat": 23.8906158,
     "lng": 120.9666587,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084689",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-118",
     "name": "五城國小",
     "stage": "elementary",
     "town": "魚池鄉",
-    "address": "[55543]南投縣魚池鄉五城村華龍巷1之2號",
+    "address": "[555]南投縣魚池鄉五城村華龍巷1之2號",
     "phone": "(049)2896455",
     "lat": 23.890552,
     "lng": 120.889232,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084690",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-119",
     "name": "明潭國小",
     "stage": "elementary",
     "town": "魚池鄉",
-    "address": "[55548]南投縣魚池鄉水社村中山路190號",
+    "address": "[555]南投縣魚池鄉水社村中山路190號",
     "phone": "(049)2855045",
     "lat": 23.8682375,
     "lng": 120.9111829,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084691",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-120",
     "name": "新城國小",
     "stage": "elementary",
     "town": "魚池鄉",
-    "address": "[55542]南投縣魚池鄉新城村通文巷7之1號",
+    "address": "[555]南投縣魚池鄉新城村通文巷7之1號",
     "phone": "(049)2895724",
     "lat": 23.903865,
     "lng": 120.9248403,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084693",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-121",
     "name": "伊達邵國小",
     "stage": "elementary",
     "town": "魚池鄉",
-    "address": "[55546]南投縣魚池鄉日月村中正路211巷1號",
+    "address": "[555]南投縣魚池鄉日月村中正路211巷1號",
     "phone": "(049)2850441",
     "lat": 23.8485721,
     "lng": 120.9354304,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084694",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-122",
     "name": "共和國小",
     "stage": "elementary",
     "town": "魚池鄉",
-    "address": "[55545]南投縣魚池鄉共和村五馬巷57之1號",
+    "address": "[555]南投縣魚池鄉共和村五馬巷57之1號",
     "phone": "(049)2880608",
     "lat": 23.9190792,
     "lng": 120.9660533,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084695",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-123",
     "name": "國姓國小",
     "stage": "elementary",
     "town": "國姓鄉",
-    "address": "[54443]南投縣國姓鄉石門村國姓路311號",
+    "address": "[544]南投縣國姓鄉石門村國姓路311號",
     "phone": "(049)2721018",
     "lat": 24.0393295,
     "lng": 120.856947,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084696",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-124",
     "name": "北山國小",
     "stage": "elementary",
     "town": "國姓鄉",
-    "address": "[54448]南投縣國姓鄉中正路4段119-1號",
+    "address": "[544]南投縣國姓鄉中正路4段119-1號",
     "phone": "(049)2451935",
     "lat": 23.9809056,
     "lng": 120.8766167,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084697",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-125",
     "name": "北港國小",
     "stage": "elementary",
     "town": "國姓鄉",
-    "address": "[54446]南投縣國姓鄉北港村國姓路63號",
+    "address": "[544]南投縣國姓鄉北港村國姓路63號",
     "phone": "(049)2461345",
     "lat": 24.0575004,
     "lng": 120.9111674,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084698",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-126",
     "name": "福龜國小",
     "stage": "elementary",
     "town": "國姓鄉",
-    "address": "[54447]南投縣國姓鄉福龜村長壽巷83號",
+    "address": "[544]南投縣國姓鄉福龜村長壽巷83號",
     "phone": "(049)2721019",
     "lat": 24.0115344,
     "lng": 120.8224258,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084699",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-127",
     "name": "長流國小",
     "stage": "elementary",
     "town": "國姓鄉",
-    "address": "[54445]南投縣國姓鄉長流村大長路559號",
+    "address": "[544]南投縣國姓鄉長流村大長路559號",
     "phone": "(049)2431006",
     "lat": 24.0661926,
     "lng": 120.876193,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084700",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-128",
     "name": "南港國小",
     "stage": "elementary",
     "town": "國姓鄉",
-    "address": "[54448]南投縣國姓鄉南港村南港路112-8號",
+    "address": "[544]南投縣國姓鄉南港路112之8號",
     "phone": "(049)2451937",
     "lat": 23.9503389,
     "lng": 120.8692421,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084701",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-129",
     "name": "育樂國小",
     "stage": "elementary",
     "town": "國姓鄉",
-    "address": "[54444]南投縣國姓鄉柑林村中正路2段223號",
+    "address": "[544]南投縣國姓鄉柑林村中正路2段223號",
     "phone": "(049)2721274",
     "lat": 24.0178049,
     "lng": 120.8454136,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084702",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-131",
     "name": "長福國小",
     "stage": "elementary",
     "town": "國姓鄉",
-    "address": "[54445]南投縣國姓鄉長福村大長路71號",
+    "address": "[544]南投縣國姓鄉長福村大長路71號",
     "phone": "(049)2431295",
     "lat": 24.093055,
     "lng": 120.887346,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084704",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-132",
     "name": "乾峰國小",
     "stage": "elementary",
     "town": "國姓鄉",
-    "address": "[54447]南投縣國姓鄉乾溝村中西巷3號",
+    "address": "[544]南投縣國姓鄉乾溝村中西巷3號",
     "phone": "(049)2721385",
     "lat": 24.027842,
     "lng": 120.8252871,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084705",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-133",
     "name": "水里國小",
     "stage": "elementary",
     "town": "水里鄉",
-    "address": "[55342]南投縣水里鄉南光村民族街61號",
+    "address": "[553]南投縣水里鄉南光村民族路151號",
     "phone": "(049)2770014",
     "lat": 23.810296,
     "lng": 120.8551512,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084706",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-134",
     "name": "郡坑國小",
     "stage": "elementary",
     "town": "水里鄉",
-    "address": "[55347]南投縣水里鄉上安村水信路三段303巷8號",
+    "address": "[553]南投縣水里鄉上安村水信路3段303巷8號",
     "phone": "(049)2821421",
     "lat": 23.7372543,
     "lng": 120.855816,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084707",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-135",
     "name": "民和國小",
     "stage": "elementary",
     "town": "水里鄉",
-    "address": "[55382]南投縣水里鄉民和村文明路70號",
+    "address": "[553]南投縣水里鄉民和村文明路70號",
     "phone": "(049)2741140",
     "lat": 23.7954065,
     "lng": 120.9325931,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084708",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-136",
     "name": "新興國小",
     "stage": "elementary",
     "town": "水里鄉",
-    "address": "[55345]南投縣水里鄉新興村新興巷15號",
+    "address": "[553]南投縣水里鄉新興村新興巷15號",
     "phone": "(049)2811187",
     "lat": 23.884033,
     "lng": 120.871187,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084709",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-137",
     "name": "永興國小",
     "stage": "elementary",
     "town": "水里鄉",
-    "address": "[55346]南投縣水里鄉永興村林朋巷148號",
+    "address": "[553]南投縣水里鄉永興村林朋巷148號",
     "phone": "(049)2772545",
     "lat": 23.7846244,
     "lng": 120.8633497,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084711",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-138",
     "name": "成城國小",
     "stage": "elementary",
     "town": "水里鄉",
-    "address": "[55344]南投縣水里鄉新城村中山路二段150號",
+    "address": "[553]南投縣水里鄉中山路二段150號",
     "phone": "(049)2770140",
     "lat": 23.819057,
     "lng": 120.8481325,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084714",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-139",
     "name": "信義國小",
     "stage": "elementary",
     "town": "信義鄉",
-    "address": "[55646]南投縣信義鄉明德村玉山路24號",
+    "address": "[556]南投縣信義鄉明德村玉山路24號",
     "phone": "(049)2791263",
     "lat": 23.6976412,
     "lng": 120.8545409,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084716",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-140",
     "name": "羅娜國小",
     "stage": "elementary",
     "town": "信義鄉",
-    "address": "[55650]南投縣信義鄉羅娜村信筆巷73號",
+    "address": "[556]南投縣信義鄉羅娜村1鄰信筆巷73號",
     "phone": "(049)2831327",
     "lat": 23.6278285,
     "lng": 120.8706287,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084717",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-141",
     "name": "同富國小",
     "stage": "elementary",
     "town": "信義鄉",
-    "address": "[55652]南投縣信義鄉同富村同和巷4號",
+    "address": "[556]南投縣信義鄉同富村同和巷4號",
     "phone": "(049)2701503",
     "lat": 23.5938889,
     "lng": 120.8883333,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084718",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-142",
     "name": "愛國國小",
     "stage": "elementary",
     "town": "信義鄉",
-    "address": "[55642]南投縣信義鄉愛國村愛國巷108號",
+    "address": "[556]南投縣信義鄉愛國村愛國巷108號",
     "phone": "(049)2791465",
     "lat": 23.6939516,
     "lng": 120.8486135,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084719",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-143",
     "name": "人和國小",
     "stage": "elementary",
     "town": "信義鄉",
-    "address": "[55681]南投縣信義鄉人和村民生巷3號",
+    "address": "[556]南投縣信義鄉人和村民生巷3號",
     "phone": "(049)2773259",
     "lat": 23.7793661,
     "lng": 120.8969528,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084720",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-144",
     "name": "地利國小",
     "stage": "elementary",
     "town": "信義鄉",
-    "address": "[55682]南投縣信義鄉地利村開信巷17號",
+    "address": "[556]南投縣信義鄉地利村開信巷17號",
     "phone": "(049)2741254",
     "lat": 23.794033,
     "lng": 120.9433506,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084721",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-145",
     "name": "東埔國小",
     "stage": "elementary",
     "town": "信義鄉",
-    "address": "[55691]南投縣信義鄉東埔村開高巷63號",
+    "address": "[556]南投縣信義鄉東埔村開高巷63號",
     "phone": "(049)2701340",
     "lat": 23.5619353,
     "lng": 120.9276267,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084722",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-146",
     "name": "潭南國小",
     "stage": "elementary",
     "town": "信義鄉",
-    "address": "[55682]南投縣信義鄉潭南村和平巷49號",
+    "address": "[556]南投縣信義鄉潭南村和平巷49號",
     "phone": "(049)2741381",
     "lat": 23.8213368,
     "lng": 120.9402127,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084724",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-147",
     "name": "桐林國小",
     "stage": "elementary",
     "town": "信義鄉",
-    "address": "[55653]南投縣信義鄉同富村太平巷18號",
+    "address": "[556]南投縣信義鄉同富村太平巷18號",
     "phone": "(049)2701483",
     "lat": 23.5602958,
     "lng": 120.8747683,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084727",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-148",
     "name": "隆華國小",
     "stage": "elementary",
     "town": "信義鄉",
-    "address": "[55654]南投縣信義鄉神木村民和巷65-6號",
+    "address": "[556]南投縣信義鄉神木村民和巷65-6號",
     "phone": "(049)2701478",
     "lat": 23.563044,
     "lng": 120.86787,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084728",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-149",
     "name": "希娜巴嵐國小",
     "stage": "elementary",
     "town": "信義鄉",
-    "address": "[556004]南投縣信義鄉新鄉村新鄉路80號",
+    "address": "[556]南投縣信義鄉新鄉村新鄉路80號",
     "phone": "(049)2831591",
     "lat": 23.6400176,
     "lng": 120.8695668,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084729",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-150",
     "name": "久美國小",
     "stage": "elementary",
     "town": "信義鄉",
-    "address": "[55651]南投縣信義鄉美信巷54號",
+    "address": "[556]南投縣信義鄉望美村美信巷54號",
     "phone": "(049)2831506",
     "lat": 23.6158333,
     "lng": 120.8841667,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084730",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-151",
     "name": "雙龍國小",
     "stage": "elementary",
     "town": "信義鄉",
-    "address": "[55682]南投縣信義鄉雙龍村光復巷4號",
+    "address": "[556]南投縣信義鄉雙龍村光復巷4號",
     "phone": "(049)2741325",
     "lat": 23.7854,
     "lng": 120.950171,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084731",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-152",
     "name": "豐丘國小",
     "stage": "elementary",
     "town": "信義鄉",
-    "address": "[55647]南投縣信義鄉豐丘村高平巷77號",
+    "address": "[556]南投縣信義鄉豐丘村高平巷77號",
     "phone": "(049)2791723",
     "lat": 23.6698746,
     "lng": 120.8748086,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084732",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-153",
     "name": "仁愛國小",
     "stage": "elementary",
     "town": "仁愛鄉",
-    "address": "[54641]南投縣仁愛鄉大同村山農巷5號",
-    "phone": "(049)2802373#11",
+    "address": "[546]南投縣仁愛鄉大同村山農巷5號",
+    "phone": "(049)2802373",
     "lat": 24.0208333,
     "lng": 121.1333333,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084733",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-154",
     "name": "親愛國小",
     "stage": "elementary",
     "town": "仁愛鄉",
-    "address": "[54652]南投縣仁愛鄉親愛村高平路3號",
+    "address": "[546]南投縣仁愛鄉親愛村高平路3號",
     "phone": "(049)2974033",
     "lat": 23.9682604,
     "lng": 121.1090048,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084734",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-155",
@@ -1828,48 +2145,56 @@ window.NANTOU_SCHOOL_DATA = [
     "name": "法治國小",
     "stage": "elementary",
     "town": "仁愛鄉",
-    "address": "[54669]南投縣仁愛鄉法治村界山巷6號",
+    "address": "[546]南投縣仁愛鄉法治村界山巷6號",
     "phone": "(049)2977061",
     "lat": 23.91662,
     "lng": 121.046736,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084735",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-157",
     "name": "德鹿谷國小",
     "stage": "elementary",
     "town": "仁愛鄉",
-    "address": "[54663]南投縣仁愛鄉德鹿谷村莎都部落一巷46號",
+    "address": "[546]南投縣仁愛鄉德鹿谷村莎都部落一巷23號",
     "phone": "(049)2970063",
     "lat": 24.0860056,
     "lng": 121.2165444,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084736",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-158",
     "name": "互助國小",
     "stage": "elementary",
     "town": "仁愛鄉",
-    "address": "[54671]南投縣仁愛鄉互助村中華路19號",
+    "address": "[546]南投縣仁愛鄉互助村中華路19號",
     "phone": "(049)2941016",
     "lat": 24.063237,
     "lng": 120.969669,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084737",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-159",
     "name": "力行國小",
     "stage": "elementary",
     "town": "仁愛鄉",
-    "address": "[54664]南投縣仁愛鄉力行村新望洋67號",
+    "address": "[546]南投縣仁愛鄉力行村新望洋67號",
     "phone": "(049)2955078",
     "lat": 24.1479892,
     "lng": 121.1890945,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084738",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-160",
@@ -1888,156 +2213,182 @@ window.NANTOU_SCHOOL_DATA = [
     "name": "南豐國小",
     "stage": "elementary",
     "town": "仁愛鄉",
-    "address": "[54661]南投縣仁愛鄉南豐村楓林路3號",
+    "address": "[546]南投縣仁愛鄉南豐村楓林路3號",
     "phone": "(049)2920037",
     "lat": 24.0000355,
     "lng": 121.078475,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084739",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-162",
     "name": "中正國小",
     "stage": "elementary",
     "town": "仁愛鄉",
-    "address": "[54668]南投縣仁愛鄉中正村平等巷114號",
+    "address": "[546]南投縣仁愛鄉中正村平等巷114號",
     "phone": "(049)2925114",
     "lat": 23.9043355,
     "lng": 120.9907774,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084740",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-163",
     "name": "廬山國小",
     "stage": "elementary",
     "town": "仁愛鄉",
-    "address": "[54663]南投縣仁愛鄉精英村中華巷19號",
+    "address": "[546]南投縣仁愛鄉精英村中華巷19號",
     "phone": "(049)2970385",
     "lat": 24.0347457,
     "lng": 121.1858484,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084741",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-164",
     "name": "發祥國小",
     "stage": "elementary",
     "town": "仁愛鄉",
-    "address": "[54667]南投縣仁愛鄉發祥村光復巷24號",
+    "address": "[546]南投縣仁愛鄉發祥村光復巷24號",
     "phone": "(049)2955030",
     "lat": 24.1232821,
     "lng": 121.1577216,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084742",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-165",
     "name": "萬豐國小",
     "stage": "elementary",
     "town": "仁愛鄉",
-    "address": "[54662]南投縣仁愛鄉萬豐村清華巷8號",
+    "address": "[546]南投縣仁愛鄉萬豐村清華巷8號",
     "phone": "(049)2974123",
     "lat": 23.9471762,
     "lng": 121.0759302,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084743",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-166",
     "name": "都達國小",
     "stage": "elementary",
     "town": "仁愛鄉",
-    "address": "[54663]南投縣仁愛鄉精英村法觀路17號",
+    "address": "[546]南投縣仁愛鄉都達村法觀路17號",
     "phone": "(049)2970053",
     "lat": 24.0597991,
     "lng": 121.1922021,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084744",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-167",
     "name": "春陽國小",
     "stage": "elementary",
     "town": "仁愛鄉",
-    "address": "[54663]南投縣仁愛鄉春陽村永樂巷58號",
+    "address": "[546]南投縣仁愛鄉春陽村永樂巷58號",
     "phone": "(049)2802573",
     "lat": 24.0278047,
     "lng": 121.1484864,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084745",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-168",
     "name": "紅葉國小",
     "stage": "elementary",
     "town": "仁愛鄉",
-    "address": "[54666]南投縣仁愛鄉發祥村仁盛路70號",
+    "address": "[546]南投縣仁愛鄉發祥村仁盛路70號",
     "phone": "(049)2955075",
     "lat": 24.159666,
     "lng": 121.1771701,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084746",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-169",
     "name": "清境國小",
     "stage": "elementary",
     "town": "仁愛鄉",
-    "address": "[54641]南投縣仁愛鄉定遠新村24號",
+    "address": "[546]南投縣仁愛鄉定遠新村24號",
     "phone": "(049)2802572",
     "lat": 24.0440412,
     "lng": 121.1583386,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084747",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-170",
     "name": "漳興國小",
     "stage": "elementary",
     "town": "南投市",
-    "address": "[54062]南投縣南投市復興路669號",
+    "address": "[540]南投縣南投市復興路669號",
     "phone": "(049)2224013",
     "lat": 23.9187468,
     "lng": 120.6812545,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084748",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-171",
     "name": "虎山國小",
     "stage": "elementary",
     "town": "草屯鎮",
-    "address": "[54262]南投縣草屯鎮新生路76號",
+    "address": "[542]南投縣草屯鎮新生路76號",
     "phone": "(049)2339107",
     "lat": 23.9629889,
     "lng": 120.6841639,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084749",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-172",
     "name": "康壽國小",
     "stage": "elementary",
     "town": "南投市",
-    "address": "[54062]南投縣南投市南陽路269號",
+    "address": "[540]南投縣南投市南陽路269號",
     "phone": "(049)2243457",
     "lat": 23.9134029,
     "lng": 120.6866806,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084750",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-173",
     "name": "前山國小",
     "stage": "elementary",
     "town": "竹山鎮",
-    "address": "[55755]南投縣竹山鎮自強路100號",
+    "address": "[557]南投縣竹山鎮自強路100號",
     "phone": "(049)2660662",
     "lat": 23.7516432,
     "lng": 120.6783792,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "084751",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
   },
   {
     "id": "nt-174",
@@ -2068,24 +2419,28 @@ window.NANTOU_SCHOOL_DATA = [
     "name": "弘明實驗高中",
     "stage": "senior",
     "town": "名間鄉",
-    "address": "[55148]南投縣名間鄉東湖村大老巷102號",
+    "address": "[551]南投縣名間鄉東湖村大老巷102號",
     "phone": "(049)2731799",
     "lat": 23.8578414,
     "lng": 120.697357,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "81313",
+    "dataSource": "教育部統計處 114 學年度高中職名錄"
   },
   {
     "id": "nt-177",
     "name": "普台高中",
     "stage": "senior",
     "town": "埔里鎮",
-    "address": "[54544]南投縣埔里鎮中台路5號",
+    "address": "[545]南投縣埔里鎮一新里中台路5號",
     "phone": "(049)2932899",
     "lat": 23.9944502,
     "lng": 120.9364263,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "81314",
+    "dataSource": "教育部統計處 114 學年度高中職名錄"
   },
   {
     "id": "nt-178",
@@ -2128,108 +2483,126 @@ window.NANTOU_SCHOOL_DATA = [
     "name": "南投高中",
     "stage": "senior",
     "town": "南投市",
-    "address": "[54064]南投縣南投市建國路137號",
+    "address": "[540]南投縣南投市建國路137號",
     "phone": "(049)2231175",
     "lat": 23.9086811,
     "lng": 120.681234,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "80302",
+    "dataSource": "教育部統計處 114 學年度高中職名錄"
   },
   {
     "id": "nt-182",
     "name": "中興高中",
     "stage": "senior",
     "town": "南投市",
-    "address": "[54044]南投縣南投市中學路2號",
-    "phone": "(049)2332110-302",
+    "address": "[540]南投縣南投市中學路2號",
+    "phone": "(049)2332110",
     "lat": 23.9504021,
     "lng": 120.6947962,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "80305",
+    "dataSource": "教育部統計處 114 學年度高中職名錄"
   },
   {
     "id": "nt-183",
     "name": "竹山高中",
     "stage": "senior",
     "town": "竹山鎮",
-    "address": "[55744]南投縣竹山鎮下橫街253號",
-    "phone": "(049)2643344~12",
+    "address": "[557]南投縣竹山鎮下橫街253號",
+    "phone": "(049)2643344",
     "lat": 23.7615855,
     "lng": 120.681413,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "80307",
+    "dataSource": "教育部統計處 114 學年度高中職名錄"
   },
   {
     "id": "nt-184",
     "name": "暨大附中",
     "stage": "senior",
     "town": "埔里鎮",
-    "address": "[54546]南投縣埔里鎮鐵山路1之6號",
+    "address": "[545]南投縣埔里鎮鐵山路1之6號",
     "phone": "(049)2913483",
     "lat": 23.9718219,
     "lng": 120.9463016,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "80308",
+    "dataSource": "教育部統計處 114 學年度高中職名錄"
   },
   {
     "id": "nt-185",
     "name": "仁愛高農",
     "stage": "senior",
     "town": "仁愛鄉",
-    "address": "[54641]南投縣仁愛鄉大同村山農巷27號",
+    "address": "[546]南投縣仁愛鄉大同村山農巷27號",
     "phone": "(049)2802619",
     "lat": 24.0217886,
     "lng": 121.1350874,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "80401",
+    "dataSource": "教育部統計處 114 學年度高中職名錄"
   },
   {
     "id": "nt-186",
     "name": "埔里高工",
     "stage": "senior",
     "town": "埔里鎮",
-    "address": "[54541]南投縣埔里鎮中山路１段435號",
-    "phone": "(049)2982225~303",
+    "address": "[545]南投縣埔里鎮中山路一段435號",
+    "phone": "(049)2982225",
     "lat": 23.9721571,
     "lng": 120.9784483,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "80403",
+    "dataSource": "教育部統計處 114 學年度高中職名錄"
   },
   {
     "id": "nt-187",
     "name": "南投高商",
     "stage": "senior",
     "town": "南投市",
-    "address": "[54056]南投縣南投市彰南路１段993號",
-    "phone": "(049)222269",
+    "address": "[540]南投縣南投市三興里彰南路一段993號",
+    "phone": "(049)2222269",
     "lat": 23.9035545,
     "lng": 120.6845134,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "80404",
+    "dataSource": "教育部統計處 114 學年度高中職名錄"
   },
   {
     "id": "nt-188",
     "name": "草屯商工",
     "stage": "senior",
     "town": "草屯鎮",
-    "address": "[54253]南投縣草屯鎮墩煌路３段188號",
-    "phone": "(049)2362082-112",
+    "address": "[542]南投縣草屯鎮芬草路二段736號",
+    "phone": "(049)2362082",
     "lat": 23.9965922,
     "lng": 120.6651992,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "80406",
+    "dataSource": "教育部統計處 114 學年度高中職名錄"
   },
   {
     "id": "nt-189",
     "name": "水里商工",
     "stage": "senior",
     "town": "水里鄉",
-    "address": "[55349]南投縣水里鄉南湖路1號",
-    "phone": "(049)2870666~213",
+    "address": "[553]南投縣水里鄉南湖路2號",
+    "phone": "(049)2870666",
     "lat": 23.8050581,
     "lng": 120.8532035,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "80410",
+    "dataSource": "教育部統計處 114 學年度高中職名錄"
   },
   {
     "id": "kg-001",
@@ -2243,7 +2616,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "南投國小"
+    "parentCampus": "南投國小",
+    "officialCode": "084X01"
   },
   {
     "id": "kg-002",
@@ -2257,7 +2631,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "漳和國小"
+    "parentCampus": "漳和國小",
+    "officialCode": "084X03"
   },
   {
     "id": "kg-003",
@@ -2271,7 +2646,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "漳興國小"
+    "parentCampus": "漳興國小",
+    "officialCode": "084K07"
   },
   {
     "id": "kg-004",
@@ -2285,7 +2661,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "平和國小"
+    "parentCampus": "平和國小",
+    "officialCode": "084X02"
   },
   {
     "id": "kg-005",
@@ -2299,7 +2676,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "嘉和國小"
+    "parentCampus": "嘉和國小",
+    "officialCode": "084X06"
   },
   {
     "id": "kg-006",
@@ -2313,21 +2691,23 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "新豐國小"
+    "parentCampus": "新豐國小",
+    "officialCode": "084K05"
   },
   {
     "id": "kg-007",
     "name": "僑建國民小學附設幼兒園",
     "stage": "kindergarten",
     "town": "南投市",
-    "address": "[540]南投縣南投市水豐里1鄰彰南路三段847號",
+    "address": "[540]南投縣南投市永豐里1鄰彰南路3段847號",
     "phone": "(049)2253245#301",
     "lat": 23.9407356,
     "lng": 120.6677349,
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "僑建國小"
+    "parentCampus": "僑建國小",
+    "officialCode": "084K06"
   },
   {
     "id": "kg-008",
@@ -2341,7 +2721,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "光華國小"
+    "parentCampus": "光華國小",
+    "officialCode": "084X05"
   },
   {
     "id": "kg-009",
@@ -2355,7 +2736,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "光榮國小"
+    "parentCampus": "光榮國小",
+    "officialCode": "084X04"
   },
   {
     "id": "kg-010",
@@ -2369,21 +2751,23 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "光復國小"
+    "parentCampus": "光復國小",
+    "officialCode": "084X07"
   },
   {
     "id": "kg-011",
     "name": "文山國民小學附設幼兒園",
     "stage": "kindergarten",
     "town": "南投市",
-    "address": "[540]南投縣南投市福山里八卦路349號",
-    "phone": "(049)2291394#202",
+    "address": "[540]南投縣南投市福山里11鄰八卦路349號",
+    "phone": "(049)2291394",
     "lat": 23.90636,
     "lng": 120.638038,
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "文山國小"
+    "parentCampus": "文山國小",
+    "officialCode": "084K08"
   },
   {
     "id": "kg-012",
@@ -2397,7 +2781,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "埔里國小"
+    "parentCampus": "埔里國小",
+    "officialCode": "084X08"
   },
   {
     "id": "kg-013",
@@ -2405,13 +2790,14 @@ window.NANTOU_SCHOOL_DATA = [
     "stage": "kindergarten",
     "town": "埔里鎮",
     "address": "[545]南投縣埔里鎮清新里16鄰育英街20號",
-    "phone": "(049)2982144#25或28",
+    "phone": "(049)2982144#25或27",
     "lat": 23.962412,
     "lng": 120.962037,
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "育英國小"
+    "parentCampus": "育英國小",
+    "officialCode": "084X13"
   },
   {
     "id": "kg-014",
@@ -2419,13 +2805,14 @@ window.NANTOU_SCHOOL_DATA = [
     "stage": "kindergarten",
     "town": "埔里鎮",
     "address": "[545]南投縣埔里鎮溪南里8鄰珠生路68號",
-    "phone": "(049)29045174#110",
+    "phone": "(049)2904517#301",
     "lat": 23.9477995,
     "lng": 120.9556906,
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "溪南國小"
+    "parentCampus": "溪南國小",
+    "officialCode": "084X14"
   },
   {
     "id": "kg-015",
@@ -2433,13 +2820,14 @@ window.NANTOU_SCHOOL_DATA = [
     "stage": "kindergarten",
     "town": "埔里鎮",
     "address": "[545]南投縣埔里鎮愛蘭里11鄰鐵山路7號",
-    "phone": "(049)2912514#771",
+    "phone": "(049)2912514",
     "lat": 23.9738549,
     "lng": 120.943992,
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "愛蘭國小"
+    "parentCampus": "愛蘭國小",
+    "officialCode": "084X12"
   },
   {
     "id": "kg-016",
@@ -2447,13 +2835,14 @@ window.NANTOU_SCHOOL_DATA = [
     "stage": "kindergarten",
     "town": "埔里鎮",
     "address": "[545]南投縣埔里鎮一新里8鄰永豐路92號",
-    "phone": "(049)2932506#267",
+    "phone": "(049)2932506#167",
     "lat": 23.9988749,
     "lng": 120.9295995,
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "水尾國小"
+    "parentCampus": "水尾國小",
+    "officialCode": "084X11"
   },
   {
     "id": "kg-017",
@@ -2467,7 +2856,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "史港國小"
+    "parentCampus": "史港國小",
+    "officialCode": "084X10"
   },
   {
     "id": "kg-018",
@@ -2481,7 +2871,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "忠孝國小"
+    "parentCampus": "忠孝國小",
+    "officialCode": "084X53"
   },
   {
     "id": "kg-019",
@@ -2495,7 +2886,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "太平國小"
+    "parentCampus": "太平國小",
+    "officialCode": "084X6B"
   },
   {
     "id": "kg-020",
@@ -2509,7 +2901,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "南光國小"
+    "parentCampus": "南光國小",
+    "officialCode": "084X09"
   },
   {
     "id": "kg-021",
@@ -2523,7 +2916,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "草屯國小"
+    "parentCampus": "草屯國小",
+    "officialCode": "084X15"
   },
   {
     "id": "kg-022",
@@ -2531,27 +2925,29 @@ window.NANTOU_SCHOOL_DATA = [
     "stage": "kindergarten",
     "town": "草屯鎮",
     "address": "[542]南投縣草屯鎮和平里1鄰中興路101號",
-    "phone": "(049)2314395#27",
+    "phone": "(049)2314395",
     "lat": 23.9744913,
     "lng": 120.6843782,
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "炎峰國小"
+    "parentCampus": "炎峰國小",
+    "officialCode": "084X16"
   },
   {
     "id": "kg-023",
     "name": "敦和國民小學附設幼兒園",
     "stage": "kindergarten",
     "town": "草屯鎮",
-    "address": "[542][542]南投縣草屯鎮敦和里12鄰敦和路72-6號",
+    "address": "[542]南投縣草屯鎮敦和里12鄰敦和路72-6號",
     "phone": "(049)2365074#212",
     "lat": 23.9817248,
     "lng": 120.6778648,
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "敦和國小"
+    "parentCampus": "敦和國小",
+    "officialCode": "084X20"
   },
   {
     "id": "kg-024",
@@ -2559,13 +2955,14 @@ window.NANTOU_SCHOOL_DATA = [
     "stage": "kindergarten",
     "town": "草屯鎮",
     "address": "[542]南投縣草屯鎮山腳里23鄰新生路76號",
-    "phone": "(049)2337997#11",
+    "phone": "(049)2337997#13",
     "lat": 23.9629889,
     "lng": 120.6841639,
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "虎山國小"
+    "parentCampus": "虎山國小",
+    "officialCode": "084X5W"
   },
   {
     "id": "kg-025",
@@ -2579,7 +2976,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "僑光國小"
+    "parentCampus": "僑光國小",
+    "officialCode": "084X21"
   },
   {
     "id": "kg-026",
@@ -2593,7 +2991,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "碧峰國小"
+    "parentCampus": "碧峰國小",
+    "officialCode": "084X18"
   },
   {
     "id": "kg-027",
@@ -2607,7 +3006,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "新庄國小"
+    "parentCampus": "新庄國小",
+    "officialCode": "084X19"
   },
   {
     "id": "kg-028",
@@ -2615,13 +3015,14 @@ window.NANTOU_SCHOOL_DATA = [
     "stage": "kindergarten",
     "town": "草屯鎮",
     "address": "[542]南投縣草屯鎮北投里6鄰文教巷43號",
-    "phone": "(049)2313376#213",
+    "phone": "(049)2313376",
     "lat": 23.9868024,
     "lng": 120.6581555,
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "北投國小"
+    "parentCampus": "北投國小",
+    "officialCode": "084K03"
   },
   {
     "id": "kg-029",
@@ -2635,7 +3036,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "中原國小"
+    "parentCampus": "中原國小",
+    "officialCode": "084X17"
   },
   {
     "id": "kg-030",
@@ -2649,7 +3051,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "雙冬國小"
+    "parentCampus": "雙冬國小",
+    "officialCode": "084X6D"
   },
   {
     "id": "kg-031",
@@ -2663,7 +3066,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "竹山國小"
+    "parentCampus": "竹山國小",
+    "officialCode": "084X42"
   },
   {
     "id": "kg-032",
@@ -2677,7 +3081,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "延平國小"
+    "parentCampus": "延平國小",
+    "officialCode": "084X44"
   },
   {
     "id": "kg-033",
@@ -2691,7 +3096,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "雲林國小"
+    "parentCampus": "雲林國小",
+    "officialCode": "084X34"
   },
   {
     "id": "kg-034",
@@ -2705,7 +3111,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "社寮國小"
+    "parentCampus": "社寮國小",
+    "officialCode": "084K04"
   },
   {
     "id": "kg-035",
@@ -2719,21 +3126,23 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "瑞竹國小"
+    "parentCampus": "瑞竹國小",
+    "officialCode": "084X43"
   },
   {
     "id": "kg-036",
     "name": "中州國民小學附設幼兒園",
     "stage": "kindergarten",
     "town": "竹山鎮",
-    "address": "[557]南投縣竹山鎮集山路一段955號",
+    "address": "[557]南投縣竹山鎮中央里10鄰集山路一段955號",
     "phone": "(049)2622030#208",
     "lat": 23.8120456,
     "lng": 120.7381175,
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "中州國小"
+    "parentCampus": "中州國小",
+    "officialCode": "084K09"
   },
   {
     "id": "kg-037",
@@ -2747,7 +3156,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "集集國小"
+    "parentCampus": "集集國小",
+    "officialCode": "084X26"
   },
   {
     "id": "kg-038",
@@ -2761,7 +3171,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "名間國小"
+    "parentCampus": "名間國小",
+    "officialCode": "084X22"
   },
   {
     "id": "kg-039",
@@ -2775,7 +3186,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "新街國小"
+    "parentCampus": "新街國小",
+    "officialCode": "084X23"
   },
   {
     "id": "kg-040",
@@ -2789,7 +3201,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "僑興國小"
+    "parentCampus": "僑興國小",
+    "officialCode": "084X24"
   },
   {
     "id": "kg-041",
@@ -2803,7 +3216,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "中山國小"
+    "parentCampus": "中山國小",
+    "officialCode": "084X25"
   },
   {
     "id": "kg-042",
@@ -2817,7 +3231,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "文昌國小"
+    "parentCampus": "文昌國小",
+    "officialCode": "084X27"
   },
   {
     "id": "kg-043",
@@ -2831,7 +3246,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "廣興國小"
+    "parentCampus": "廣興國小",
+    "officialCode": "084X45"
   },
   {
     "id": "kg-044",
@@ -2839,13 +3255,14 @@ window.NANTOU_SCHOOL_DATA = [
     "stage": "kindergarten",
     "town": "鹿谷鄉",
     "address": "[558]南投縣鹿谷鄉秀峰村7鄰仁愛路152號",
-    "phone": "(049)2671953#18",
+    "phone": "(049)2671953",
     "lat": 23.783555,
     "lng": 120.777515,
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "秀峰國小"
+    "parentCampus": "秀峰國小",
+    "officialCode": "084K02"
   },
   {
     "id": "kg-045",
@@ -2859,7 +3276,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "中寮國小"
+    "parentCampus": "中寮國小",
+    "officialCode": "084X28"
   },
   {
     "id": "kg-046",
@@ -2873,7 +3291,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "永樂國小"
+    "parentCampus": "永樂國小",
+    "officialCode": "084X51"
   },
   {
     "id": "kg-047",
@@ -2881,13 +3300,14 @@ window.NANTOU_SCHOOL_DATA = [
     "stage": "kindergarten",
     "town": "中寮鄉",
     "address": "[541]南投縣中寮鄉永福村5鄰仙峰巷44號",
-    "phone": "(049)2691455#18",
+    "phone": "(049)2691455#19",
     "lat": 23.8862376,
     "lng": 120.7397771,
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "永康國小"
+    "parentCampus": "永康國小",
+    "officialCode": "084X50"
   },
   {
     "id": "kg-048",
@@ -2895,13 +3315,14 @@ window.NANTOU_SCHOOL_DATA = [
     "stage": "kindergarten",
     "town": "中寮鄉",
     "address": "[541]南投縣中寮鄉清水村1鄰瀧林巷3號",
-    "phone": "(049)2601079#28",
+    "phone": "(049)2601079",
     "lat": 23.9450343,
     "lng": 120.7907225,
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "清水國小"
+    "parentCampus": "清水國小",
+    "officialCode": "084X6C"
   },
   {
     "id": "kg-049",
@@ -2915,7 +3336,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "爽文國小"
+    "parentCampus": "爽文國小",
+    "officialCode": "084X49"
   },
   {
     "id": "kg-050",
@@ -2923,13 +3345,14 @@ window.NANTOU_SCHOOL_DATA = [
     "stage": "kindergarten",
     "town": "魚池鄉",
     "address": "[555]南投縣魚池鄉魚池村21鄰瓊文巷41號",
-    "phone": "(049)2895537",
+    "phone": "(049)2895537#134",
     "lat": 23.8994234,
     "lng": 120.9370534,
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "魚池國小"
+    "parentCampus": "魚池國小",
+    "officialCode": "084X29"
   },
   {
     "id": "kg-051",
@@ -2943,7 +3366,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "新城國小"
+    "parentCampus": "新城國小",
+    "officialCode": "084X47"
   },
   {
     "id": "kg-052",
@@ -2957,7 +3381,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "東光國小"
+    "parentCampus": "東光國小",
+    "officialCode": "084X57"
   },
   {
     "id": "kg-053",
@@ -2965,13 +3390,14 @@ window.NANTOU_SCHOOL_DATA = [
     "stage": "kindergarten",
     "town": "魚池鄉",
     "address": "[555]南投縣魚池鄉共和村6鄰五馬巷57-1號",
-    "phone": "(049)2880608#19",
+    "phone": "(049)2880608",
     "lat": 23.9190792,
     "lng": 120.9660533,
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "共和國小"
+    "parentCampus": "共和國小",
+    "officialCode": "084X6E"
   },
   {
     "id": "kg-054",
@@ -2985,7 +3411,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "五城國小"
+    "parentCampus": "五城國小",
+    "officialCode": "084X5V"
   },
   {
     "id": "kg-055",
@@ -2999,21 +3426,23 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "明潭國小"
+    "parentCampus": "明潭國小",
+    "officialCode": "084X30"
   },
   {
     "id": "kg-056",
     "name": "頭社國民小學附設幼兒園",
     "stage": "kindergarten",
     "town": "魚池鄉",
-    "address": "[555][555]南投縣魚池鄉頭社村15鄰平和巷105號",
-    "phone": "(049)2861237#123",
+    "address": "[555]南投縣魚池鄉頭社村15鄰平和巷105號",
+    "phone": "(049)2861237",
     "lat": 23.8372975,
     "lng": 120.9025956,
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "頭社國小"
+    "parentCampus": "頭社國小",
+    "officialCode": "084X5Z"
   },
   {
     "id": "kg-057",
@@ -3027,7 +3456,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "國姓國小"
+    "parentCampus": "國姓國小",
+    "officialCode": "084X48"
   },
   {
     "id": "kg-058",
@@ -3041,7 +3471,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "北港國小"
+    "parentCampus": "北港國小",
+    "officialCode": "084X31"
   },
   {
     "id": "kg-059",
@@ -3055,7 +3486,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "長流國小"
+    "parentCampus": "長流國小",
+    "officialCode": "084X68"
   },
   {
     "id": "kg-060",
@@ -3063,13 +3495,14 @@ window.NANTOU_SCHOOL_DATA = [
     "stage": "kindergarten",
     "town": "國姓鄉",
     "address": "[544]南投縣國姓鄉福龜村9鄰長壽巷83號",
-    "phone": "(049)2724029#27",
+    "phone": "(049)2724029",
     "lat": 24.0115344,
     "lng": 120.8224258,
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "福龜國小"
+    "parentCampus": "福龜國小",
+    "officialCode": "084X32"
   },
   {
     "id": "kg-061",
@@ -3077,13 +3510,14 @@ window.NANTOU_SCHOOL_DATA = [
     "stage": "kindergarten",
     "town": "國姓鄉",
     "address": "[544]南投縣國姓鄉北山村1鄰中正路4段119之1號",
-    "phone": "2451935#27",
+    "phone": "(049)2451935#28",
     "lat": 23.9809056,
     "lng": 120.8766167,
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "北山國小"
+    "parentCampus": "北山國小",
+    "officialCode": "084X69"
   },
   {
     "id": "kg-062",
@@ -3097,7 +3531,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "南港國小"
+    "parentCampus": "南港國小",
+    "officialCode": "084K01"
   },
   {
     "id": "kg-063",
@@ -3111,7 +3546,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "水里國小"
+    "parentCampus": "水里國小",
+    "officialCode": "084X35"
   },
   {
     "id": "kg-064",
@@ -3119,13 +3555,14 @@ window.NANTOU_SCHOOL_DATA = [
     "stage": "kindergarten",
     "town": "水里鄉",
     "address": "[553]南投縣水里鄉新興村8鄰新興巷15號",
-    "phone": "(049)2811187#37",
+    "phone": "(049)2811080",
     "lat": 23.884033,
     "lng": 120.871187,
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "新興國小"
+    "parentCampus": "新興國小",
+    "officialCode": "084X46"
   },
   {
     "id": "kg-065",
@@ -3139,7 +3576,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "信義國小"
+    "parentCampus": "信義國小",
+    "officialCode": "084X36"
   },
   {
     "id": "kg-066",
@@ -3153,7 +3591,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "地利國小"
+    "parentCampus": "地利國小",
+    "officialCode": "084X5A"
   },
   {
     "id": "kg-067",
@@ -3161,13 +3600,14 @@ window.NANTOU_SCHOOL_DATA = [
     "stage": "kindergarten",
     "town": "信義鄉",
     "address": "[556]南投縣信義鄉潭南村3鄰和平巷49號",
-    "phone": "(049)2742822#18",
+    "phone": "(049)2742822",
     "lat": 23.8213368,
     "lng": 120.9402127,
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "潭南國小"
+    "parentCampus": "潭南國小",
+    "officialCode": "084X61"
   },
   {
     "id": "kg-068",
@@ -3175,13 +3615,14 @@ window.NANTOU_SCHOOL_DATA = [
     "stage": "kindergarten",
     "town": "信義鄉",
     "address": "[556]南投縣信義鄉人和村1鄰民生巷3號",
-    "phone": "(049)2773259#334",
+    "phone": "(049)2773259",
     "lat": 23.7793661,
     "lng": 120.8969528,
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "人和國小"
+    "parentCampus": "人和國小",
+    "officialCode": "084X5B"
   },
   {
     "id": "kg-069",
@@ -3195,7 +3636,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "愛國國小"
+    "parentCampus": "愛國國小",
+    "officialCode": "084X33"
   },
   {
     "id": "kg-070",
@@ -3203,13 +3645,14 @@ window.NANTOU_SCHOOL_DATA = [
     "stage": "kindergarten",
     "town": "信義鄉",
     "address": "[556]南投縣信義鄉羅娜村1鄰信筆巷73號",
-    "phone": "(049)2831327#21",
+    "phone": "(049)2831327",
     "lat": 23.6278285,
     "lng": 120.8706287,
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "羅娜國小"
+    "parentCampus": "羅娜國小",
+    "officialCode": "084X55"
   },
   {
     "id": "kg-071",
@@ -3217,13 +3660,14 @@ window.NANTOU_SCHOOL_DATA = [
     "stage": "kindergarten",
     "town": "信義鄉",
     "address": "[556]南投縣信義鄉望美村5鄰美信巷54號",
-    "phone": "(049)2832482#17",
+    "phone": "(049)2832482",
     "lat": 23.6158333,
     "lng": 120.8841667,
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "久美國小"
+    "parentCampus": "久美國小",
+    "officialCode": "084X5F"
   },
   {
     "id": "kg-072",
@@ -3237,7 +3681,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "桐林國小"
+    "parentCampus": "桐林國小",
+    "officialCode": "084X5T"
   },
   {
     "id": "kg-073",
@@ -3245,13 +3690,14 @@ window.NANTOU_SCHOOL_DATA = [
     "stage": "kindergarten",
     "town": "信義鄉",
     "address": "[556]南投縣信義鄉同富村1鄰同和巷4號",
-    "phone": "(049)2701503#13",
+    "phone": "(049)2701503#15",
     "lat": 23.5938889,
     "lng": 120.8883333,
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "同富國小"
+    "parentCampus": "同富國小",
+    "officialCode": "084X5X"
   },
   {
     "id": "kg-074",
@@ -3265,7 +3711,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "隆華國小"
+    "parentCampus": "隆華國小",
+    "officialCode": "084X5S"
   },
   {
     "id": "kg-075",
@@ -3273,13 +3720,14 @@ window.NANTOU_SCHOOL_DATA = [
     "stage": "kindergarten",
     "town": "信義鄉",
     "address": "[556]南投縣信義鄉東埔村5鄰開高巷63號",
-    "phone": "(049)2701340#37",
+    "phone": "(049)2701340",
     "lat": 23.5619353,
     "lng": 120.9276267,
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "東埔國小"
+    "parentCampus": "東埔國小",
+    "officialCode": "084X38"
   },
   {
     "id": "kg-076",
@@ -3293,7 +3741,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "雙龍國小"
+    "parentCampus": "雙龍國小",
+    "officialCode": "084X37"
   },
   {
     "id": "kg-077",
@@ -3307,7 +3756,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "豐丘國小"
+    "parentCampus": "豐丘國小",
+    "officialCode": "084X5Y"
   },
   {
     "id": "kg-078",
@@ -3315,13 +3765,14 @@ window.NANTOU_SCHOOL_DATA = [
     "stage": "kindergarten",
     "town": "仁愛鄉",
     "address": "[546]南投縣仁愛鄉大同村7鄰山農巷5號",
-    "phone": "(049)2803963#80",
+    "phone": "(049)2803963",
     "lat": 24.0208333,
     "lng": 121.1333333,
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "仁愛國小"
+    "parentCampus": "仁愛國小",
+    "officialCode": "084X39"
   },
   {
     "id": "kg-079",
@@ -3329,13 +3780,14 @@ window.NANTOU_SCHOOL_DATA = [
     "stage": "kindergarten",
     "town": "仁愛鄉",
     "address": "[546]南投縣仁愛鄉中正村6鄰平等巷114號",
-    "phone": "(049)2925114#38",
+    "phone": "(049)2925114",
     "lat": 23.9043355,
     "lng": 120.9907774,
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "中正國小"
+    "parentCampus": "中正國小",
+    "officialCode": "084X65"
   },
   {
     "id": "kg-080",
@@ -3349,7 +3801,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "互助國小"
+    "parentCampus": "互助國小",
+    "officialCode": "084X41"
   },
   {
     "id": "kg-081",
@@ -3357,13 +3810,14 @@ window.NANTOU_SCHOOL_DATA = [
     "stage": "kindergarten",
     "town": "仁愛鄉",
     "address": "[546]南投縣仁愛鄉力行村3鄰新望洋67號",
-    "phone": "(049)2955078#20",
+    "phone": "(049)2955078#21",
     "lat": 24.1479892,
     "lng": 121.1890945,
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "力行國小"
+    "parentCampus": "力行國小",
+    "officialCode": "084X5E"
   },
   {
     "id": "kg-082",
@@ -3377,7 +3831,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "發祥國小"
+    "parentCampus": "發祥國小",
+    "officialCode": "084X54"
   },
   {
     "id": "kg-083",
@@ -3391,21 +3846,23 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "紅葉國小"
+    "parentCampus": "紅葉國小",
+    "officialCode": "084X5D"
   },
   {
     "id": "kg-084",
     "name": "親愛國民小學附設幼兒園",
     "stage": "kindergarten",
     "town": "仁愛鄉",
-    "address": "[546][546]南投縣仁愛鄉親愛村1鄰高平路3號",
+    "address": "[546]南投縣仁愛鄉親愛村1鄰高平路3號",
     "phone": "(049)2974033#30",
     "lat": 23.9682604,
     "lng": 121.1090048,
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "親愛國小"
+    "parentCampus": "親愛國小",
+    "officialCode": "084X62"
   },
   {
     "id": "kg-085",
@@ -3419,7 +3876,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "法治國小"
+    "parentCampus": "法治國小",
+    "officialCode": "084X5C"
   },
   {
     "id": "kg-086",
@@ -3427,13 +3885,14 @@ window.NANTOU_SCHOOL_DATA = [
     "stage": "kindergarten",
     "town": "仁愛鄉",
     "address": "[546]南投縣仁愛鄉大同村17鄰定遠新村24號",
-    "phone": "(049)2802572",
+    "phone": "(049)2803671",
     "lat": 24.0440412,
     "lng": 121.1583386,
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "清境國小"
+    "parentCampus": "清境國小",
+    "officialCode": "084X52"
   },
   {
     "id": "kg-087",
@@ -3447,7 +3906,8 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "南豐國小"
+    "parentCampus": "南豐國小",
+    "officialCode": "084X40"
   },
   {
     "id": "kg-088",
@@ -3455,13 +3915,14 @@ window.NANTOU_SCHOOL_DATA = [
     "stage": "kindergarten",
     "town": "仁愛鄉",
     "address": "[546]南投縣仁愛鄉春陽村5鄰永樂巷58號",
-    "phone": "(049)2803681#19",
+    "phone": "(049)2803681",
     "lat": 24.0278047,
     "lng": 121.1484864,
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "春陽國小"
+    "parentCampus": "春陽國小",
+    "officialCode": "084X56"
   },
   {
     "id": "kg-089",
@@ -3469,13 +3930,14 @@ window.NANTOU_SCHOOL_DATA = [
     "stage": "kindergarten",
     "town": "仁愛鄉",
     "address": "[546]南投縣仁愛鄉精英村5鄰中華巷19號",
-    "phone": "(049)2970385#28",
+    "phone": "(049)2970385#20",
     "lat": 24.0347457,
     "lng": 121.1858484,
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "廬山國小"
+    "parentCampus": "廬山國小",
+    "officialCode": "084X66"
   },
   {
     "id": "kg-090",
@@ -3489,34 +3951,37 @@ window.NANTOU_SCHOOL_DATA = [
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "萬豐國小"
+    "parentCampus": "萬豐國小",
+    "officialCode": "084X60"
   },
   {
     "id": "kg-091",
     "name": "都達國民小學附設幼兒園",
     "stage": "kindergarten",
     "town": "仁愛鄉",
-    "address": "[546]南投縣仁愛鄉都達村1鄰法觀路17號",
+    "address": "[546]南投縣仁愛鄉都達村8鄰法觀路17號",
     "phone": "(049)2970903",
     "lat": 24.0597991,
     "lng": 121.1922021,
     "geoSource": "matched-elementary-campus-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
     "dataSource": "南投縣政府開放資料-公立幼兒園名冊-11409",
-    "parentCampus": "都達國小"
+    "parentCampus": "都達國小",
+    "officialCode": "084X63"
   },
   {
     "id": "kg-092",
     "name": "水里鄉立幼兒園",
     "stage": "kindergarten",
-    "town": "水里鄉",
-    "address": "[553]南投縣水里鄉玉峰村6鄰萬壽巷43號",
-    "phone": "(049)2773845",
+    "town": "南投市",
+    "address": "[540]南投縣南投市康壽里13鄰南陽路269號",
+    "phone": "(049)2231103",
     "lat": 23.803984,
     "lng": 120.837263,
     "geoSource": "public-map-manual-2026-05-11",
     "geoVerifiedAt": "2026-05-11",
-    "dataSource": "南投縣114學年度公立及非營利幼兒園招收2歲專班名冊 / 水里鄉公所招生公告"
+    "dataSource": "南投縣114學年度公立及非營利幼兒園招收2歲專班名冊 / 水里鄉公所招生公告",
+    "officialCode": "084X5G"
   },
   {
     "id": "kg-093",
@@ -3529,7 +3994,8 @@ window.NANTOU_SCHOOL_DATA = [
     "lng": 120.856897,
     "geoSource": "public-map-manual-2026-05-11",
     "geoVerifiedAt": "2026-05-11",
-    "dataSource": "幼兒園名錄 / 幼園通"
+    "dataSource": "幼兒園名錄 / 幼園通",
+    "officialCode": "081X6M"
   },
   {
     "id": "kg-094",
@@ -3546,30 +4012,1309 @@ window.NANTOU_SCHOOL_DATA = [
     "parentCampus": "永昌國小"
   },
   {
+    "id": "kg-095",
+    "officialCode": "081K02",
+    "name": "南投縣私立新南投弘明幼兒園",
+    "stage": "kindergarten",
+    "town": "名間鄉",
+    "address": "[551]南投縣名間鄉東湖村15鄰大老巷102號",
+    "phone": "(049)2731799#735",
+    "lat": 23.859393,
+    "lng": 120.698142,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣名間鄉大老巷102號, 551"
+  },
+  {
+    "id": "kg-096",
+    "officialCode": "081K03",
+    "name": "南投縣大成非營利幼兒園(委託財團法人三之三生命教育基金會辦理)",
+    "stage": "kindergarten",
+    "town": "埔里鎮",
+    "address": "[545]南投縣埔里鎮大城里34鄰中山路三段565號",
+    "phone": "(049)2916905",
+    "lat": 23.970316,
+    "lng": 120.950924,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣埔里鎮中山路三段565號, 54551"
+  },
+  {
+    "id": "kg-097",
+    "officialCode": "081K04",
+    "name": "南投縣德興非營利幼兒園(委託財團法人三之三生命教育基金會辦理)",
+    "stage": "kindergarten",
+    "town": "南投市",
+    "address": "[540]南投縣南投市內興里13鄰中興路200號",
+    "phone": "(049)2392718",
+    "lat": 23.932049,
+    "lng": 120.693465,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 96.5,
+    "geoMatchAddress": "南投縣下莊中興路200號, 54041"
+  },
+  {
+    "id": "kg-098",
+    "officialCode": "081K05",
+    "name": "南投縣前山非營利幼兒園(委託財團法人三之三生命教育基金會辦理)",
+    "stage": "kindergarten",
+    "town": "竹山鎮",
+    "address": "[557]南投縣竹山鎮中山里1鄰自強路100號",
+    "phone": "(049)2651016",
+    "lat": 23.751607,
+    "lng": 120.678363,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣竹山鎮自強路100號, 55755"
+  },
+  {
+    "id": "kg-099",
+    "officialCode": "081K06",
+    "name": "南投縣私立優秀幼兒園",
+    "stage": "kindergarten",
+    "town": "草屯鎮",
+    "address": "[542]南投縣草屯鎮上林里23鄰太平路1段317號",
+    "phone": "(049)2312396",
+    "lat": 23.9634843,
+    "lng": 120.6817274,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣草屯鎮太平路一段317號, 54261"
+  },
+  {
+    "id": "kg-100",
+    "officialCode": "081K07",
+    "name": "南投縣富功非營利幼兒園(委託財團法人宏觀文教基金會辦理)",
+    "stage": "kindergarten",
+    "town": "草屯鎮",
+    "address": "[542]南投縣草屯鎮富寮里27鄰中正路567號",
+    "phone": "(049)2560961",
+    "lat": 23.979041,
+    "lng": 120.698228,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣草屯鎮中正路567號, 54246"
+  },
+  {
+    "id": "kg-101",
+    "officialCode": "081K08",
+    "name": "南投縣私立優加幼兒園",
+    "stage": "kindergarten",
+    "town": "竹山鎮",
+    "address": "[557]南投縣竹山鎮桂林里26鄰大同街1號",
+    "phone": "(049)2009208",
+    "lat": 23.7555791,
+    "lng": 120.6885673,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 92.89,
+    "geoMatchAddress": "南投縣竹山鎮大同街, 557"
+  },
+  {
+    "id": "kg-102",
+    "officialCode": "081K09",
+    "name": "南投縣營盤非營利幼兒園(委託財團法人三之三生命教育基金會辦理)",
+    "stage": "kindergarten",
+    "town": "南投市",
+    "address": "[540]南投縣南投市營南里7鄰營盤路136號",
+    "phone": "(049)2312899",
+    "lat": 23.944188,
+    "lng": 120.675819,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣南投市營盤路136號, 54047"
+  },
+  {
+    "id": "kg-103",
+    "officialCode": "081K0A",
+    "name": "南投縣私立加拿大幼兒園",
+    "stage": "kindergarten",
+    "town": "埔里鎮",
+    "address": "[545]南投縣埔里鎮同聲里11鄰隆生路102號",
+    "phone": "(049)2903977",
+    "lat": 23.9557245,
+    "lng": 120.965332,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣埔里鎮隆生路102號, 54548"
+  },
+  {
+    "id": "kg-104",
+    "officialCode": "081K0B",
+    "name": "南投縣私立華陽幼兒園",
+    "stage": "kindergarten",
+    "town": "南投市",
+    "address": "[540]南投縣南投市平山里16鄰華陽路658號",
+    "phone": "(049)2252916",
+    "lat": 23.9249415,
+    "lng": 120.6812433,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣南投市華陽路658號, 54063"
+  },
+  {
+    "id": "kg-105",
+    "officialCode": "081K0C",
+    "name": "南投縣私立童年萬歲幼兒園",
+    "stage": "kindergarten",
+    "town": "埔里鎮",
+    "address": "[545]南投縣埔里鎮枇杷里4鄰中心路138號",
+    "phone": "(049)2992486",
+    "lat": 23.959887,
+    "lng": 120.983967,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.32,
+    "geoMatchAddress": "南投縣埔里鎮中心路13-8號, 54552"
+  },
+  {
+    "id": "kg-106",
+    "officialCode": "081K0D",
+    "name": "南投縣私立哈波特幼兒園",
+    "stage": "kindergarten",
+    "town": "竹山鎮",
+    "address": "[557]南投縣竹山鎮中山里30鄰頂林路177-1號",
+    "phone": "(049)2653535",
+    "lat": 23.7235778,
+    "lng": 120.6950817,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 97.18,
+    "geoMatchAddress": "南投縣竹山鎮頂林路177號, 557"
+  },
+  {
+    "id": "kg-107",
+    "officialCode": "081K0H",
+    "name": "南投縣私立一禾幼兒園",
+    "stage": "kindergarten",
+    "town": "草屯鎮",
+    "address": "[542]南投縣草屯鎮復興里28鄰碧山路727巷186號",
+    "phone": "(049)2323161",
+    "lat": 23.9729356,
+    "lng": 120.6707889,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 97.73,
+    "geoMatchAddress": "南投縣草屯鎮碧山路727巷186號, 542"
+  },
+  {
+    "id": "kg-108",
+    "officialCode": "081X01",
+    "name": "財團法人南投基督長老教會附設南投縣私立長愛幼兒園",
+    "stage": "kindergarten",
+    "town": "南投市",
+    "address": "[540]南投縣南投市三和里15鄰府南路二街2號",
+    "phone": "(049)2220025",
+    "lat": 23.9015635,
+    "lng": 120.6921094,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.13,
+    "geoMatchAddress": "南投縣南投市府南路二街2號, 54048"
+  },
+  {
+    "id": "kg-109",
+    "officialCode": "081X06",
+    "name": "南投縣私立仁義幼兒園",
+    "stage": "kindergarten",
+    "town": "南投市",
+    "address": "[540]南投縣南投市漳和里43鄰文化路618號",
+    "phone": "(049)2233477",
+    "lat": 23.91484,
+    "lng": 120.674959,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 92.22,
+    "geoMatchAddress": "南投縣文化路618號, 54059"
+  },
+  {
+    "id": "kg-110",
+    "officialCode": "081X12",
+    "name": "南投縣私立真善美幼兒園",
+    "stage": "kindergarten",
+    "town": "草屯鎮",
+    "address": "[542]南投縣草屯鎮敦和里9鄰碧山路618號",
+    "phone": "(049)2333446",
+    "lat": 23.978367,
+    "lng": 120.675404,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣草屯鎮碧山路618號, 54258"
+  },
+  {
+    "id": "kg-111",
+    "officialCode": "081X16",
+    "name": "南投縣私立信愛幼兒園",
+    "stage": "kindergarten",
+    "town": "埔里鎮",
+    "address": "[545]南投縣埔里鎮北門里2鄰中山路二段253號",
+    "phone": "(049)2981764",
+    "lat": 23.965924,
+    "lng": 120.96888,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣埔里鎮中山路二段253號, 54554"
+  },
+  {
+    "id": "kg-112",
+    "officialCode": "081X19",
+    "name": "南投縣私立文心幼兒園",
+    "stage": "kindergarten",
+    "town": "埔里鎮",
+    "address": "[545]南投縣埔里鎮大城里37鄰安四街165號",
+    "phone": "(049)2915123",
+    "lat": 23.9693986,
+    "lng": 120.9520421,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣埔里鎮安四街165號, 54547"
+  },
+  {
+    "id": "kg-113",
+    "officialCode": "081X21",
+    "name": "南投縣私立培真幼兒園",
+    "stage": "kindergarten",
+    "town": "竹山鎮",
+    "address": "[557]南投縣竹山鎮中山里20鄰鯉南路26-81號",
+    "phone": "(049)2632840",
+    "lat": 23.750017,
+    "lng": 120.679128,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣竹山鎮鯉南路26-81號, 55754"
+  },
+  {
+    "id": "kg-114",
+    "officialCode": "081X27",
+    "name": "南投縣私立福祿貝爾幼兒園",
+    "stage": "kindergarten",
+    "town": "埔里鎮",
+    "address": "[545]南投縣埔里鎮北安里27鄰東榮路386號",
+    "phone": "(049)2989646",
+    "lat": 23.969229,
+    "lng": 120.975547,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.13,
+    "geoMatchAddress": "南投縣埔里鎮東榮路386號, 54554"
+  },
+  {
+    "id": "kg-115",
+    "officialCode": "081X32",
+    "name": "南投縣私立培幼幼兒園",
+    "stage": "kindergarten",
+    "town": "埔里鎮",
+    "address": "[545]南投縣埔里鎮大城里2鄰大城路1-28號",
+    "phone": "(049)2901721",
+    "lat": 23.9675384,
+    "lng": 120.9586742,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣埔里鎮大城路1-28號, 54545"
+  },
+  {
+    "id": "kg-116",
+    "officialCode": "081X33",
+    "name": "南投縣私立群英幼兒園",
+    "stage": "kindergarten",
+    "town": "南投市",
+    "address": "[540]南投縣南投市漳和里35鄰袓祠路242巷38號",
+    "phone": "(049)2239697",
+    "lat": 23.915423,
+    "lng": 120.677962,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "kindyinfo-google-navigation-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoMatchAddress": "Google Maps destination from KindyInfo"
+  },
+  {
+    "id": "kg-117",
+    "officialCode": "081X35",
+    "name": "南投縣私立愛迪生幼兒園",
+    "stage": "kindergarten",
+    "town": "埔里鎮",
+    "address": "[545]南投縣埔里鎮北門里3鄰東榮路226號",
+    "phone": "(049)2986666",
+    "lat": 23.965909,
+    "lng": 120.970356,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣埔里鎮東榮路226號, 54556"
+  },
+  {
+    "id": "kg-118",
+    "officialCode": "081X38",
+    "name": "南投縣私立黃柱陳樣幼兒園",
+    "stage": "kindergarten",
+    "town": "草屯鎮",
+    "address": "[542]南投縣草屯鎮敦和里30鄰碧山路445號及445之1號",
+    "phone": "(049)2354733",
+    "lat": 23.977601,
+    "lng": 120.675486,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 95.34,
+    "geoMatchAddress": "南投縣草屯鎮碧山路445號, 54258"
+  },
+  {
+    "id": "kg-119",
+    "officialCode": "081X43",
+    "name": "南投縣私立格林幼兒園",
+    "stage": "kindergarten",
+    "town": "南投市",
+    "address": "[540]南投縣南投市振興里20鄰?稟路72號",
+    "phone": "(049)2203966",
+    "lat": 23.904323,
+    "lng": 120.69414,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "kindyinfo-google-navigation-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoMatchAddress": "Google Maps destination from KindyInfo"
+  },
+  {
+    "id": "kg-120",
+    "officialCode": "081X44",
+    "name": "南投縣私立鹿谷幼兒園",
+    "stage": "kindergarten",
+    "town": "鹿谷鄉",
+    "address": "[558]南投縣鹿谷鄉鹿谷村10鄰中正路二段211巷1號",
+    "phone": "(049)2752555",
+    "lat": 23.7492451,
+    "lng": 120.7503609,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.57,
+    "geoMatchAddress": "南投縣鹿谷鄉中正路二段211巷1號, 55843"
+  },
+  {
+    "id": "kg-121",
+    "officialCode": "081X4G",
+    "name": "南投縣私立名仁幼兒園",
+    "stage": "kindergarten",
+    "town": "魚池鄉",
+    "address": "[555]南投縣魚池鄉魚池村18鄰秀水路252號",
+    "phone": "(049)2897890",
+    "lat": 23.8960688,
+    "lng": 120.9356447,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 89.22,
+    "geoMatchAddress": "南投縣魚池鄉秀水路, 55541"
+  },
+  {
+    "id": "kg-122",
+    "officialCode": "081X4I",
+    "name": "財團法人中華基督教中興新村浸信會附設南投縣私立信望愛幼兒園",
+    "stage": "kindergarten",
+    "town": "南投市",
+    "address": "[540]南投縣南投市營北里27鄰中正路220及220-2號",
+    "phone": "(049)2316212",
+    "lat": 23.946994,
+    "lng": 120.692593,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 93.74,
+    "geoMatchAddress": "南投縣下莊中正路220號, 54046"
+  },
+  {
+    "id": "kg-123",
+    "officialCode": "081X4Q",
+    "name": "南投縣私立貝斯特幼兒園",
+    "stage": "kindergarten",
+    "town": "南投市",
+    "address": "[540]南投縣南投市三興里33鄰南崗一路147號",
+    "phone": "(049)2200088",
+    "lat": 23.902151,
+    "lng": 120.682347,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 92.22,
+    "geoMatchAddress": "南投縣南崗一路147號, 54060"
+  },
+  {
+    "id": "kg-124",
+    "officialCode": "081X4R",
+    "name": "南投縣私立益國幼兒園",
+    "stage": "kindergarten",
+    "town": "南投市",
+    "address": "[540]南投縣南投市漳和里27鄰祖祠路350號",
+    "phone": "(049)2235278",
+    "lat": 23.913912,
+    "lng": 120.675885,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 92.22,
+    "geoMatchAddress": "南投縣祖祠路350號, 54061"
+  },
+  {
+    "id": "kg-125",
+    "officialCode": "081X4S",
+    "name": "南投縣私立愛心幼兒園",
+    "stage": "kindergarten",
+    "town": "南投市",
+    "address": "[540]南投縣南投市營北里25鄰光興街67號",
+    "phone": "(049)2325973",
+    "lat": 23.9418789,
+    "lng": 120.6901783,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 96.5,
+    "geoMatchAddress": "南投縣下莊光興街67號, 54046"
+  },
+  {
+    "id": "kg-126",
+    "officialCode": "081X4T",
+    "name": "南投縣私立童心幼兒園",
+    "stage": "kindergarten",
+    "town": "埔里鎮",
+    "address": "[545]南投縣埔里鎮西門里11鄰中正三路130號",
+    "phone": "(049)2982416",
+    "lat": 23.97024,
+    "lng": 120.964519,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣埔里鎮中正三路130號, 54542"
+  },
+  {
+    "id": "kg-127",
+    "officialCode": "081X4U",
+    "name": "南投縣私立親子田幼兒園",
+    "stage": "kindergarten",
+    "town": "埔里鎮",
+    "address": "[545]南投縣埔里鎮水頭里13鄰隆生路96之18號",
+    "phone": "(049)2902288",
+    "lat": 23.955376,
+    "lng": 120.96694,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 96.69,
+    "geoMatchAddress": "南投縣埔里鎮隆生路96號, 54548"
+  },
+  {
+    "id": "kg-128",
+    "officialCode": "081X4V",
+    "name": "南投縣私立小叮噹幼兒園",
+    "stage": "kindergarten",
+    "town": "埔里鎮",
+    "address": "[545]南投縣埔里鎮枇杷里35鄰青田街38號",
+    "phone": "(049)2982024",
+    "lat": 23.962204,
+    "lng": 120.974946,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣埔里鎮青田街38號, 54549"
+  },
+  {
+    "id": "kg-129",
+    "officialCode": "081X4W",
+    "name": "南投縣私立小太陽幼兒園",
+    "stage": "kindergarten",
+    "town": "埔里鎮",
+    "address": "[545]南投縣埔里鎮大城里29鄰水裡巷86號",
+    "phone": "(049)2911808",
+    "lat": 23.967961,
+    "lng": 120.953873,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣埔里鎮水裡巷86號, 54547"
+  },
+  {
+    "id": "kg-130",
+    "officialCode": "081X4X",
+    "name": "南投縣私立格瑞特幼兒園",
+    "stage": "kindergarten",
+    "town": "草屯鎮",
+    "address": "[542]南投縣草屯鎮御史里35鄰登輝路336號",
+    "phone": "(049)2562006",
+    "lat": 23.988764,
+    "lng": 120.695375,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣草屯鎮登輝路336號, 54251"
+  },
+  {
+    "id": "kg-131",
+    "officialCode": "081X50",
+    "name": "南投縣私立弘明幼兒園",
+    "stage": "kindergarten",
+    "town": "草屯鎮",
+    "address": "[542]南投縣草屯鎮碧洲里1鄰碧峰路438巷161號",
+    "phone": "(049)2365780",
+    "lat": 23.965485,
+    "lng": 120.657453,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.57,
+    "geoMatchAddress": "南投縣草屯鎮碧峰路438巷161號, 54259"
+  },
+  {
+    "id": "kg-132",
+    "officialCode": "081X51",
+    "name": "南投縣私立蜜雪兒幼兒園",
+    "stage": "kindergarten",
+    "town": "草屯鎮",
+    "address": "[542]南投縣草屯鎮新豐里11鄰日新街306號",
+    "phone": "(049)2357988",
+    "lat": 23.997138,
+    "lng": 120.677172,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣草屯鎮日新街306號, 542"
+  },
+  {
+    "id": "kg-133",
+    "officialCode": "081X52",
+    "name": "南投縣私立衛斯理幼兒園",
+    "stage": "kindergarten",
+    "town": "草屯鎮",
+    "address": "[542]南投縣草屯鎮復興里24鄰碧山路723-29號",
+    "phone": "(049)2302255",
+    "lat": 23.976519,
+    "lng": 120.6708764,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 97.39,
+    "geoMatchAddress": "南投縣草屯鎮碧山路723-29號, 542"
+  },
+  {
+    "id": "kg-134",
+    "officialCode": "081X55",
+    "name": "南投縣私立山姆叔叔幼兒園",
+    "stage": "kindergarten",
+    "town": "名間鄉",
+    "address": "[551]南投縣名間鄉中山村15鄰頂?巷2之37號",
+    "phone": "(049)2735373",
+    "lat": 23.8384228,
+    "lng": 120.6915152,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 96.76,
+    "geoMatchAddress": "南投縣名間鄉頂廍巷37號, 55153"
+  },
+  {
+    "id": "kg-135",
+    "officialCode": "081X56",
+    "name": "南投縣私立寶仁幼兒園",
+    "stage": "kindergarten",
+    "town": "名間鄉",
+    "address": "[551]南投縣名間鄉中山村15鄰頂?巷1-8、1-9號",
+    "phone": "(049)2738747",
+    "lat": 23.8403061,
+    "lng": 120.6950535,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 96.15,
+    "geoMatchAddress": "南投縣名間鄉頂廍巷1-8號, 55153"
+  },
+  {
+    "id": "kg-136",
+    "officialCode": "081X58",
+    "name": "南投縣私立基督教大衛王幼兒園",
+    "stage": "kindergarten",
+    "town": "南投市",
+    "address": "[540]南投縣南投市康壽里4鄰玉井街110號",
+    "phone": "(049)2232231",
+    "lat": 23.911664,
+    "lng": 120.684721,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 85.72,
+    "geoMatchAddress": "南投縣玉井街110號, 54048"
+  },
+  {
+    "id": "kg-137",
+    "officialCode": "081X5A",
+    "name": "南投縣私立培優幼兒園",
+    "stage": "kindergarten",
+    "town": "南投市",
+    "address": "[540]南投縣南投市營北里36鄰營北路51號",
+    "phone": "(049)2371448",
+    "lat": 23.94621,
+    "lng": 120.688684,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 96.5,
+    "geoMatchAddress": "南投縣下莊營北路51號, 54045"
+  },
+  {
+    "id": "kg-138",
+    "officialCode": "081X5B",
+    "name": "南投縣私立學揚幼兒園",
+    "stage": "kindergarten",
+    "town": "南投市",
+    "address": "[540]南投縣南投市軍功里24鄰中興路245之1號",
+    "phone": "(049)2201698",
+    "lat": 23.920848,
+    "lng": 120.694234,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 97.24,
+    "geoMatchAddress": "南投縣南投市中興路245號, 54050"
+  },
+  {
+    "id": "kg-139",
+    "officialCode": "081X5G",
+    "name": "財團法人天主教會台中教區附設南投縣私立聖愛幼兒園",
+    "stage": "kindergarten",
+    "town": "南投市",
+    "address": "[540]南投縣南投市龍泉里10鄰文昌街27號",
+    "phone": "(049)2229844",
+    "lat": 23.9072292,
+    "lng": 120.6885913,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 85.25,
+    "geoMatchAddress": "南投縣南投形象商圈文昌街27號, 54048"
+  },
+  {
+    "id": "kg-140",
+    "officialCode": "081X5L",
+    "name": "南投縣私立愛因斯坦幼兒園",
+    "stage": "kindergarten",
+    "town": "南投市",
+    "address": "[540]南投縣南投市嘉和里8鄰彰南路一段673號",
+    "phone": "(049)2222360",
+    "lat": 23.89685,
+    "lng": 120.68621,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 92.22,
+    "geoMatchAddress": "南投縣彰南路一段673號, 54056"
+  },
+  {
+    "id": "kg-141",
+    "officialCode": "081X5M",
+    "name": "有限責任南投縣南崗勞工消費合作社附設南投縣私立南崗幼兒園",
+    "stage": "kindergarten",
+    "town": "南投市",
+    "address": "[540]南投縣南投市永豐里15鄰自立一路一號",
+    "phone": "(049)2250257",
+    "lat": 23.934433,
+    "lng": 120.667901,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 92.22,
+    "geoMatchAddress": "南投縣自立一路1號, 54067"
+  },
+  {
+    "id": "kg-142",
+    "officialCode": "081X5N",
+    "name": "南投縣私立清華幼兒園",
+    "stage": "kindergarten",
+    "town": "南投市",
+    "address": "[540]南投縣南投市平山里16鄰彰南路二段754巷51號",
+    "phone": "(049)2257779",
+    "lat": 23.9245847,
+    "lng": 120.6785293,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 93.33,
+    "geoMatchAddress": "南投縣彰南路二段754巷51號, 54063"
+  },
+  {
+    "id": "kg-143",
+    "officialCode": "081X5R",
+    "name": "南投縣私立多倫多幼兒園",
+    "stage": "kindergarten",
+    "town": "南投市",
+    "address": "[540]南投縣南投市三興里17鄰南陽路522號",
+    "phone": "(049)2231533",
+    "lat": 23.911966,
+    "lng": 120.6802611,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 92.22,
+    "geoMatchAddress": "南投縣南陽路522號, 54062"
+  },
+  {
+    "id": "kg-144",
+    "officialCode": "081X5S",
+    "name": "南投縣私立翊新華盛頓幼兒園",
+    "stage": "kindergarten",
+    "town": "南投市",
+    "address": "[540]南投縣南投市漳和里23鄰文化路849號",
+    "phone": "(049)2247968",
+    "lat": 23.916035,
+    "lng": 120.676538,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 92.22,
+    "geoMatchAddress": "南投縣文化路849號, 54059"
+  },
+  {
+    "id": "kg-145",
+    "officialCode": "081X5X",
+    "name": "南投縣私立卡帕及幼幼兒園",
+    "stage": "kindergarten",
+    "town": "草屯鎮",
+    "address": "[542]南投縣草屯鎮復興里29鄰碧山路723-35號",
+    "phone": "(049)2380488",
+    "lat": 23.976462,
+    "lng": 120.670327,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 97.39,
+    "geoMatchAddress": "南投縣草屯鎮碧山路723-35號, 542"
+  },
+  {
+    "id": "kg-146",
+    "officialCode": "081X5Y",
+    "name": "南投縣私立光隆幼兒園",
+    "stage": "kindergarten",
+    "town": "草屯鎮",
+    "address": "[542]南投縣草屯鎮新豐里23鄰稻香路18-49號",
+    "phone": "(049)2380868",
+    "lat": 23.99486,
+    "lng": 120.682396,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣草屯鎮稻香路18-49號, 54252"
+  },
+  {
+    "id": "kg-147",
+    "officialCode": "081X5Z",
+    "name": "南投縣私立欣慧幼兒園",
+    "stage": "kindergarten",
+    "town": "草屯鎮",
+    "address": "[542]南投縣草屯鎮新豐里3鄰防汎路18-8號",
+    "phone": "(049)2304384",
+    "lat": 24.0045246,
+    "lng": 120.6779875,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣草屯鎮防汎路18-8號, 54252"
+  },
+  {
+    "id": "kg-148",
+    "officialCode": "081X61",
+    "name": "南投縣私立優蓓仕幼兒園",
+    "stage": "kindergarten",
+    "town": "草屯鎮",
+    "address": "[542]南投縣草屯鎮炎峰里22鄰大成街71號",
+    "phone": "(049)2304180",
+    "lat": 23.975942,
+    "lng": 120.687574,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣草屯鎮大成街71號, 54241"
+  },
+  {
+    "id": "kg-149",
+    "officialCode": "081X62",
+    "name": "南投縣私立蒲公英幼兒園",
+    "stage": "kindergarten",
+    "town": "草屯鎮",
+    "address": "[542]南投縣草屯鎮敦和里30鄰碧山南路171巷12弄32號",
+    "phone": "(049)2307380",
+    "lat": 23.9775558,
+    "lng": 120.6765093,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.57,
+    "geoMatchAddress": "南投縣草屯鎮碧山南路171巷12弄32號, 54263"
+  },
+  {
+    "id": "kg-150",
+    "officialCode": "081X64",
+    "name": "南投縣私立小博士幼兒園",
+    "stage": "kindergarten",
+    "town": "草屯鎮",
+    "address": "[542]南投縣草屯鎮南埔里10鄰中正路255-1號",
+    "phone": "(049)2550357",
+    "lat": 23.982743,
+    "lng": 120.720712,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣草屯鎮中正路255-1號, 54243"
+  },
+  {
+    "id": "kg-151",
+    "officialCode": "081X66",
+    "name": "南投縣私立育德幼兒園",
+    "stage": "kindergarten",
+    "town": "草屯鎮",
+    "address": "[542]南投縣草屯鎮碧峰里1鄰碧山路1108號",
+    "phone": "(049)2330226",
+    "lat": 23.9737203,
+    "lng": 120.6566148,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣草屯鎮碧山路1108號, 542"
+  },
+  {
+    "id": "kg-152",
+    "officialCode": "081X68",
+    "name": "南投縣私立小天使幼兒園",
+    "stage": "kindergarten",
+    "town": "草屯鎮",
+    "address": "[542]南投縣草屯鎮富寮里31鄰富昌路103、105號",
+    "phone": "(049)2553712",
+    "lat": 23.9769965,
+    "lng": 120.6985426,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 96,
+    "geoMatchAddress": "南投縣草屯鎮富昌路103號, 54246"
+  },
+  {
+    "id": "kg-153",
+    "officialCode": "081X69",
+    "name": "南投縣私立育仁幼兒園",
+    "stage": "kindergarten",
+    "town": "草屯鎮",
+    "address": "[542]南投縣草屯鎮上林里24鄰富林路三段119號",
+    "phone": "(049)2350365",
+    "lat": 23.968031,
+    "lng": 120.678654,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣草屯鎮富林路三段119號, 54261"
+  },
+  {
+    "id": "kg-154",
+    "officialCode": "081X6A",
+    "name": "南投縣私立辰星幼兒園",
+    "stage": "kindergarten",
+    "town": "草屯鎮",
+    "address": "[542]南投縣草屯鎮山腳里23鄰正興街168號",
+    "phone": "(049)2337409",
+    "lat": 23.963925,
+    "lng": 120.682848,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣草屯鎮正興街168號, 54262"
+  },
+  {
+    "id": "kg-155",
+    "officialCode": "081X6B",
+    "name": "南投縣私立向日葵幼兒園",
+    "stage": "kindergarten",
+    "town": "草屯鎮",
+    "address": "[542]南投縣草屯鎮富寮里6鄰富昌路132號",
+    "phone": "(049)2550737",
+    "lat": 23.9763,
+    "lng": 120.69901,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣草屯鎮富昌路132號, 54246"
+  },
+  {
+    "id": "kg-156",
+    "officialCode": "081X6C",
+    "name": "南投縣私立湯姆幼兒園",
+    "stage": "kindergarten",
+    "town": "竹山鎮",
+    "address": "[557]南投縣竹山鎮延和里16鄰向學街99號",
+    "phone": "(049)2653255",
+    "lat": 23.762226,
+    "lng": 120.685632,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣竹山鎮向學街99號, 55751"
+  },
+  {
+    "id": "kg-157",
+    "officialCode": "081X6E",
+    "name": "南投縣私立保進東海幼兒園",
+    "stage": "kindergarten",
+    "town": "竹山鎮",
+    "address": "[557]南投縣竹山鎮竹圍里10鄰大忠路32號",
+    "phone": "(049)2647745",
+    "lat": 23.758744,
+    "lng": 120.677792,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣竹山鎮大忠路32號, 55743"
+  },
+  {
+    "id": "kg-158",
+    "officialCode": "081X6I",
+    "name": "南投縣私立主人翁幼兒園",
+    "stage": "kindergarten",
+    "town": "名間鄉",
+    "address": "[551]南投縣名間鄉中正村4鄰彰南路50-15號",
+    "phone": "(049)2735235",
+    "lat": 23.8386453,
+    "lng": 120.7034418,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.24,
+    "geoMatchAddress": "南投縣名間鄉彰南路50-15號, 55142"
+  },
+  {
+    "id": "kg-159",
+    "officialCode": "081X6L",
+    "name": "南投縣私立明德幼兒園",
+    "stage": "kindergarten",
+    "town": "國姓鄉",
+    "address": "[544]南投縣國姓鄉國姓村3鄰成功街388號",
+    "phone": "(049)2724828",
+    "lat": 24.039895,
+    "lng": 120.852656,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣國姓鄉成功街388號, 544"
+  },
+  {
+    "id": "kg-160",
+    "officialCode": "081X6P",
+    "name": "南投縣私立育智幼兒園",
+    "stage": "kindergarten",
+    "town": "魚池鄉",
+    "address": "[555]南投縣魚池鄉東池村1鄰文武巷1-13號",
+    "phone": "(049)2898406",
+    "lat": 23.8908591,
+    "lng": 120.9396935,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣魚池鄉文武巷1-13號, 55541"
+  },
+  {
+    "id": "kg-161",
+    "officialCode": "081X6S",
+    "name": "南投縣私立佳和幼兒園",
+    "stage": "kindergarten",
+    "town": "鹿谷鄉",
+    "address": "[558]南投縣鹿谷鄉彰雅村4鄰中正路一段124巷12號",
+    "phone": "(049)2752270",
+    "lat": 23.7391385,
+    "lng": 120.7597194,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 96.46,
+    "geoMatchAddress": "南投縣鹿谷鄉中正路一段124號, 55844"
+  },
+  {
+    "id": "kg-162",
+    "officialCode": "081X6U",
+    "name": "南投縣私立獅子王幼兒園",
+    "stage": "kindergarten",
+    "town": "南投市",
+    "address": "[540]南投縣南投市漳興里21鄰復興路636號",
+    "phone": "(049)2245681",
+    "lat": 23.9183058,
+    "lng": 120.6828578,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 92.22,
+    "geoMatchAddress": "南投縣復興路636號, 54062"
+  },
+  {
+    "id": "kg-163",
+    "officialCode": "081X6V",
+    "name": "南投縣私立貝林幼兒園",
+    "stage": "kindergarten",
+    "town": "埔里鎮",
+    "address": "[545]南投縣埔里鎮大城里13鄰大城路222號",
+    "phone": "(049)2911438",
+    "lat": 23.973541,
+    "lng": 120.951342,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣埔里鎮大城路222號, 54545"
+  },
+  {
+    "id": "kg-164",
+    "officialCode": "081X6W",
+    "name": "南投縣私立柏克萊幼兒園",
+    "stage": "kindergarten",
+    "town": "草屯鎮",
+    "address": "[542]南投縣草屯鎮山腳里33鄰富林路一段579號",
+    "phone": "(049)2339338",
+    "lat": 23.971018,
+    "lng": 120.690784,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣草屯鎮富林路一段579號, 54264"
+  },
+  {
+    "id": "kg-165",
+    "officialCode": "084X58",
+    "name": "南投縣仁愛鄉德鹿谷國民小學附設幼兒園",
+    "stage": "kindergarten",
+    "town": "仁愛鄉",
+    "address": "[546]南投縣仁愛鄉德鹿谷村5鄰莎都部落一巷23號",
+    "phone": "(049)2970063",
+    "lat": 24.08611,
+    "lng": 121.216777,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "official-school-campus-coordinate-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoMatchAddress": "德鹿谷國小校區"
+  },
+  {
+    "id": "kg-166",
+    "officialCode": "084X59",
+    "name": "南投縣魚池鄉伊達邵國民小學附設幼兒園",
+    "stage": "kindergarten",
+    "town": "魚池鄉",
+    "address": "[555]南投縣魚池鄉日月村10鄰中正路211巷1號",
+    "phone": "(049)2850441",
+    "lat": 23.848739,
+    "lng": 120.934599,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.57,
+    "geoMatchAddress": "南投縣魚池鄉中正路211巷1號, 55546"
+  },
+  {
+    "id": "kg-167",
+    "officialCode": "084X5E-01",
+    "name": "南投縣仁愛鄉力行國民小學附設幼兒園翠巒分班",
+    "stage": "kindergarten",
+    "town": "仁愛鄉",
+    "address": "[546]南投縣仁愛鄉翠華村2鄰翠巒路26號",
+    "phone": "(04)25960165",
+    "lat": 24.180247,
+    "lng": 121.200311,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣仁愛鄉翠巒路26號, 54665"
+  },
+  {
+    "id": "kg-168",
+    "officialCode": "084X5G-02",
+    "name": "南投縣南投市立幼兒園文山分班",
+    "stage": "kindergarten",
+    "town": "南投市",
+    "address": "[540]南投縣南投市福山里14鄰八卦路521-12號",
+    "phone": "(049)2292072",
+    "lat": 23.9130887,
+    "lng": 120.6376779,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣南投市八卦路521-12號, 540"
+  },
+  {
+    "id": "kg-169",
+    "officialCode": "084X5M-02",
+    "name": "南投縣鹿谷鄉立幼兒園永隆分班",
+    "stage": "kindergarten",
+    "town": "鹿谷鄉",
+    "address": "[558]南投縣鹿谷鄉永隆村5鄰仁義路41-12號",
+    "phone": "(049)2752340",
+    "lat": 23.750741,
+    "lng": 120.777118,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 92.94,
+    "geoMatchAddress": "南投縣鹿谷鄉仁義路41-12號, 558"
+  },
+  {
+    "id": "kg-170",
+    "officialCode": "084X5Q-01",
+    "name": "南投縣信義鄉立幼兒園青雲分班",
+    "stage": "kindergarten",
+    "town": "信義鄉",
+    "address": "[556]南投縣信義鄉地利村1鄰開信巷1-1號",
+    "phone": "(049)2741848",
+    "lat": 23.792211,
+    "lng": 120.943571,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 97.94,
+    "geoMatchAddress": "南投縣信義鄉開信巷1-1號, 55682"
+  },
+  {
+    "id": "kg-171",
+    "officialCode": "084X5Q-02",
+    "name": "南投縣信義鄉立幼兒園羅娜分班",
+    "stage": "kindergarten",
+    "town": "信義鄉",
+    "address": "[556]南投縣信義鄉羅娜村1鄰信筆巷30號",
+    "phone": "(049)2831485",
+    "lat": 23.626851,
+    "lng": 120.868921,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣信義鄉信筆巷30號, 55650"
+  },
+  {
+    "id": "kg-172",
+    "officialCode": "084X5Q-03",
+    "name": "南投縣信義鄉立幼兒園雙龍分班",
+    "stage": "kindergarten",
+    "town": "信義鄉",
+    "address": "[556]南投縣信義鄉雙龍村2鄰光復巷32號",
+    "phone": "(049)2741849",
+    "lat": 23.7836134,
+    "lng": 120.9478139,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 97.28,
+    "geoMatchAddress": "南投縣信義鄉光復巷32號, 55682"
+  },
+  {
+    "id": "kg-173",
+    "officialCode": "084X5Q-05",
+    "name": "南投縣信義鄉立幼兒園人和分班",
+    "stage": "kindergarten",
+    "town": "信義鄉",
+    "address": "[556]南投縣信義鄉人和村3鄰民生巷24-1號",
+    "phone": "(049)2774801",
+    "lat": 23.7792402,
+    "lng": 120.8963512,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 92.5,
+    "geoMatchAddress": "南投縣信義鄉民生巷24-1號, 55681"
+  },
+  {
+    "id": "kg-174",
+    "officialCode": "084X64",
+    "name": "南投縣信義鄉希娜巴嵐國民小學附設幼兒園",
+    "stage": "kindergarten",
+    "town": "信義鄉",
+    "address": "[556]南投縣信義鄉新鄉村5鄰新鄉路80號",
+    "phone": "(049)2831591#20",
+    "lat": 23.640905,
+    "lng": 120.870393,
+    "dataSource": "教育部統計處 114 學年度幼兒園名錄",
+    "geoSource": "arcgis-address-geocode-2026-05-11",
+    "geoVerifiedAt": "2026-05-11",
+    "geoScore": 98.33,
+    "geoMatchAddress": "南投縣信義鄉新鄉路80號, 55648"
+  },
+  {
     "id": "uni-001",
     "name": "國立暨南國際大學",
     "stage": "university",
     "town": "埔里鎮",
-    "address": "[54561]南投縣埔里鎮大學路1號",
-    "phone": "(049)2910960",
+    "address": "[545]南投縣埔里鎮大學路1號",
+    "phone": "(049)2910960#2996",
     "lat": 23.951269,
     "lng": 120.928945,
     "geoSource": "public-map-manual-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
-    "dataSource": "學校公開校址資料"
+    "dataSource": "學校公開校址資料",
+    "officialCode": "0021"
   },
   {
     "id": "uni-002",
     "name": "南開科技大學",
     "stage": "university",
     "town": "草屯鎮",
-    "address": "[54243]南投縣草屯鎮中正路568號",
+    "address": "[542]南投縣草屯鎮中正路568號",
     "phone": "(049)2563489",
     "lat": 23.979053,
     "lng": 120.695457,
     "geoSource": "public-map-manual-2026-04-27",
     "geoVerifiedAt": "2026-04-27",
-    "dataSource": "學校公開校址資料"
+    "dataSource": "學校公開校址資料",
+    "officialCode": "1060"
   },
   {
     "id": "uni-003",
