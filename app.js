@@ -811,10 +811,11 @@ function renderTopLevel(context) {
   const { school, commute, mode, filtered, stageSchools, route, risk, riskLabel, minutes, cameraCount, timeBand, weather } = context;
   const townCount = new Set(filtered.map((item) => item.town)).size;
   const averageRisk = Math.round(stageSchools.reduce((sum, item) => sum + item.riskBase, 0) / Math.max(stageSchools.length, 1));
+  const hotspotCount = filtered.filter((item) => item.riskBase >= 68).length;
   const comparison = buildRouteComparison(context);
 
   setText("heroSchoolCount", schools.length);
-  setText("heroHotspotCount", filtered.length);
+  setText("heroHotspotCount", hotspotCount);
   setText("heroAdviceMode", mode.label);
   setText("schoolStageLabel", STAGE_LABELS[school.stage] || "學校");
   setText("schoolTownLabel", school.town);
