@@ -463,6 +463,20 @@ window.NANTOU_SCHOOL_DATA = [
     "geoMatchAddress": "均頭中學校區"
   },
   {
+    "id": "nt-190",
+    "name": "私立普台國小",
+    "stage": "elementary",
+    "town": "埔里鎮",
+    "address": "[545]南投縣埔里鎮中台路3號",
+    "phone": "(049)2930199",
+    "lat": 24.003124,
+    "lng": 120.946463,
+    "geoSource": "official-school-map-2026-05-12",
+    "geoVerifiedAt": "2026-05-12",
+    "officialCode": "081601",
+    "dataSource": "教育部統計處 114 學年度國小名錄"
+  },
+  {
     "id": "nt-033",
     "name": "南投國小",
     "stage": "elementary",
@@ -2404,7 +2418,7 @@ window.NANTOU_SCHOOL_DATA = [
   },
   {
     "id": "nt-175",
-    "name": "三育實驗中學",
+    "name": "私立三育高中",
     "stage": "senior",
     "town": "魚池鄉",
     "address": "[55542]南投縣魚池鄉瓊文巷39號",
@@ -2412,7 +2426,12 @@ window.NANTOU_SCHOOL_DATA = [
     "lat": 23.9085729,
     "lng": 120.9350351,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "81312",
+    "dataSource": "教育部統計處 114 學年度高中職名錄",
+    "aliases": [
+      "三育實驗中學"
+    ]
   },
   {
     "id": "nt-176",
@@ -2444,15 +2463,20 @@ window.NANTOU_SCHOOL_DATA = [
   },
   {
     "id": "nt-178",
-    "name": "同德家商",
+    "name": "南投縣同德高中",
     "stage": "senior",
     "town": "草屯鎮",
-    "address": "[54251]南投縣草屯鎮中正路培英巷8號",
+    "address": "[542]南投縣草屯鎮中正路培英巷8號",
     "phone": "(049)2553109",
     "lat": 23.99842,
     "lng": 120.695346,
     "geoSource": "google-maps-2026-04-23",
-    "geoVerifiedAt": "2026-04-23"
+    "geoVerifiedAt": "2026-04-23",
+    "officialCode": "81409",
+    "dataSource": "教育部統計處 114 學年度高中職名錄",
+    "aliases": [
+      "同德家商"
+    ]
   },
   {
     "id": "nt-179",
