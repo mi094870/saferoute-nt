@@ -656,6 +656,8 @@ function initMap() {
 
 function renderSchoolOptions() {
   const filtered = getFilteredSchools();
+  const townCount = new Set(filtered.map((school) => school.town)).size;
+  const hotspotCount = filtered.filter((school) => school.riskBase >= 68).length;
   if (els.schoolSelect) {
     els.schoolSelect.innerHTML = filtered
       .map((school) => `<option value="${escapeHtml(school.id)}">${escapeHtml(school.name)} - ${escapeHtml(school.town)}</option>`)
@@ -668,6 +670,11 @@ function renderSchoolOptions() {
   if (els.schoolSelect) els.schoolSelect.value = state.selectedId;
 
   setText("filterSummary", `目前顯示 ${filtered.length} 所學校`);
+  setText("heroHotspotCount", hotspotCount);
+  setText("mapSchoolCount", filtered.length);
+  setText("mapTownCount", townCount);
+  setText("overviewSchoolCount", filtered.length);
+  setText("overviewStage", STAGE_LABELS[state.stage] || "全部學制");
   renderMarkers(filtered);
 }
 
