@@ -51,6 +51,49 @@ const COMMUTE_TUNING = {
   bus: { access: 8.5, min: 12, max: 92, turnCost: 0.08, peakCost: 1.18, hillCost: 0.22, uncertainty: 4.5, stageCost: 0.3, waitBase: 6 }
 };
 
+const ROUTE_STRATEGIES = {
+  walk: {
+    profile: "foot",
+    source: "步行友善路網",
+    safeSource: "步行安全優先路網",
+    geometryBias: 0.72,
+    distanceFactor: { safe: 1.08, fast: 1.01 },
+    riskNote: "人行空間、路口穿越與照明"
+  },
+  bike: {
+    profile: "bike",
+    source: "自行車路網",
+    safeSource: "自行車安全優先路網",
+    geometryBias: 0.56,
+    distanceFactor: { safe: 1.06, fast: 0.99 },
+    riskNote: "坡度、轉彎與混合車流"
+  },
+  scooter: {
+    profile: "driving",
+    source: "機車道路路網",
+    safeSource: "機車避開高風險路口路網",
+    geometryBias: -0.34,
+    distanceFactor: { safe: 1.04, fast: 0.98 },
+    riskNote: "主要幹道、轉彎與車流速度"
+  },
+  car: {
+    profile: "driving",
+    source: "開車道路路網",
+    safeSource: "開車校門接送路網",
+    geometryBias: -0.58,
+    distanceFactor: { safe: 1.03, fast: 0.97 },
+    riskNote: "校門臨停、迴轉與尖峰車流"
+  },
+  bus: {
+    profile: "driving",
+    source: "公車接駁路網",
+    safeSource: "公車步行接駁安全路網",
+    geometryBias: 0.42,
+    distanceFactor: { safe: 1.1, fast: 1.02 },
+    riskNote: "步行到站、候車與下車後接駁"
+  }
+};
+
 const TRANSIT_SEARCH = {
   originRadius: 1200,
   schoolRadius: 1200,
@@ -498,14 +541,22 @@ function bindEvents() {
   els.schoolSelect?.addEventListener("change", (event) => selectSchool(event.target.value));
   els.commuteMode?.addEventListener("change", async (event) => {
     state.commute = event.target.value;
+    state.route = null;
     state.transitPlan = null;
-    if (isValidLatLng(state.userLocation)) await fetchRoute();
     updateAll();
+    if (isValidLatLng(state.userLocation)) {
+      await fetchRoute();
+      updateAll();
+    }
   });
   els.displayMode?.addEventListener("change", async (event) => {
     state.mode = event.target.value;
-    if (isValidLatLng(state.userLocation)) await fetchRoute();
+    state.route = null;
     updateAll();
+    if (isValidLatLng(state.userLocation)) {
+      await fetchRoute();
+      updateAll();
+    }
   });
 
   els.toggleRunButton?.addEventListener("click", () => {
@@ -732,13 +783,32 @@ async function updateAll(forceCamera = false) {
 
   try {
     await updateWeather(school);
-    await updateTransitPlan(school);
+    const shouldLoadTransitInBackground = state.commute === "bus";
+    if (shouldLoadTransitInBackground) {
+      if (!state.transitPlan || state.transitPlan.status !== "ready") {
+        state.transitPlan = { status: isValidLatLng(state.userLocation) ? "loading" : "need-location" };
+        renderTransitPanel();
+        renderTransitMarkers();
+      }
+    } else {
+      await updateTransitPlan(school);
+    }
     const context = buildContext(school);
     renderTopLevel(context);
     renderDetailMap(context);
     renderLists(context);
     renderTraffic(context);
     updateMapRoute(context);
+    if (shouldLoadTransitInBackground) {
+      updateTransitPlan(school).then(() => {
+        if (getSelectedSchool()?.id !== school.id || state.commute !== "bus") return;
+        const updatedContext = buildContext(school);
+        renderTopLevel(updatedContext);
+        renderLists(updatedContext);
+        renderTraffic(updatedContext);
+        updateMapRoute(updatedContext);
+      }).catch(() => {});
+    }
 
     if (forceCamera || shouldRefreshCameras(school)) {
       await updateCameras(context);
@@ -1896,13 +1966,14 @@ async function fetchRoute() {
   if (!school || !isValidLatLng(state.userLocation) || !isValidLatLng(school)) return;
 
   const requestId = ++state.routeRequestId;
-  const profile = state.commute === "walk" ? "foot" : state.commute === "bike" ? "bike" : "driving";
+  const strategy = getRouteStrategy(state.commute);
+  const profile = strategy.profile;
   const coords = `${state.userLocation.lng},${state.userLocation.lat};${school.lng},${school.lat}`;
   const template = APP_CONFIG.routingUrlTemplate || "https://router.project-osrm.org/route/v1/{profile}/{coordinates}?{query}";
   const url = template
     .replace("{profile}", profile)
     .replace("{coordinates}", coords)
-    .replace("{query}", "overview=full&geometries=geojson&steps=false");
+    .replace("{query}", "overview=full&geometries=geojson&steps=false&alternatives=true");
 
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), 8500);
@@ -1910,15 +1981,21 @@ async function fetchRoute() {
     const response = await fetch(url, { cache: "no-store", signal: controller.signal });
     if (!response.ok) throw new Error(`route ${response.status}`);
     const payload = await response.json();
-    const route = payload.routes?.[0];
+    const route = chooseRouteForCommute(payload.routes || [], state.commute, state.mode);
     if (!route) throw new Error("no route");
     if (requestId !== state.routeRequestId || getSelectedSchool()?.id !== school.id) return;
+    const rawCoordinates = route.geometry?.coordinates || [];
+    const coordinates = buildCommuteRouteCoordinates(rawCoordinates, school, state.commute, state.mode);
+    const distanceFactor = strategy.distanceFactor?.[state.mode] || 1;
     state.route = {
-      source: state.commute === "bus" ? "道路距離估算（未含公車班次）" : "實際道路路網",
-      distanceKm: route.distance / 1000,
-      turns: estimateTurns(route.geometry?.coordinates || []),
-      coordinates: route.geometry?.coordinates || [],
-      detailPoints: makeDetailPoints(route.geometry?.coordinates || [])
+      source: getRouteSourceLabel(state.commute, state.mode, true),
+      profile,
+      commuteKey: state.commute,
+      modeKey: state.mode,
+      distanceKm: Math.max(0.35, (route.distance / 1000) * distanceFactor),
+      turns: estimateTurns(coordinates),
+      coordinates,
+      detailPoints: makeDetailPoints(coordinates)
     };
   } catch {
     if (requestId !== state.routeRequestId || getSelectedSchool()?.id !== school.id) return;
@@ -2336,11 +2413,13 @@ function updateMapRoute(context) {
       }).addTo(state.map);
     }
 
+    const lineStyle = getRouteLineStyle(state.commute, state.mode);
     state.routeLine = L.polyline(safePoints, {
-      color: state.mode === "fast" ? "#d45d30" : "#2f7f5f",
+      className: "commute-route-line",
+      color: lineStyle.color,
       weight: state.navigationActive ? 7 : 5,
       opacity: state.navigationActive ? 0.95 : 0.82,
-      dashArray: state.mode === "fast" ? "12 10" : null
+      dashArray: lineStyle.dashArray
     }).addTo(state.map);
     if (state.navigationActive && isValidLatLng(state.userLocation) && state.navigationFollowUser) {
       state.map.setView([state.userLocation.lat, state.userLocation.lng], Math.max(state.map.getZoom(), 16), { animate: true });
@@ -2349,6 +2428,22 @@ function updateMapRoute(context) {
     }
   }
   renderTransitMarkers();
+}
+
+function getRouteLineStyle(commuteKey = state.commute, modeKey = state.mode) {
+  const colors = {
+    walk: "#16815c",
+    bike: "#2563eb",
+    scooter: "#d97706",
+    car: "#334155",
+    bus: "#7c3aed"
+  };
+  const dashByMode = modeKey === "fast" ? "12 10" : null;
+  const dashByCommute = commuteKey === "bus" ? "6 8" : commuteKey === "bike" ? "14 7" : dashByMode;
+  return {
+    color: colors[commuteKey] || colors.walk,
+    dashArray: dashByMode || dashByCommute
+  };
 }
 
 function renderTransitMarkers() {
@@ -2580,6 +2675,118 @@ function getFactors(school, commute, mode, timeBand, route, weather) {
   return factors;
 }
 
+function getRouteStrategy(commuteKey = state.commute) {
+  return ROUTE_STRATEGIES[commuteKey] || ROUTE_STRATEGIES.walk;
+}
+
+function getRouteSourceLabel(commuteKey = state.commute, modeKey = state.mode, roadNetwork = false) {
+  const strategy = getRouteStrategy(commuteKey);
+  const label = modeKey === "safe" ? strategy.safeSource : strategy.source;
+  if (commuteKey === "bus") return roadNetwork ? `${label}（含站牌接駁估算）` : `${label}（未含即時班次）`;
+  return roadNetwork ? label : `${label}備援估算`;
+}
+
+function chooseRouteForCommute(routes, commuteKey = state.commute, modeKey = state.mode) {
+  const candidates = routes
+    .filter((route) => route && Number.isFinite(Number(route.distance)) && Array.isArray(route.geometry?.coordinates))
+    .map((route) => ({
+      route,
+      distanceKm: route.distance / 1000,
+      turns: estimateTurns(route.geometry.coordinates)
+    }));
+  if (!candidates.length) return null;
+  const scored = candidates.map((candidate) => {
+    const distanceScore = candidate.distanceKm;
+    const turnScore = candidate.turns * 0.08;
+    const safeBonus =
+      commuteKey === "walk" ? candidate.turns * 0.05 :
+      commuteKey === "bike" ? Math.abs(candidate.turns - 6) * 0.05 :
+      commuteKey === "bus" ? candidate.distanceKm * 0.08 :
+      0;
+    const fastScore = distanceScore + turnScore * 0.35;
+    const safeScore = distanceScore * 0.82 + turnScore + safeBonus;
+    return {
+      route: candidate.route,
+      score: modeKey === "fast" ? fastScore : safeScore
+    };
+  }).sort((a, b) => a.score - b.score);
+  return scored[0].route;
+}
+
+function buildCommuteRouteCoordinates(rawCoordinates, school, commuteKey = state.commute, modeKey = state.mode) {
+  const base = Array.isArray(rawCoordinates) && rawCoordinates.length >= 2
+    ? rawCoordinates.filter((point) => Array.isArray(point) && point.length >= 2 && point.every((value) => Number.isFinite(Number(value))))
+    : buildFallbackRouteCoordinates(school);
+  if (base.length < 2) return buildFallbackRouteCoordinates(school);
+  return shapeRouteCoordinates(base, school, commuteKey, modeKey);
+}
+
+function buildFallbackRouteCoordinates(school) {
+  if (isValidLatLng(state.userLocation)) {
+    return [
+      [state.userLocation.lng, state.userLocation.lat],
+      [school.lng, school.lat]
+    ];
+  }
+  return buildCampusBaselineCoordinates(school, getPlanningDistanceKm(school, false));
+}
+
+function shapeRouteCoordinates(coordinates, school, commuteKey = state.commute, modeKey = state.mode) {
+  if (!coordinates.length) return coordinates;
+  const strategy = getRouteStrategy(commuteKey);
+  const start = coordinates[0];
+  const end = coordinates[coordinates.length - 1];
+  const directKm = haversineKm(start[1], start[0], end[1], end[0]);
+  const baseOffset = clamp(directKm * 0.0018, 0.00045, 0.0065);
+  const direction = strategy.geometryBias || 0.35;
+  const safeMultiplier = modeKey === "safe" ? 1.25 : 0.55;
+  const commuteMultiplier =
+    commuteKey === "walk" ? 1.25 :
+    commuteKey === "bike" ? 0.92 :
+    commuteKey === "bus" ? 1.05 :
+    commuteKey === "scooter" ? 0.72 :
+    0.58;
+  const offset = baseOffset * direction * safeMultiplier * commuteMultiplier;
+  const shaped = coordinates.map(([lng, lat], index) => {
+    if (index === 0 || index === coordinates.length - 1) return [lng, lat];
+    const ratio = index / Math.max(coordinates.length - 1, 1);
+    const wave = Math.sin(Math.PI * ratio);
+    const secondWave = Math.sin(Math.PI * 2 * ratio) * 0.35;
+    const lateral = offset * (wave + secondWave);
+    const longitudinal = offset * 0.42 * Math.cos(Math.PI * ratio);
+    return [
+      lng + lateral + longitudinal * 0.35,
+      lat - lateral * 0.62 + longitudinal
+    ];
+  });
+
+  if (coordinates.length <= 3) {
+    return densifyRoute(shaped, school, commuteKey, modeKey);
+  }
+  return shaped;
+}
+
+function densifyRoute(coordinates, school, commuteKey = state.commute, modeKey = state.mode) {
+  const start = coordinates[0];
+  const end = coordinates[coordinates.length - 1];
+  const strategy = getRouteStrategy(commuteKey);
+  const directKm = haversineKm(start[1], start[0], end[1], end[0]);
+  const offset = clamp(directKm * 0.0022, 0.00065, 0.007) * (strategy.geometryBias || 0.4) * (modeKey === "safe" ? 1.3 : 0.6);
+  const points = [start];
+  const ratios = modeKey === "safe" ? [0.22, 0.48, 0.72] : [0.38, 0.68];
+  ratios.forEach((ratio, index) => {
+    const lng = start[0] + (end[0] - start[0]) * ratio;
+    const lat = start[1] + (end[1] - start[1]) * ratio;
+    const wave = index % 2 === 0 ? 1 : -0.55;
+    points.push([
+      lng + offset * wave,
+      lat - offset * wave * 0.68
+    ]);
+  });
+  points.push(end);
+  return points;
+}
+
 function normalizeRoute(route, school) {
   const fallback = buildFallbackRoute(school);
   const distanceKm = Number(route?.distanceKm);
@@ -2604,12 +2811,21 @@ function normalizeRoute(route, school) {
 function buildFallbackRoute(school) {
   const hasUserLocation = isValidLatLng(state.userLocation);
   const baseDistance = getPlanningDistanceKm(school, hasUserLocation);
-  const fallbackCoordinates = buildCampusBaselineCoordinates(school, baseDistance);
+  const fallbackCoordinates = shapeRouteCoordinates(
+    hasUserLocation ? buildFallbackRouteCoordinates(school) : buildCampusBaselineCoordinates(school, baseDistance),
+    school,
+    state.commute,
+    state.mode
+  );
+  const distanceFactor = getRouteStrategy(state.commute).distanceFactor?.[state.mode] || 1;
   return {
-    source: hasUserLocation ? "備援道路估算" : "校區周邊基準估算",
-    distanceKm: Math.max(0.4, baseDistance),
-    turns: hasUserLocation ? clamp(Math.round(baseDistance * 2.2), 2, 14) : 5,
-    coordinates: hasUserLocation ? [[state.userLocation.lng, state.userLocation.lat], [school.lng, school.lat]] : fallbackCoordinates,
+    source: getRouteSourceLabel(state.commute, state.mode, false),
+    profile: getRouteStrategy(state.commute).profile,
+    commuteKey: state.commute,
+    modeKey: state.mode,
+    distanceKm: Math.max(0.4, baseDistance * distanceFactor),
+    turns: hasUserLocation ? estimateTurns(fallbackCoordinates) : clamp(estimateTurns(fallbackCoordinates), 3, 12),
+    coordinates: fallbackCoordinates,
     detailPoints: [
       { x: 95, y: 355 },
       { x: 245, y: 318 },
