@@ -583,6 +583,9 @@ function bindEvents() {
     state.selectedTransitCandidateIndex = Number(button.dataset.transitCandidate) || 0;
     renderTransitPanel();
     renderTransitMarkers();
+    if (state.commute === "bus" && isValidLatLng(state.userLocation)) {
+      fetchRoute().then(() => updateAll()).catch(() => {});
+    }
   });
   els.clearLocationButton?.addEventListener("click", () => {
     stopLocationTracking();
@@ -1411,6 +1414,23 @@ function getSelectedTransitCandidate() {
   return candidates[state.selectedTransitCandidateIndex] || candidates[0] || null;
 }
 
+function getTransitCandidateForRouting() {
+  const selected = getSelectedTransitCandidate();
+  if (selected) return selected;
+  const originStop = state.transitPlan?.originStops?.[0];
+  const schoolStop = state.transitPlan?.schoolStops?.[0];
+  if (!originStop || !schoolStop) return null;
+  return {
+    routeKey: "nearest-stop-estimate",
+    routeLabel: "站牌接駁預估",
+    type: "unconfirmed",
+    originStop,
+    schoolStop,
+    confidence: 3,
+    walkM: (originStop.distanceM || 9999) + (schoolStop.distanceM || 9999)
+  };
+}
+
 function estimateTransitCandidateTiming(candidate, options = {}) {
   if (!candidate?.originStop || !candidate?.schoolStop) return null;
   const school = options.school || getSelectedSchool();
@@ -1967,24 +1987,26 @@ async function fetchRoute() {
 
   const requestId = ++state.routeRequestId;
   const strategy = getRouteStrategy(state.commute);
-  const profile = strategy.profile;
-  const coords = `${state.userLocation.lng},${state.userLocation.lat};${school.lng},${school.lat}`;
-  const template = APP_CONFIG.routingUrlTemplate || "https://router.project-osrm.org/route/v1/{profile}/{coordinates}?{query}";
-  const url = template
-    .replace("{profile}", profile)
-    .replace("{coordinates}", coords)
-    .replace("{query}", "overview=full&geometries=geojson&steps=true&alternatives=true");
-
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), 8500);
   try {
-    const response = await fetch(url, { cache: "no-store", signal: controller.signal });
-    if (!response.ok) throw new Error(`route ${response.status}`);
-    const payload = await response.json();
-    const routeChoice = chooseRouteForCommute(payload.routes || [], state.commute, state.mode);
-    const route = routeChoice?.route;
-    if (!route) throw new Error("no route");
-    if (isRestrictedRoadRoute(routeChoice, state.commute)) throw new Error("restricted road for commute mode");
+    if (state.commute === "bus") {
+      const transitRoute = await buildTransitCompositeRoute(getTransitCandidateForRouting(), school, controller.signal);
+      if (requestId !== state.routeRequestId || getSelectedSchool()?.id !== school.id) return;
+      if (transitRoute) {
+        state.route = transitRoute;
+        return;
+      }
+    }
+
+    const { routeChoice, route } = await fetchRoadRouteBetween(
+      state.userLocation,
+      school,
+      strategy.profile,
+      state.commute,
+      state.mode,
+      controller.signal
+    );
     if (requestId !== state.routeRequestId || getSelectedSchool()?.id !== school.id) return;
     const rawCoordinates = route.geometry?.coordinates || [];
     const coordinates = buildCommuteRouteCoordinates(rawCoordinates, school, state.commute, state.mode, routeChoice);
@@ -2006,6 +2028,63 @@ async function fetchRoute() {
   } finally {
     clearTimeout(timer);
   }
+}
+
+async function fetchRoadRouteBetween(origin, destination, profile, commuteKey = state.commute, modeKey = state.mode, signal = undefined) {
+  if (!isValidLatLng(origin) || !isValidLatLng(destination)) throw new Error("invalid route endpoint");
+  const coords = `${origin.lng},${origin.lat};${destination.lng},${destination.lat}`;
+  const template = APP_CONFIG.routingUrlTemplate || "https://router.project-osrm.org/route/v1/{profile}/{coordinates}?{query}";
+  const url = template
+    .replace("{profile}", profile)
+    .replace("{coordinates}", coords)
+    .replace("{query}", "overview=full&geometries=geojson&steps=true&alternatives=true");
+  const response = await fetch(url, { cache: "no-store", signal });
+  if (!response.ok) throw new Error(`route ${response.status}`);
+  const payload = await response.json();
+  const routeChoice = chooseRouteForCommute(payload.routes || [], commuteKey, modeKey);
+  const route = routeChoice?.route;
+  if (!route) throw new Error("no route");
+  if (isRestrictedRoadRoute(routeChoice, commuteKey)) throw new Error("restricted road for commute mode");
+  return { routeChoice, route };
+}
+
+async function buildTransitCompositeRoute(candidate, school, signal = undefined) {
+  if (!candidate?.originStop || !candidate?.schoolStop || !isValidLatLng(state.userLocation) || !isValidLatLng(school)) return null;
+  const accessProfile = getRouteStrategy("walk").profile;
+  const busProfile = getRouteStrategy("bus").profile;
+  const accessToStop = await fetchRoadRouteBetween(state.userLocation, candidate.originStop, accessProfile, "walk", "safe", signal);
+  const rideToSchoolStop = await fetchRoadRouteBetween(candidate.originStop, candidate.schoolStop, busProfile, "bus", state.mode, signal);
+  const accessToSchool = await fetchRoadRouteBetween(candidate.schoolStop, school, accessProfile, "walk", "safe", signal);
+  const segments = [accessToStop, rideToSchoolStop, accessToSchool].map((segment) => segment.route);
+  const coordinates = mergeRouteCoordinates(segments.map((route) => route.geometry?.coordinates || []));
+  if (coordinates.length < 2) return null;
+  const distanceKm = segments.reduce((sum, route) => sum + Math.max(0, Number(route.distance) || 0) / 1000, 0);
+  return {
+    source: "公車分段路線（步行接駁 + 公車行駛路網）",
+    profile: "transit",
+    commuteKey: "bus",
+    modeKey: state.mode,
+    distanceKm: Math.max(0.35, distanceKm),
+    turns: estimateTurns(coordinates),
+    coordinates,
+    detailPoints: makeDetailPoints(coordinates),
+    transitCandidateKey: candidate.routeKey
+  };
+}
+
+function mergeRouteCoordinates(routeCoordinateSets) {
+  const merged = [];
+  routeCoordinateSets.forEach((coordinates) => {
+    const safeCoordinates = Array.isArray(coordinates)
+      ? coordinates.filter((point) => Array.isArray(point) && point.length >= 2 && point.every((value) => Number.isFinite(Number(value))))
+      : [];
+    safeCoordinates.forEach((point) => {
+      const last = merged[merged.length - 1];
+      if (last && Math.abs(last[0] - point[0]) < 0.000001 && Math.abs(last[1] - point[1]) < 0.000001) return;
+      merged.push(point);
+    });
+  });
+  return merged;
 }
 
 async function updateTransitPlan(school) {
@@ -2072,6 +2151,9 @@ async function updateTransitPlan(school) {
     state.selectedTransitCandidateIndex = 0;
     state.transitPlan = plan;
     state.transitCache.set(cacheKey, { plan, updatedAt: Date.now() });
+    if ((plan.candidates?.length || (plan.originStops?.length && plan.schoolStops?.length)) && isValidLatLng(state.userLocation)) {
+      await fetchRoute();
+    }
   } catch {
     if (requestId !== state.transitRequestId || state.commute !== "bus") return;
     state.transitPlan = { status: "error" };
@@ -2701,7 +2783,7 @@ function chooseRouteForCommute(routes, commuteKey = state.commute, modeKey = sta
       restrictedRisk: getRestrictedRoadRisk(route, commuteKey)
     }));
   if (!candidates.length) return null;
-  const usableCandidates = ["walk", "bike"].includes(commuteKey)
+  const usableCandidates = ["walk", "bike", "scooter"].includes(commuteKey)
     ? candidates.filter((candidate) => candidate.restrictedRisk <= 0)
     : candidates;
   const scoringCandidates = usableCandidates.length ? usableCandidates : candidates;
@@ -2740,17 +2822,20 @@ function chooseRouteForCommute(routes, commuteKey = state.commute, modeKey = sta
 }
 
 function isRestrictedRoadRoute(routeChoice, commuteKey = state.commute) {
-  return ["walk", "bike"].includes(commuteKey) && Number(routeChoice?.restrictedRisk || 0) > 0;
+  return ["walk", "bike", "scooter"].includes(commuteKey) && Number(routeChoice?.restrictedRisk || 0) > 0;
 }
 
 function getRestrictedRoadRisk(route, commuteKey = state.commute) {
-  if (!["walk", "bike"].includes(commuteKey)) return 0;
+  if (!["walk", "bike", "scooter"].includes(commuteKey)) return 0;
   const text = collectRouteStepText(route).toLowerCase();
   if (!text) return 0;
-  const strictPattern = /(motorway|trunk|freeway|expressway|controlled_access|國道|高速公路|快速道路|快速公路|交流道|匝道|高架道路|高架橋|環道)/i;
+  const strictPattern = /(motorway|freeway|controlled_access|國道|高速公路|交流道|匝道)/i;
+  const walkBikePattern = /(trunk|expressway|快速道路|快速公路|高架道路|高架橋|環道)/i;
   const bikeExtraPattern = /(禁止自行車|禁行自行車)/i;
   const walkExtraPattern = /(禁止行人|禁行行人|行人禁止)/i;
   let risk = strictPattern.test(text) ? 1 : 0;
+  if (["walk", "bike"].includes(commuteKey) && walkBikePattern.test(text)) risk += 1;
+  if (commuteKey === "scooter" && /(expressway|快速道路|快速公路)/i.test(text)) risk += 1;
   if (commuteKey === "bike" && bikeExtraPattern.test(text)) risk += 1;
   if (commuteKey === "walk" && walkExtraPattern.test(text)) risk += 1;
   return risk;
