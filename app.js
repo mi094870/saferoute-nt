@@ -2732,8 +2732,7 @@ function chooseRouteForCommute(routes, commuteKey = state.commute, modeKey = sta
 }
 
 function getRouteChoiceDistanceFactor(routeChoice, modeKey = state.mode) {
-  if (!routeChoice || routeChoice.candidateCount > 1) return 1;
-  return modeKey === "safe" ? 1.035 : 0.985;
+  return 1;
 }
 
 function estimateRouteCurveRisk(coordinates) {
@@ -2758,7 +2757,7 @@ function buildCommuteRouteCoordinates(rawCoordinates, school, commuteKey = state
     ? rawCoordinates.filter((point) => Array.isArray(point) && point.length >= 2 && point.every((value) => Number.isFinite(Number(value))))
     : buildFallbackRouteCoordinates(school);
   if (base.length < 2) return buildFallbackRouteCoordinates(school);
-  return shapeRouteCoordinates(base, school, commuteKey, modeKey, routeChoice);
+  return base;
 }
 
 function buildFallbackRouteCoordinates(school) {
