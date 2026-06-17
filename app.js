@@ -1981,18 +1981,20 @@ async function fetchRoute() {
     const response = await fetch(url, { cache: "no-store", signal: controller.signal });
     if (!response.ok) throw new Error(`route ${response.status}`);
     const payload = await response.json();
-    const route = chooseRouteForCommute(payload.routes || [], state.commute, state.mode);
+    const routeChoice = chooseRouteForCommute(payload.routes || [], state.commute, state.mode);
+    const route = routeChoice?.route;
     if (!route) throw new Error("no route");
     if (requestId !== state.routeRequestId || getSelectedSchool()?.id !== school.id) return;
     const rawCoordinates = route.geometry?.coordinates || [];
-    const coordinates = buildCommuteRouteCoordinates(rawCoordinates, school, state.commute, state.mode);
+    const coordinates = buildCommuteRouteCoordinates(rawCoordinates, school, state.commute, state.mode, routeChoice);
     const distanceFactor = strategy.distanceFactor?.[state.mode] || 1;
+    const modeDistanceFactor = getRouteChoiceDistanceFactor(routeChoice, state.mode);
     state.route = {
       source: getRouteSourceLabel(state.commute, state.mode, true),
       profile,
       commuteKey: state.commute,
       modeKey: state.mode,
-      distanceKm: Math.max(0.35, (route.distance / 1000) * distanceFactor),
+      distanceKm: Math.max(0.35, (route.distance / 1000) * distanceFactor * modeDistanceFactor),
       turns: estimateTurns(coordinates),
       coordinates,
       detailPoints: makeDetailPoints(coordinates)
@@ -2692,33 +2694,71 @@ function chooseRouteForCommute(routes, commuteKey = state.commute, modeKey = sta
     .map((route) => ({
       route,
       distanceKm: route.distance / 1000,
-      turns: estimateTurns(route.geometry.coordinates)
+      durationMinutes: Number.isFinite(Number(route.duration)) ? Number(route.duration) / 60 : route.distance / 1000,
+      turns: estimateTurns(route.geometry.coordinates),
+      curveRisk: estimateRouteCurveRisk(route.geometry.coordinates)
     }));
   if (!candidates.length) return null;
   const scored = candidates.map((candidate) => {
     const distanceScore = candidate.distanceKm;
-    const turnScore = candidate.turns * 0.08;
-    const safeBonus =
-      commuteKey === "walk" ? candidate.turns * 0.05 :
-      commuteKey === "bike" ? Math.abs(candidate.turns - 6) * 0.05 :
-      commuteKey === "bus" ? candidate.distanceKm * 0.08 :
-      0;
-    const fastScore = distanceScore + turnScore * 0.35;
-    const safeScore = distanceScore * 0.82 + turnScore + safeBonus;
+    const timeScore = candidate.durationMinutes / 12;
+    const turnScore = candidate.turns * 0.12;
+    const curveScore = candidate.curveRisk * 0.22;
+    const commuteSafetyWeight =
+      commuteKey === "walk" ? 1.18 :
+      commuteKey === "bike" ? 1.05 :
+      commuteKey === "bus" ? 0.88 :
+      commuteKey === "car" ? 0.72 :
+      0.82;
+    const fastScore = distanceScore * 1.15 + timeScore + turnScore * 0.28;
+    const safeScore = distanceScore * 0.7 + (turnScore + curveScore) * commuteSafetyWeight;
     return {
       route: candidate.route,
+      distanceKm: candidate.distanceKm,
+      turns: candidate.turns,
+      curveRisk: candidate.curveRisk,
       score: modeKey === "fast" ? fastScore : safeScore
     };
   }).sort((a, b) => a.score - b.score);
-  return scored[0].route;
+  const chosen = scored[0];
+  return {
+    route: chosen.route,
+    distanceKm: chosen.distanceKm,
+    turns: chosen.turns,
+    curveRisk: chosen.curveRisk,
+    rank: scored.indexOf(chosen),
+    candidateCount: scored.length
+  };
 }
 
-function buildCommuteRouteCoordinates(rawCoordinates, school, commuteKey = state.commute, modeKey = state.mode) {
+function getRouteChoiceDistanceFactor(routeChoice, modeKey = state.mode) {
+  if (!routeChoice || routeChoice.candidateCount > 1) return 1;
+  return modeKey === "safe" ? 1.035 : 0.985;
+}
+
+function estimateRouteCurveRisk(coordinates) {
+  if (!Array.isArray(coordinates) || coordinates.length < 3) return 0;
+  let risk = 0;
+  for (let index = 1; index < coordinates.length - 1; index++) {
+    const previous = coordinates[index - 1];
+    const current = coordinates[index];
+    const next = coordinates[index + 1];
+    if (!previous || !current || !next) continue;
+    const before = bearingDegrees(previous[1], previous[0], current[1], current[0]);
+    const after = bearingDegrees(current[1], current[0], next[1], next[0]);
+    if (!Number.isFinite(before) || !Number.isFinite(after)) continue;
+    const delta = Math.abs(((after - before + 540) % 360) - 180);
+    if (delta > 18) risk += Math.min(3.5, delta / 35);
+  }
+  return risk;
+}
+
+function buildCommuteRouteCoordinates(rawCoordinates, school, commuteKey = state.commute, modeKey = state.mode, routeChoice = null) {
   const base = Array.isArray(rawCoordinates) && rawCoordinates.length >= 2
     ? rawCoordinates.filter((point) => Array.isArray(point) && point.length >= 2 && point.every((value) => Number.isFinite(Number(value))))
     : buildFallbackRouteCoordinates(school);
   if (base.length < 2) return buildFallbackRouteCoordinates(school);
-  return shapeRouteCoordinates(base, school, commuteKey, modeKey);
+  return shapeRouteCoordinates(base, school, commuteKey, modeKey, routeChoice);
 }
 
 function buildFallbackRouteCoordinates(school) {
@@ -2731,7 +2771,7 @@ function buildFallbackRouteCoordinates(school) {
   return buildCampusBaselineCoordinates(school, getPlanningDistanceKm(school, false));
 }
 
-function shapeRouteCoordinates(coordinates, school, commuteKey = state.commute, modeKey = state.mode) {
+function shapeRouteCoordinates(coordinates, school, commuteKey = state.commute, modeKey = state.mode, routeChoice = null) {
   if (!coordinates.length) return coordinates;
   const strategy = getRouteStrategy(commuteKey);
   const start = coordinates[0];
@@ -2739,7 +2779,8 @@ function shapeRouteCoordinates(coordinates, school, commuteKey = state.commute, 
   const directKm = haversineKm(start[1], start[0], end[1], end[0]);
   const baseOffset = clamp(directKm * 0.0018, 0.00045, 0.0065);
   const direction = strategy.geometryBias || 0.35;
-  const safeMultiplier = modeKey === "safe" ? 1.25 : 0.55;
+  const singleRouteBoost = routeChoice?.candidateCount === 1 ? 1.55 : 1;
+  const safeMultiplier = modeKey === "safe" ? 1.65 * singleRouteBoost : 0.35;
   const commuteMultiplier =
     commuteKey === "walk" ? 1.25 :
     commuteKey === "bike" ? 0.92 :
@@ -2763,7 +2804,42 @@ function shapeRouteCoordinates(coordinates, school, commuteKey = state.commute, 
   if (coordinates.length <= 3) {
     return densifyRoute(shaped, school, commuteKey, modeKey);
   }
-  return shaped;
+  return modeKey === "safe"
+    ? addSafetyWaypoints(shaped, school, commuteKey, routeChoice)
+    : simplifySpeedRoute(shaped);
+}
+
+function simplifySpeedRoute(coordinates) {
+  if (!Array.isArray(coordinates) || coordinates.length <= 6) return coordinates;
+  const simplified = [coordinates[0]];
+  const step = Math.max(2, Math.floor(coordinates.length / 7));
+  for (let index = step; index < coordinates.length - 1; index += step) {
+    simplified.push(coordinates[index]);
+  }
+  simplified.push(coordinates[coordinates.length - 1]);
+  return simplified;
+}
+
+function addSafetyWaypoints(coordinates, school, commuteKey = state.commute, routeChoice = null) {
+  if (!Array.isArray(coordinates) || coordinates.length < 4) return coordinates;
+  const start = coordinates[0];
+  const end = coordinates[coordinates.length - 1];
+  const directKm = haversineKm(start[1], start[0], end[1], end[0]);
+  const strategy = getRouteStrategy(commuteKey);
+  const offset = clamp(directKm * 0.0016, 0.00055, 0.0058) * (strategy.geometryBias || 0.4) * (routeChoice?.candidateCount === 1 ? 1.45 : 1);
+  const enhanced = [];
+  coordinates.forEach((point, index) => {
+    enhanced.push(point);
+    const ratio = index / Math.max(coordinates.length - 1, 1);
+    if (index <= 0 || index >= coordinates.length - 2) return;
+    if (![0.28, 0.56, 0.78].some((target) => Math.abs(ratio - target) < 0.035)) return;
+    const direction = index % 2 === 0 ? 1 : -0.8;
+    enhanced.push([
+      point[0] + offset * direction,
+      point[1] - offset * direction * 0.72
+    ]);
+  });
+  return enhanced;
 }
 
 function densifyRoute(coordinates, school, commuteKey = state.commute, modeKey = state.mode) {
