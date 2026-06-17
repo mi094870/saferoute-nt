@@ -1973,7 +1973,7 @@ async function fetchRoute() {
   const url = template
     .replace("{profile}", profile)
     .replace("{coordinates}", coords)
-    .replace("{query}", "overview=full&geometries=geojson&steps=false&alternatives=true");
+    .replace("{query}", "overview=full&geometries=geojson&steps=true&alternatives=true");
 
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), 8500);
@@ -1984,6 +1984,7 @@ async function fetchRoute() {
     const routeChoice = chooseRouteForCommute(payload.routes || [], state.commute, state.mode);
     const route = routeChoice?.route;
     if (!route) throw new Error("no route");
+    if (isRestrictedRoadRoute(routeChoice, state.commute)) throw new Error("restricted road for commute mode");
     if (requestId !== state.routeRequestId || getSelectedSchool()?.id !== school.id) return;
     const rawCoordinates = route.geometry?.coordinates || [];
     const coordinates = buildCommuteRouteCoordinates(rawCoordinates, school, state.commute, state.mode, routeChoice);
@@ -2696,10 +2697,15 @@ function chooseRouteForCommute(routes, commuteKey = state.commute, modeKey = sta
       distanceKm: route.distance / 1000,
       durationMinutes: Number.isFinite(Number(route.duration)) ? Number(route.duration) / 60 : route.distance / 1000,
       turns: estimateTurns(route.geometry.coordinates),
-      curveRisk: estimateRouteCurveRisk(route.geometry.coordinates)
+      curveRisk: estimateRouteCurveRisk(route.geometry.coordinates),
+      restrictedRisk: getRestrictedRoadRisk(route, commuteKey)
     }));
   if (!candidates.length) return null;
-  const scored = candidates.map((candidate) => {
+  const usableCandidates = ["walk", "bike"].includes(commuteKey)
+    ? candidates.filter((candidate) => candidate.restrictedRisk <= 0)
+    : candidates;
+  const scoringCandidates = usableCandidates.length ? usableCandidates : candidates;
+  const scored = scoringCandidates.map((candidate) => {
     const distanceScore = candidate.distanceKm;
     const timeScore = candidate.durationMinutes / 12;
     const turnScore = candidate.turns * 0.12;
@@ -2711,12 +2717,13 @@ function chooseRouteForCommute(routes, commuteKey = state.commute, modeKey = sta
       commuteKey === "car" ? 0.72 :
       0.82;
     const fastScore = distanceScore * 1.15 + timeScore + turnScore * 0.28;
-    const safeScore = distanceScore * 0.7 + (turnScore + curveScore) * commuteSafetyWeight;
+    const safeScore = distanceScore * 0.7 + (turnScore + curveScore + candidate.restrictedRisk * 8) * commuteSafetyWeight;
     return {
       route: candidate.route,
       distanceKm: candidate.distanceKm,
       turns: candidate.turns,
       curveRisk: candidate.curveRisk,
+      restrictedRisk: candidate.restrictedRisk,
       score: modeKey === "fast" ? fastScore : safeScore
     };
   }).sort((a, b) => a.score - b.score);
@@ -2726,9 +2733,51 @@ function chooseRouteForCommute(routes, commuteKey = state.commute, modeKey = sta
     distanceKm: chosen.distanceKm,
     turns: chosen.turns,
     curveRisk: chosen.curveRisk,
+    restrictedRisk: chosen.restrictedRisk,
     rank: scored.indexOf(chosen),
     candidateCount: scored.length
   };
+}
+
+function isRestrictedRoadRoute(routeChoice, commuteKey = state.commute) {
+  return ["walk", "bike"].includes(commuteKey) && Number(routeChoice?.restrictedRisk || 0) > 0;
+}
+
+function getRestrictedRoadRisk(route, commuteKey = state.commute) {
+  if (!["walk", "bike"].includes(commuteKey)) return 0;
+  const text = collectRouteStepText(route).toLowerCase();
+  if (!text) return 0;
+  const strictPattern = /(motorway|trunk|freeway|expressway|controlled_access|國道|高速公路|快速道路|快速公路|交流道|匝道|高架道路|高架橋|環道)/i;
+  const bikeExtraPattern = /(禁止自行車|禁行自行車)/i;
+  const walkExtraPattern = /(禁止行人|禁行行人|行人禁止)/i;
+  let risk = strictPattern.test(text) ? 1 : 0;
+  if (commuteKey === "bike" && bikeExtraPattern.test(text)) risk += 1;
+  if (commuteKey === "walk" && walkExtraPattern.test(text)) risk += 1;
+  return risk;
+}
+
+function collectRouteStepText(route) {
+  const parts = [];
+  const visit = (value) => {
+    if (value == null) return;
+    if (typeof value === "string" || typeof value === "number") {
+      parts.push(String(value));
+      return;
+    }
+    if (Array.isArray(value)) {
+      value.forEach(visit);
+      return;
+    }
+    if (typeof value === "object") {
+      ["name", "ref", "destinations", "exits", "rotary_name", "classes", "mode"].forEach((key) => visit(value[key]));
+      if (value.maneuver) visit(value.maneuver);
+      if (Array.isArray(value.intersections)) value.intersections.forEach(visit);
+      if (Array.isArray(value.steps)) value.steps.forEach(visit);
+      if (Array.isArray(value.legs)) value.legs.forEach(visit);
+    }
+  };
+  visit(route);
+  return parts.join(" ");
 }
 
 function getRouteChoiceDistanceFactor(routeChoice, modeKey = state.mode) {
