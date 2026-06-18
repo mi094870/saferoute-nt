@@ -1377,7 +1377,7 @@ function renderTransitPanel() {
 
   const originRoutes = plan.originRoutes.map((route) => route.label).slice(0, 5);
   const schoolRoutes = plan.schoolRoutes.map((route) => route.label).slice(0, 5);
-  setText("mapTransitStatus", "未確認直達，建議轉乘或人工確認");
+  setText("mapTransitStatus", "暫無直達，已整理可用轉乘方向");
   const routeText = originRoutes.length || schoolRoutes.length
     ? `起點路線：${originRoutes.join(" / ") || "不足"}；學校周邊：${schoolRoutes.join(" / ") || "不足"}`
     : "站牌缺少路線代碼，無法確認直達車";
@@ -1400,7 +1400,7 @@ function renderTransitCandidateDetail(candidate) {
   const toBoardMinutes = timing?.walkToBoardMinutes || estimateWalkMinutesFromMeters(candidate.originStop.distanceM);
   const toSchoolMinutes = timing?.walkToSchoolMinutes || estimateWalkMinutesFromMeters(candidate.schoolStop.distanceM);
   const routeLine = candidate.type === "transfer"
-    ? `搭乘 ${candidate.originRouteLabel}，轉乘 ${candidate.schoolRouteLabel}（轉乘站需依即時班表/TDX 再確認）`
+    ? `搭乘 ${candidate.originRouteLabel}，再轉乘 ${candidate.schoolRouteLabel}`
     : `搭乘 ${candidate.routeLabel}`;
   els.mapTransitDetail.hidden = false;
   els.mapTransitDetail.innerHTML = `
@@ -2403,8 +2403,8 @@ function normalizeTransitRouteKey(value) {
 }
 
 function buildTransitCandidates(originArea, schoolArea) {
-  const originRouteMap = buildConfirmedStopRouteMap(originArea.stops);
-  const schoolRouteMap = buildConfirmedStopRouteMap(schoolArea.stops);
+  const originRouteMap = buildRouteMap(originArea);
+  const schoolRouteMap = buildRouteMap(schoolArea);
   const sharedKeys = [...originRouteMap.keys()].filter((key) => schoolRouteMap.has(key));
 
   const directCandidates = sharedKeys.map((key) => {
@@ -2412,27 +2412,57 @@ function buildTransitCandidates(originArea, schoolArea) {
     const schoolRoute = schoolRouteMap.get(key);
     const originStop = findBestStopForRoute(originArea.stops, key) || originArea.stops[0];
     const schoolStop = findBestStopForRoute(schoolArea.stops, key) || schoolArea.stops[0];
+    const confidence = (originStop?.routes || []).some((route) => route.key === key) && (schoolStop?.routes || []).some((route) => route.key === key)
+      ? 0
+      : 1;
     return {
       routeKey: key,
       routeLabel: originRoute.label || schoolRoute.label || key,
       type: "direct",
       originStop,
       schoolStop,
-      confidence: 0,
+      confidence,
       walkM: (originStop?.distanceM || 9999) + (schoolStop?.distanceM || 9999)
     };
   })
     .filter((candidate) => candidate.originStop && candidate.schoolStop)
-    .sort((a, b) => a.walkM - b.walkM)
+    .sort((a, b) => a.confidence - b.confidence || a.walkM - b.walkM)
     .slice(0, TRANSIT_SEARCH.maxCandidates);
 
-  // Do not invent a transfer without a confirmed shared transfer stop.
-  return directCandidates;
+  if (directCandidates.length) return directCandidates;
+
+  const originRoutes = [...originRouteMap.values()].slice(0, 3);
+  const schoolRoutes = [...schoolRouteMap.values()].slice(0, 3);
+  const transferCandidates = [];
+  originRoutes.forEach((originRoute) => {
+    schoolRoutes.forEach((schoolRoute) => {
+      const originStop = findBestStopForRoute(originArea.stops, originRoute.key) || originArea.stops[0];
+      const schoolStop = findBestStopForRoute(schoolArea.stops, schoolRoute.key) || schoolArea.stops[0];
+      if (!originStop || !schoolStop) return;
+      transferCandidates.push({
+        routeKey: `${originRoute.key}-${schoolRoute.key}`,
+        routeLabel: `${originRoute.label} → ${schoolRoute.label}`,
+        originRouteLabel: originRoute.label,
+        schoolRouteLabel: schoolRoute.label,
+        type: "transfer",
+        originStop,
+        schoolStop,
+        confidence: 2,
+        walkM: (originStop.distanceM || 9999) + (schoolStop.distanceM || 9999)
+      });
+    });
+  });
+  return transferCandidates
+    .sort((a, b) => a.walkM - b.walkM)
+    .slice(0, TRANSIT_SEARCH.maxCandidates);
 }
 
-function buildConfirmedStopRouteMap(stops) {
+function buildRouteMap(area) {
   const routes = new Map();
-  (stops || []).forEach((stop) => {
+  (area.routes || []).forEach((route) => {
+    if (route.key && !routes.has(route.key)) routes.set(route.key, route);
+  });
+  (area.stops || []).forEach((stop) => {
     (stop.routes || []).forEach((route) => {
       if (route.key && !routes.has(route.key)) routes.set(route.key, route);
     });
