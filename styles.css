@@ -1627,6 +1627,7 @@ select,
 
 .camera-live-link,
 .camera-live-image,
+.camera-live-video,
 .camera-fallback {
   position: absolute;
   inset: 0;
@@ -1636,10 +1637,16 @@ select,
   display: block;
 }
 
-.camera-live-image {
+.camera-live-image,
+.camera-live-video {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.camera-live-image[hidden],
+.camera-live-video[hidden] {
+  display: none;
 }
 
 .camera-fallback {

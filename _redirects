@@ -1,4 +1,0 @@
-/__health.json /.netlify/functions/health 200
-/__camera_lookup.json /.netlify/functions/camera-lookup 200
-/__camera_snapshot /.netlify/functions/camera-snapshot 200
-/* /index.html 200

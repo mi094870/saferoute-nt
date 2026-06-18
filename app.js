@@ -1,6 +1,8 @@
 const APP_CONFIG = window.SAFEROUTE_CONFIG || {};
 const RAW_SCHOOLS = Array.isArray(window.NANTOU_SCHOOL_DATA) ? window.NANTOU_SCHOOL_DATA : [];
 const FIXED_REFRESH_MS = 15000;
+const CAMERA_FRAME_REFRESH_MS = 5000;
+const CAMERA_LOOKUP_REFRESH_MS = 60000;
 const GPS_SAMPLE_WINDOW_MS = 18000;
 const GPS_NAV_RECALC_MS = 8000;
 const GPS_NAV_MIN_MOVE_KM = 0.008;
@@ -134,7 +136,7 @@ const els = {};
   "selectedSchoolAddress", "selectedSchoolPhone", "detailRouteName", "audienceText",
   "recommendationList", "incidentList", "monitorCongestion", "monitorWatchCount",
   "monitorTravelWindow", "cameraScreenA", "cameraScreenB", "cameraLinkA", "cameraLinkB",
-  "cameraImageA", "cameraImageB", "cameraFallbackA", "cameraFallbackB", "cameraTitleA",
+  "cameraImageA", "cameraImageB", "cameraVideoA", "cameraVideoB", "cameraFallbackA", "cameraFallbackB", "cameraTitleA",
   "cameraMetaA", "cameraStatusA", "cameraTitleB", "cameraMetaB", "cameraStatusB",
   "trafficBars", "trafficFlowLabel", "routeLogicTitle", "routeLogicText", "routeReasonList",
   "aiRiskLevel", "aiRiskReason", "aiSuggestion", "safeRouteTime", "safeRouteDistance",
@@ -192,6 +194,9 @@ const state = {
   locationSamples: [],
   cameraLastUpdated: 0,
   cameraCacheKey: "",
+  cameraLookupInFlight: false,
+  cameraPlayers: [null, null],
+  cameraFrameVersion: 0,
   updateInFlight: false,
   pendingUpdate: false,
   pendingForceCamera: false,
@@ -321,7 +326,7 @@ function repairStaticChineseText() {
   set(".hero-subtitle", "整合學校位置、通學方式、路線風險、時段變化與公開交通影像，協助學生、家長與學校判斷每日通學安全。");
   setAll(".summary-pill span", ["學校", "熱點", "模式"]);
   set("heroAdviceMode", "安全優先");
-  set("liveModeLabel", "固定 15 秒更新");
+  set("liveModeLabel", "即時分流更新");
   set("runningStateLabel", "自動更新中");
 
   set(".mobile-menu-copy span", "功能選單");
@@ -363,7 +368,7 @@ function repairStaticChineseText() {
   set("locationPermissionText", "尚未授權");
   set("routeDistanceValue", "等待定位");
   set("routeEstimateValue", "等待定位");
-  set(".refresh-box span", "固定更新頻率");
+  set(".refresh-box span", "統計更新頻率");
   set("refreshValue", "15 秒");
   set(".countdown-block span", "下次更新");
   set("countdownValue", "15.0 秒");
@@ -503,7 +508,8 @@ function repairStaticChineseText() {
     "未來可串接更多路口影像、事故資料與學校回報。"
   ]);
   set(".impact-panel h2", "預期效益");
-  setAll(".impact-grid span", ["南投學校與幼兒園資料", "涵蓋主要鄉鎮", "固定更新展示", "核心資料維度"]);
+  setAll(".impact-grid span", ["南投學校與幼兒園資料", "涵蓋主要鄉鎮", "公開影像快速更新", "核心資料維度"]);
+  set(".impact-grid article:nth-child(3) strong", "5 秒");
   setAll(".outcome-grid span", ["高風險路口暴露可降低", "雨天/尖峰提早出門建議", "學生、家長、學校共同決策"]);
   set(".impact-note", "這不是只做漂亮頁面，而是把定位、學校資料、天氣、路線與安全風險邏輯串成可展示的通學安全平台。");
   set(".demo-flow-panel h2", "3 分鐘 Demo 流程");
@@ -764,7 +770,8 @@ async function selectSchool(id) {
   state.transitPlan = null;
   renderSchoolOptions();
   if (isValidLatLng(state.userLocation)) await fetchRoute();
-  await updateAll(true);
+  await updateAll();
+  void refreshCameras(true);
 
   const school = getSelectedSchool();
   if (state.map && school) {
@@ -773,6 +780,7 @@ async function selectSchool(id) {
 }
 
 async function updateAll(forceCamera = false) {
+  if (forceCamera) void refreshCameras(true);
   if (state.updateInFlight) {
     state.pendingUpdate = true;
     state.pendingForceCamera = state.pendingForceCamera || forceCamera;
@@ -811,16 +819,7 @@ async function updateAll(forceCamera = false) {
       }).catch(() => {});
     }
 
-    if (forceCamera || shouldRefreshCameras(school)) {
-      await updateCameras(context);
-      if (getSelectedSchool()?.id !== school.id) return;
-      const updatedContext = buildContext(school);
-      renderTopLevel(updatedContext);
-      renderLists(updatedContext);
-      renderTraffic(updatedContext);
-    } else {
-      renderCameras(context);
-    }
+    renderCameras(context);
 
   setText("lastUpdated", `更新於 ${new Date().toLocaleTimeString("zh-TW", { hour12: false })}`);
   } finally {
@@ -914,7 +913,7 @@ function renderTopLevel(context) {
   setText("overviewStage", STAGE_LABELS[state.stage] || "全部學制");
   setText("overviewSchoolCount", filtered.length);
   setText("overviewMode", mode.label);
-  setText("overviewFrequency", `${Math.round(state.refreshMs / 1000)} 秒`);
+  setText("overviewFrequency", `即時 / ${Math.round(state.refreshMs / 1000)} 秒`);
   setText("riskScore", risk);
   setText("riskLevelText", riskLabel.text);
   setText("commuteTime", `${minutes} 分鐘`);
@@ -1789,7 +1788,10 @@ function releaseNavigationWakeLock() {
 }
 
 function handleVisibilityChange() {
-  if (document.visibilityState !== "visible" || !state.navigationActive) return;
+  if (document.visibilityState !== "visible") return;
+  refreshCameraFrames();
+  void refreshCameras();
+  if (!state.navigationActive) return;
   requestNavigationWakeLock();
   if (state.locationWatchId === null) {
     requestLocation({ keepTracking: true }).catch(() => {});
@@ -2705,63 +2707,163 @@ async function updateCameras(context) {
   const endpoint = APP_CONFIG.cameraLookupEndpoint || "/__camera_lookup.json";
   const cameraKey = getCameraCacheKey(context.school, target);
   try {
-    const response = await fetch(`${endpoint}?lat=${target.lat.toFixed(6)}&lng=${target.lng.toFixed(6)}&t=${Date.now()}`, { cache: "no-store" });
+    const response = await fetch(`${endpoint}?lat=${target.lat.toFixed(6)}&lng=${target.lng.toFixed(6)}`, { cache: "no-store" });
+    const contentType = response.headers.get("content-type") || "";
+    if (!response.ok || !contentType.includes("application/json")) throw new Error("Camera API unavailable");
     const payload = await response.json();
-    state.cameras = Array.isArray(payload.cameras) ? payload.cameras : [];
-  } catch {
-    state.cameras = [];
-  } finally {
+    if (!Array.isArray(payload.cameras)) throw new Error("Invalid camera response");
+    state.cameras = payload.cameras;
     state.cameraCacheKey = cameraKey;
     state.cameraLastUpdated = Date.now();
+  } catch {
+    // Keep the last valid feed visible when the public data service briefly fails.
   }
   renderCameras(context);
 }
 
 function renderCameras(context) {
   const cards = [
-    { screen: els.cameraScreenA, link: els.cameraLinkA, img: els.cameraImageA, title: els.cameraTitleA, meta: els.cameraMetaA, status: els.cameraStatusA, fallback: els.cameraFallbackA },
-    { screen: els.cameraScreenB, link: els.cameraLinkB, img: els.cameraImageB, title: els.cameraTitleB, meta: els.cameraMetaB, status: els.cameraStatusB, fallback: els.cameraFallbackB }
+    { screen: els.cameraScreenA, link: els.cameraLinkA, img: els.cameraImageA, video: els.cameraVideoA, title: els.cameraTitleA, meta: els.cameraMetaA, status: els.cameraStatusA },
+    { screen: els.cameraScreenB, link: els.cameraLinkB, img: els.cameraImageB, video: els.cameraVideoB, title: els.cameraTitleB, meta: els.cameraMetaB, status: els.cameraStatusB }
   ];
 
   cards.forEach((card, index) => {
     const camera = state.cameras[index];
-    card.screen?.classList.remove("has-live", "is-loading", "is-error", "is-empty");
-    if (card.img) {
-      card.img.onload = null;
-      card.img.onerror = null;
-    }
     if (!camera) {
+      resetCameraMedia(card, index);
+      card.screen?.classList.remove("has-live", "is-loading", "is-error");
       card.screen?.classList.add("is-empty");
-      if (card.img) card.img.removeAttribute("src");
       if (card.link) card.link.removeAttribute("href");
-      setNodeText(card.title, index === 0 ? "附近暫無可用影像" : "等待第二路影像");
+      setNodeText(card.title, index === 0 ? "附近尚無公開影像" : "等待其他公開來源");
       setNodeText(card.meta, context.school.town);
-      setNodeText(card.status, "系統會在下一次更新重新查詢。");
+      setNodeText(card.status, "系統會持續查詢，不會以模擬畫面替代");
       return;
     }
 
-    const imageUrl = camera.proxyUrl || camera.officialUrl || camera.fallbackUrl;
-    if (card.link) card.link.href = camera.pageUrl || imageUrl || "#";
-    if (card.img && imageUrl) {
-      card.screen?.classList.add("is-loading");
-      card.img.alt = camera.shortTitle || camera.title || `Camera ${index + 1}`;
-      card.img.onload = () => {
-        card.screen?.classList.remove("is-loading", "is-error");
-        card.screen?.classList.add("has-live");
-      };
-      card.img.onerror = () => {
-        card.screen?.classList.remove("is-loading", "has-live");
-        card.screen?.classList.add("is-error");
-      };
-      card.img.src = imageUrl;
-    } else {
-      card.screen?.classList.add("is-empty");
-      if (card.img) card.img.removeAttribute("src");
+    const mediaKey = `${camera.id || index}:${camera.imageUrl || camera.streamUrl || "none"}`;
+    if (card.screen?.dataset.cameraMediaKey !== mediaKey) {
+      resetCameraMedia(card, index);
+      if (card.screen) card.screen.dataset.cameraMediaKey = mediaKey;
+      setupCameraMedia(card, camera, index);
     }
+    if (card.link) card.link.href = camera.pageUrl || camera.imageUrl || camera.streamUrl || "#";
     setNodeText(card.title, camera.shortTitle || camera.title || `公開鏡頭 ${index + 1}`);
     setNodeText(card.meta, camera.sourceName || "公開交通影像");
-    setNodeText(card.status, camera.statusText || "即時影像載入中");
+    setNodeText(card.status, camera.statusText || (Number.isFinite(camera.distanceKm) ? `距學校 ${formatCameraDistance(camera.distanceKm)}` : "即時影像載入中"));
   });
+}
+
+function setupCameraMedia(card, camera, index) {
+  card.screen?.classList.remove("has-live", "is-error", "is-empty");
+  card.screen?.classList.add("is-loading");
+  const label = camera.shortTitle || camera.title || `公開鏡頭 ${index + 1}`;
+
+  if (card.img && camera.imageUrl) {
+    card.img.hidden = false;
+    if (card.video) card.video.hidden = true;
+    card.img.alt = label;
+    card.img.onload = () => markCameraReady(card);
+    card.img.onerror = () => markCameraError(card);
+    card.img.src = withCacheBuster(camera.imageUrl, state.cameraFrameVersion);
+    return;
+  }
+
+  if (card.video && camera.streamUrl) {
+    card.video.hidden = false;
+    if (card.img) card.img.hidden = true;
+    card.video.onplaying = () => markCameraReady(card);
+    card.video.oncanplay = () => markCameraReady(card);
+    card.video.onerror = () => markCameraError(card);
+    if (card.video.canPlayType("application/vnd.apple.mpegurl")) {
+      card.video.src = camera.streamUrl;
+      card.video.play().catch(() => {});
+    } else if (window.Hls?.isSupported()) {
+      const player = new window.Hls({ liveSyncDurationCount: 2, liveMaxLatencyDurationCount: 5 });
+      state.cameraPlayers[index] = player;
+      player.on(window.Hls.Events.MANIFEST_PARSED, () => card.video.play().catch(() => {}));
+      player.on(window.Hls.Events.ERROR, (_event, data) => {
+        if (data?.fatal) markCameraError(card);
+      });
+      player.loadSource(camera.streamUrl);
+      player.attachMedia(card.video);
+    } else {
+      markCameraError(card);
+    }
+    return;
+  }
+
+  markCameraError(card);
+}
+
+function resetCameraMedia(card, index) {
+  const player = state.cameraPlayers[index];
+  if (player) player.destroy();
+  state.cameraPlayers[index] = null;
+  if (card.img) {
+    card.img.onload = null;
+    card.img.onerror = null;
+    card.img.removeAttribute("src");
+    card.img.hidden = false;
+  }
+  if (card.video) {
+    card.video.onplaying = null;
+    card.video.oncanplay = null;
+    card.video.onerror = null;
+    card.video.pause();
+    card.video.removeAttribute("src");
+    card.video.load();
+    card.video.hidden = true;
+  }
+  if (card.screen) delete card.screen.dataset.cameraMediaKey;
+}
+
+function markCameraReady(card) {
+  card.screen?.classList.remove("is-loading", "is-error", "is-empty");
+  card.screen?.classList.add("has-live");
+}
+
+function markCameraError(card) {
+  card.screen?.classList.remove("is-loading", "has-live");
+  card.screen?.classList.add("is-error");
+}
+
+function refreshCameraFrames() {
+  state.cameraFrameVersion += 1;
+  const images = [els.cameraImageA, els.cameraImageB];
+  state.cameras.slice(0, 2).forEach((camera, index) => {
+    const image = images[index];
+    if (image && camera.imageUrl) image.src = withCacheBuster(camera.imageUrl, state.cameraFrameVersion);
+  });
+}
+
+async function refreshCameras(force = false) {
+  const school = getSelectedSchool();
+  if (!school || state.cameraLookupInFlight || (!force && !shouldRefreshCameras(school))) return;
+  state.cameraLookupInFlight = true;
+  try {
+    await updateCameras(buildContext(school));
+    if (getSelectedSchool()?.id !== school.id) return;
+    const context = buildContext(school);
+    renderTopLevel(context);
+    renderLists(context);
+    renderTraffic(context);
+  } finally {
+    state.cameraLookupInFlight = false;
+  }
+}
+
+function withCacheBuster(url, version) {
+  try {
+    const parsed = new URL(url, location.href);
+    parsed.searchParams.set("saferoute_refresh", String(version));
+    return parsed.href;
+  } catch {
+    return url;
+  }
+}
+
+function formatCameraDistance(distanceKm) {
+  return distanceKm < 1 ? `${Math.round(distanceKm * 1000)} 公尺` : `${distanceKm.toFixed(1)} 公里`;
 }
 
 function startTimers() {
@@ -2776,6 +2878,12 @@ function startTimers() {
     }
     setText("countdownValue", `${Math.max(0, state.remainingMs / 1000).toFixed(1)} 秒`);
   }, 250));
+  state.timers.push(setInterval(() => {
+    if (state.running && document.visibilityState !== "hidden") refreshCameraFrames();
+  }, CAMERA_FRAME_REFRESH_MS));
+  state.timers.push(setInterval(() => {
+    if (state.running && document.visibilityState !== "hidden") void refreshCameras();
+  }, CAMERA_LOOKUP_REFRESH_MS));
 }
 
 function setupLocalAutoReload() {
@@ -3140,7 +3248,7 @@ function shouldRefreshCameras(school = getSelectedSchool()) {
   const nextKey = getCameraCacheKey(school, target);
   if (nextKey !== state.cameraCacheKey) return true;
   if (!state.cameraLastUpdated) return true;
-  return Date.now() - state.cameraLastUpdated >= state.refreshMs;
+  return Date.now() - state.cameraLastUpdated >= CAMERA_LOOKUP_REFRESH_MS;
 }
 
 function getCameraCacheKey(school, target) {
@@ -3153,7 +3261,7 @@ function getCameraCacheKey(school, target) {
 
 function syncRefreshUi() {
   setText("refreshValue", `${Math.round(state.refreshMs / 1000)} 秒`);
-  setText("overviewFrequency", `${Math.round(state.refreshMs / 1000)} 秒`);
+  setText("overviewFrequency", `即時 / ${Math.round(state.refreshMs / 1000)} 秒`);
 }
 
 function renderList(node, items, className = "") {

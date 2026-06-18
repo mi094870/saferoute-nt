@@ -33,7 +33,7 @@
         <div class="summary-pill"><span>模式</span><strong id="heroAdviceMode">安全優先</strong></div>
       </div>
       <div class="status-row">
-        <div class="status-chip live"><span class="dot"></span><span id="liveModeLabel">固定 15 秒更新</span></div>
+        <div class="status-chip live"><span class="dot"></span><span id="liveModeLabel">即時分流更新</span></div>
         <div class="status-chip subtle" id="runningStateLabel">自動更新中</div>
       </div>
     </header>
@@ -101,7 +101,7 @@
           <div class="location-item"><span>距離</span><strong id="routeDistanceValue">等待定位</strong></div>
           <div class="location-item"><span>時間</span><strong id="routeEstimateValue">等待定位</strong></div>
         </div>
-        <div class="refresh-box fixed-refresh"><span>固定更新頻率</span><strong id="refreshValue">15 秒</strong></div>
+        <div class="refresh-box fixed-refresh"><span>統計更新頻率</span><strong id="refreshValue">15 秒</strong></div>
         <div class="countdown-block"><span>下次更新</span><strong id="countdownValue">15.0 秒</strong></div>
         <div class="school-profile">
           <p class="section-label">學校資訊</p>
@@ -174,7 +174,7 @@
         <div class="overview-strip">
           <div class="overview-item"><span>學校</span><strong id="overviewSchoolCount">0</strong></div>
           <div class="overview-item"><span>模式</span><strong id="overviewMode">安全優先</strong></div>
-          <div class="overview-item"><span>頻率</span><strong id="overviewFrequency">15 秒</strong></div>
+          <div class="overview-item"><span>頻率</span><strong id="overviewFrequency">即時 / 15 秒</strong></div>
         </div>
         <div class="metrics-grid">
           <article class="metric-card"><p>風險</p><strong id="riskScore">--</strong><span id="riskLevelText">載入中</span></article>
@@ -253,8 +253,8 @@
           <div class="panel-title-row"><h2>路口公開影像</h2><span class="panel-badge accent">Camera</span></div>
           <div class="monitor-summary"><article class="monitor-stat"><span>時段</span><strong id="monitorCongestion">載入中</strong></article><article class="monitor-stat"><span>影像</span><strong id="monitorWatchCount">0</strong></article><article class="monitor-stat"><span>時間</span><strong id="monitorTravelWindow">載入中</strong></article></div>
           <div class="monitor-grid">
-            <article class="camera-card"><div class="camera-screen" id="cameraScreenA"><a id="cameraLinkA" class="camera-live-link" href="#" target="_blank" rel="noreferrer"><img id="cameraImageA" class="camera-live-image" alt="路口公開影像 A"></a><div class="camera-fallback" id="cameraFallbackA"><strong>等待可用影像</strong><span>若附近無公開影像，系統會顯示資料狀態。</span></div><p class="screen-tag">CAM A</p><span class="camera-pulse"></span></div><strong id="cameraTitleA">等待影像</strong><span id="cameraMetaA">--</span><p id="cameraStatusA">尚未載入</p></article>
-            <article class="camera-card"><div class="camera-screen camera-screen-b" id="cameraScreenB"><a id="cameraLinkB" class="camera-live-link" href="#" target="_blank" rel="noreferrer"><img id="cameraImageB" class="camera-live-image" alt="路口公開影像 B"></a><div class="camera-fallback" id="cameraFallbackB"><strong>等待可用影像</strong><span>若附近無公開影像，系統會顯示資料狀態。</span></div><p class="screen-tag">CAM B</p><span class="camera-pulse"></span></div><strong id="cameraTitleB">等待影像</strong><span id="cameraMetaB">--</span><p id="cameraStatusB">尚未載入</p></article>
+            <article class="camera-card"><div class="camera-screen" id="cameraScreenA"><a id="cameraLinkA" class="camera-live-link" href="#" target="_blank" rel="noreferrer"><img id="cameraImageA" class="camera-live-image" alt="路口公開影像 A"><video id="cameraVideoA" class="camera-live-video" muted autoplay playsinline></video></a><div class="camera-fallback" id="cameraFallbackA"><strong>等待可用影像</strong><span>若附近無公開影像，系統會顯示資料狀態。</span></div><p class="screen-tag">CAM A</p><span class="camera-pulse"></span></div><strong id="cameraTitleA">等待影像</strong><span id="cameraMetaA">--</span><p id="cameraStatusA">尚未載入</p></article>
+            <article class="camera-card"><div class="camera-screen camera-screen-b" id="cameraScreenB"><a id="cameraLinkB" class="camera-live-link" href="#" target="_blank" rel="noreferrer"><img id="cameraImageB" class="camera-live-image" alt="路口公開影像 B"><video id="cameraVideoB" class="camera-live-video" muted autoplay playsinline></video></a><div class="camera-fallback" id="cameraFallbackB"><strong>等待可用影像</strong><span>若附近無公開影像，系統會顯示資料狀態。</span></div><p class="screen-tag">CAM B</p><span class="camera-pulse"></span></div><strong id="cameraTitleB">等待影像</strong><span id="cameraMetaB">--</span><p id="cameraStatusB">尚未載入</p></article>
           </div>
           <article class="traffic-bars-card"><div class="bars-title-row"><p class="section-label">未來車流推估</p><span id="trafficFlowLabel">載入中</span></div><div class="traffic-bars" id="trafficBars"></div></article>
           <article class="route-logic-card"><strong id="routeLogicTitle">路線邏輯說明</strong><p id="routeLogicText">系統會整合距離、通學方式、時段、天氣與路口複雜度估算風險。</p><ul class="detail-list compact" id="routeReasonList"></ul></article>
@@ -275,6 +275,7 @@
   <script src="school-data.js"></script>
   <script src="app-config.js"></script>
   <script src="vendor/leaflet/leaflet.js"></script>
+  <script src="vendor/hls/hls.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
