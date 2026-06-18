@@ -100,7 +100,8 @@ const TRANSIT_SEARCH = {
   maxStops: 12,
   maxRoutes: 12,
   maxCandidates: 6,
-  cacheMs: 10 * 60 * 1000,
+  cacheMs: 60 * 60 * 1000,
+  staleCacheMs: 24 * 60 * 60 * 1000,
   endpoint: "https://overpass-api.de/api/interpreter"
 };
 
@@ -200,6 +201,7 @@ const state = {
   selectedTransitCandidateIndex: 0,
   transitCache: new Map(),
   transitRequestId: 0,
+  transitRequestKey: "",
   transitTimeoutId: null,
   demoMode: false,
   demoStep: 0,
@@ -1353,7 +1355,12 @@ function renderTransitPanel() {
     state.selectedTransitCandidateIndex = clamp(state.selectedTransitCandidateIndex || 0, 0, plan.candidates.length - 1);
     const labels = plan.candidates.map((candidate) => candidate.routeLabel);
     const selectedTiming = estimateTransitCandidateTiming(plan.candidates[state.selectedTransitCandidateIndex]);
-    setText("mapTransitStatus", `找到 ${plan.candidates.length} 組公車候選`);
+    setText(
+      "mapTransitStatus",
+      plan.isStale
+        ? `使用最近成功資料：${plan.candidates.length} 組公車候選`
+        : `找到 ${plan.candidates.length} 組公車候選`
+    );
     setText("mapTransitRoute", `可搭候選：${labels.slice(0, 4).join(" / ")}`);
     setText(
       "mapTransitStops",
@@ -1462,9 +1469,9 @@ function estimateTransitCandidateTiming(candidate, options = {}) {
     rideMinutes,
     walkToSchoolMinutes,
     totalMinutes,
-    boardTimeText: formatClockTime(boardAt),
-    alightTimeText: formatClockTime(alightAt),
-    arrivalTimeText: formatClockTime(arrivalAt)
+    boardTimeText: `約 ${formatClockTime(boardAt)}`,
+    alightTimeText: `約 ${formatClockTime(alightAt)}`,
+    arrivalTimeText: `約 ${formatClockTime(arrivalAt)}`
   };
 }
 
@@ -1994,12 +2001,18 @@ async function fetchRoute() {
   const timer = setTimeout(() => controller.abort(), 15000);
   try {
     if (state.commute === "bus") {
-      const transitRoute = await buildTransitCompositeRoute(getTransitCandidateForRouting(), school, controller.signal);
+      const transitCandidate = getTransitCandidateForRouting();
+      if (!transitCandidate || !state.transitPlan?.candidates?.length) {
+        state.route = buildFallbackRoute(school);
+        return;
+      }
+      const transitRoute = await buildTransitCompositeRoute(transitCandidate, school, controller.signal);
       if (requestId !== state.routeRequestId || getSelectedSchool()?.id !== school.id) return;
       if (transitRoute) {
         state.route = transitRoute;
         return;
       }
+      throw new Error("no confirmed transit route");
     }
 
     const { routeChoice, route } = await fetchRoadRouteBetween(
@@ -2149,9 +2162,11 @@ async function buildTransitCompositeRoute(candidate, school, signal = undefined)
   if (!candidate?.originStop || !candidate?.schoolStop || !isValidLatLng(state.userLocation) || !isValidLatLng(school)) return null;
   const accessProfile = getRouteStrategy("walk").profile;
   const busProfile = getRouteStrategy("bus").profile;
-  const accessToStop = await fetchRoadRouteBetween(state.userLocation, candidate.originStop, accessProfile, "walk", "safe", signal);
-  const rideToSchoolStop = await fetchRoadRouteBetween(candidate.originStop, candidate.schoolStop, busProfile, "bus", state.mode, signal);
-  const accessToSchool = await fetchRoadRouteBetween(candidate.schoolStop, school, accessProfile, "walk", "safe", signal);
+  const [accessToStop, rideToSchoolStop, accessToSchool] = await Promise.all([
+    fetchRoadRouteBetween(state.userLocation, candidate.originStop, accessProfile, "walk", "safe", signal),
+    fetchRoadRouteBetween(candidate.originStop, candidate.schoolStop, busProfile, "bus", state.mode, signal),
+    fetchRoadRouteBetween(candidate.schoolStop, school, accessProfile, "walk", "safe", signal)
+  ]);
   const segments = [accessToStop, rideToSchoolStop, accessToSchool].map((segment) => segment.route);
   const coordinates = mergeRouteCoordinates(segments.map((route) => route.geometry?.coordinates || []));
   if (coordinates.length < 2) return null;
@@ -2217,7 +2232,11 @@ async function updateTransitPlan(school) {
     return;
   }
 
+  // The 15-second dashboard refresh must not duplicate an identical Overpass request.
+  if (state.transitRequestKey === cacheKey && state.transitPlan?.status === "loading") return;
+
   const requestId = ++state.transitRequestId;
+  state.transitRequestKey = cacheKey;
   if (state.transitTimeoutId) clearTimeout(state.transitTimeoutId);
   state.transitPlan = { status: "loading" };
   renderTransitPanel();
@@ -2254,11 +2273,17 @@ async function updateTransitPlan(school) {
     }
   } catch {
     if (requestId !== state.transitRequestId || state.commute !== "bus") return;
-    state.transitPlan = { status: "error" };
+    const canUseRecentSuccess = cached && Date.now() - cached.updatedAt < TRANSIT_SEARCH.staleCacheMs;
+    state.transitPlan = canUseRecentSuccess
+      ? { ...cached.plan, status: "ready", isStale: true }
+      : { status: "error" };
   } finally {
-    if (state.transitTimeoutId) {
-      clearTimeout(state.transitTimeoutId);
-      state.transitTimeoutId = null;
+    if (requestId === state.transitRequestId) {
+      state.transitRequestKey = "";
+      if (state.transitTimeoutId) {
+        clearTimeout(state.transitTimeoutId);
+        state.transitTimeoutId = null;
+      }
     }
   }
   renderTransitPanel();
@@ -2296,7 +2321,7 @@ async function fetchTransitArea(point, radiusMeters) {
       .filter((route, index, all) => all.findIndex((item) => item.key === route.key) === index)
       .slice(0, TRANSIT_SEARCH.maxRoutes);
     return {
-      stops: stops.slice(0, TRANSIT_SEARCH.maxStops),
+      stops: attachConfirmedRoutesToStops(stops, routes).slice(0, TRANSIT_SEARCH.maxStops),
       routes
     };
   } finally {
@@ -2331,8 +2356,28 @@ function normalizeBusRoute(item) {
     key: normalizeTransitRouteKey(ref || name),
     label: label || "未命名路線",
     ref,
-    name
+    name,
+    memberNodeIds: (item.members || [])
+      .filter((member) => member.type === "node")
+      .map((member) => String(member.ref))
   };
+}
+
+function attachConfirmedRoutesToStops(stops, routes) {
+  const routesByStopId = new Map();
+  routes.forEach((route) => {
+    (route.memberNodeIds || []).forEach((stopId) => {
+      if (!routesByStopId.has(stopId)) routesByStopId.set(stopId, []);
+      routesByStopId.get(stopId).push({ key: route.key, label: route.label });
+    });
+  });
+  return stops.map((stop) => {
+    const confirmed = routesByStopId.get(stop.id) || [];
+    const merged = [...(stop.routes || []), ...confirmed]
+      .filter((route) => route.key)
+      .filter((route, index, all) => all.findIndex((item) => item.key === route.key) === index);
+    return { ...stop, routes: merged };
+  });
 }
 
 function extractBusRouteRefs(tags) {
@@ -2358,8 +2403,8 @@ function normalizeTransitRouteKey(value) {
 }
 
 function buildTransitCandidates(originArea, schoolArea) {
-  const originRouteMap = buildRouteMap(originArea);
-  const schoolRouteMap = buildRouteMap(schoolArea);
+  const originRouteMap = buildConfirmedStopRouteMap(originArea.stops);
+  const schoolRouteMap = buildConfirmedStopRouteMap(schoolArea.stops);
   const sharedKeys = [...originRouteMap.keys()].filter((key) => schoolRouteMap.has(key));
 
   const directCandidates = sharedKeys.map((key) => {
@@ -2367,57 +2412,27 @@ function buildTransitCandidates(originArea, schoolArea) {
     const schoolRoute = schoolRouteMap.get(key);
     const originStop = findBestStopForRoute(originArea.stops, key) || originArea.stops[0];
     const schoolStop = findBestStopForRoute(schoolArea.stops, key) || schoolArea.stops[0];
-    const confidence = (originStop?.routes || []).some((route) => route.key === key) && (schoolStop?.routes || []).some((route) => route.key === key)
-      ? 0
-      : 1;
     return {
       routeKey: key,
       routeLabel: originRoute.label || schoolRoute.label || key,
       type: "direct",
       originStop,
       schoolStop,
-      confidence,
+      confidence: 0,
       walkM: (originStop?.distanceM || 9999) + (schoolStop?.distanceM || 9999)
     };
   })
     .filter((candidate) => candidate.originStop && candidate.schoolStop)
-    .sort((a, b) => a.confidence - b.confidence || a.walkM - b.walkM)
-    .slice(0, TRANSIT_SEARCH.maxCandidates);
-
-  if (directCandidates.length) return directCandidates;
-
-  const originRoutes = [...originRouteMap.values()].slice(0, 3);
-  const schoolRoutes = [...schoolRouteMap.values()].slice(0, 3);
-  const transferCandidates = [];
-  originRoutes.forEach((originRoute) => {
-    schoolRoutes.forEach((schoolRoute) => {
-      const originStop = findBestStopForRoute(originArea.stops, originRoute.key) || originArea.stops[0];
-      const schoolStop = findBestStopForRoute(schoolArea.stops, schoolRoute.key) || schoolArea.stops[0];
-      if (!originStop || !schoolStop) return;
-      transferCandidates.push({
-        routeKey: `${originRoute.key}-${schoolRoute.key}`,
-        routeLabel: `${originRoute.label} → ${schoolRoute.label}`,
-        originRouteLabel: originRoute.label,
-        schoolRouteLabel: schoolRoute.label,
-        type: "transfer",
-        originStop,
-        schoolStop,
-        confidence: 2,
-        walkM: (originStop.distanceM || 9999) + (schoolStop.distanceM || 9999)
-      });
-    });
-  });
-  return transferCandidates
     .sort((a, b) => a.walkM - b.walkM)
     .slice(0, TRANSIT_SEARCH.maxCandidates);
+
+  // Do not invent a transfer without a confirmed shared transfer stop.
+  return directCandidates;
 }
 
-function buildRouteMap(area) {
+function buildConfirmedStopRouteMap(stops) {
   const routes = new Map();
-  (area.routes || []).forEach((route) => {
-    if (route.key && !routes.has(route.key)) routes.set(route.key, route);
-  });
-  (area.stops || []).forEach((stop) => {
+  (stops || []).forEach((stop) => {
     (stop.routes || []).forEach((route) => {
       if (route.key && !routes.has(route.key)) routes.set(route.key, route);
     });
