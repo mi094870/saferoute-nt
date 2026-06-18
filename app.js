@@ -69,7 +69,7 @@ const ROUTE_STRATEGIES = {
     riskNote: "坡度、轉彎與混合車流"
   },
   scooter: {
-    profile: "driving",
+    profile: "motor_scooter",
     source: "機車道路路網",
     safeSource: "機車避開高風險路口路網",
     geometryBias: -0.34,
@@ -1902,18 +1902,12 @@ function isLikelyGpsDrift(sample) {
 
 function shouldWaitForBetterGpsFix(sample, isRefining) {
   if (!sample || !isValidLatLng(sample)) return true;
-  const maxAccuracy = state.navigationActive ? GPS_NAV_MAX_ACCURACY_M : GPS_IDLE_MAX_ACCURACY_M;
   if (sample.accuracy >= GPS_HARD_REJECT_ACCURACY_M && state.userLocation) {
     if (!isRefining) setText("locationStatusText", "GPS 訊號太弱，正在等待更準確的位置。");
     return true;
   }
-  if (!state.userLocation && sample.accuracy > maxAccuracy && state.locationSamples.length < 2) {
-    state.locationSamples = [sample, ...state.locationSamples].slice(0, 3);
-    if (!isRefining) {
-      setText("locationStatusText", `GPS 精度約 ${Math.round(sample.accuracy)} 公尺，正在多取幾次定位校正。`);
-    }
-    return true;
-  }
+  // Show the first valid fix immediately, then let watchPosition refine it.
+  // Waiting for several high-accuracy samples made location and routes appear missing indoors.
   return false;
 }
 
@@ -1988,7 +1982,7 @@ async function fetchRoute() {
   const requestId = ++state.routeRequestId;
   const strategy = getRouteStrategy(state.commute);
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), 8500);
+  const timer = setTimeout(() => controller.abort(), 15000);
   try {
     if (state.commute === "bus") {
       const transitRoute = await buildTransitCompositeRoute(getTransitCandidateForRouting(), school, controller.signal);
@@ -2014,9 +2008,10 @@ async function fetchRoute() {
     const modeDistanceFactor = getRouteChoiceDistanceFactor(routeChoice, state.mode);
     state.route = {
       source: getRouteSourceLabel(state.commute, state.mode, true),
-      profile,
+      profile: strategy.profile,
       commuteKey: state.commute,
       modeKey: state.mode,
+      destinationSchoolId: school.id,
       distanceKm: Math.max(0.35, (route.distance / 1000) * distanceFactor * modeDistanceFactor),
       turns: estimateTurns(coordinates),
       coordinates,
@@ -2024,7 +2019,13 @@ async function fetchRoute() {
     };
   } catch {
     if (requestId !== state.routeRequestId || getSelectedSchool()?.id !== school.id) return;
-    state.route = buildFallbackRoute(school);
+    const canKeepCurrentRoute =
+      state.route?.destinationSchoolId === school.id &&
+      state.route?.commuteKey === state.commute &&
+      state.route?.modeKey === state.mode &&
+      Array.isArray(state.route?.coordinates) &&
+      state.route.coordinates.length >= 2;
+    if (!canKeepCurrentRoute) state.route = buildFallbackRoute(school);
   } finally {
     clearTimeout(timer);
   }
@@ -2032,8 +2033,11 @@ async function fetchRoute() {
 
 async function fetchRoadRouteBetween(origin, destination, profile, commuteKey = state.commute, modeKey = state.mode, signal = undefined) {
   if (!isValidLatLng(origin) || !isValidLatLng(destination)) throw new Error("invalid route endpoint");
+  if (commuteKey === "scooter") {
+    return fetchValhallaScooterRoute(origin, destination, modeKey, signal);
+  }
   const coords = `${origin.lng},${origin.lat};${destination.lng},${destination.lat}`;
-  const template = APP_CONFIG.routingUrlTemplate || "https://router.project-osrm.org/route/v1/{profile}/{coordinates}?{query}";
+  const template = getRoutingUrlTemplate(commuteKey);
   const url = template
     .replace("{profile}", profile)
     .replace("{coordinates}", coords)
@@ -2046,6 +2050,90 @@ async function fetchRoadRouteBetween(origin, destination, profile, commuteKey = 
   if (!route) throw new Error("no route");
   if (isRestrictedRoadRoute(routeChoice, commuteKey)) throw new Error("restricted road for commute mode");
   return { routeChoice, route };
+}
+
+async function fetchValhallaScooterRoute(origin, destination, modeKey, signal) {
+  const payload = {
+    locations: [
+      { lat: origin.lat, lon: origin.lng },
+      { lat: destination.lat, lon: destination.lng }
+    ],
+    costing: "motor_scooter",
+    units: "kilometers",
+    directions_options: { units: "kilometers" },
+    costing_options: {
+      motor_scooter: {
+        shortest: modeKey === "fast",
+        use_highways: 0
+      }
+    }
+  };
+  const url = `https://valhalla1.openstreetmap.de/route?json=${encodeURIComponent(JSON.stringify(payload))}`;
+  const response = await fetch(url, { cache: "no-store", signal });
+  if (!response.ok) throw new Error(`scooter route ${response.status}`);
+  const data = await response.json();
+  if (Number(data?.trip?.status) !== 0 || !Array.isArray(data.trip.legs) || !data.trip.legs.length) {
+    throw new Error("no scooter route");
+  }
+  const coordinates = mergeRouteCoordinates(data.trip.legs.map((leg) => decodePolyline6(leg.shape || "")));
+  if (coordinates.length < 2) throw new Error("invalid scooter geometry");
+  const route = {
+    distance: Number(data.trip.summary?.length || 0) * 1000,
+    duration: Number(data.trip.summary?.time || 0),
+    geometry: { coordinates },
+    legs: data.trip.legs.map((leg) => ({
+      steps: (leg.maneuvers || []).map((maneuver) => ({ name: maneuver.street_names?.join(" ") || maneuver.instruction || "" }))
+    }))
+  };
+  return {
+    route,
+    routeChoice: {
+      route,
+      distanceKm: route.distance / 1000,
+      turns: estimateTurns(coordinates),
+      curveRisk: estimateRouteCurveRisk(coordinates),
+      restrictedRisk: 0,
+      rank: 0,
+      candidateCount: 1
+    }
+  };
+}
+
+function decodePolyline6(encoded) {
+  if (!encoded) return [];
+  const coordinates = [];
+  let index = 0;
+  let lat = 0;
+  let lng = 0;
+  while (index < encoded.length) {
+    const values = [];
+    for (let coordinateIndex = 0; coordinateIndex < 2; coordinateIndex += 1) {
+      let result = 0;
+      let shift = 0;
+      let byte;
+      do {
+        if (index >= encoded.length) return coordinates;
+        byte = encoded.charCodeAt(index++) - 63;
+        result |= (byte & 0x1f) << shift;
+        shift += 5;
+      } while (byte >= 0x20);
+      values.push((result & 1) ? ~(result >> 1) : (result >> 1));
+    }
+    lat += values[0];
+    lng += values[1];
+    coordinates.push([lng / 1e6, lat / 1e6]);
+  }
+  return coordinates;
+}
+
+function getRoutingUrlTemplate(commuteKey) {
+  if (commuteKey === "walk") {
+    return "https://routing.openstreetmap.de/routed-foot/route/v1/driving/{coordinates}?{query}";
+  }
+  if (commuteKey === "bike") {
+    return "https://routing.openstreetmap.de/routed-bike/route/v1/driving/{coordinates}?{query}";
+  }
+  return APP_CONFIG.routingUrlTemplate || "https://router.project-osrm.org/route/v1/{profile}/{coordinates}?{query}";
 }
 
 async function buildTransitCompositeRoute(candidate, school, signal = undefined) {
@@ -2068,7 +2156,8 @@ async function buildTransitCompositeRoute(candidate, school, signal = undefined)
     turns: estimateTurns(coordinates),
     coordinates,
     detailPoints: makeDetailPoints(coordinates),
-    transitCandidateKey: candidate.routeKey
+    transitCandidateKey: candidate.routeKey,
+    destinationSchoolId: school.id
   };
 }
 
@@ -2460,14 +2549,14 @@ function updateMapRoute(context) {
     : [];
   const safePoints = routePoints.filter(([lat, lng]) => Number.isFinite(Number(lat)) && Number.isFinite(Number(lng)));
 
-  if (safePoints.length >= 2) {
-    const [originLat, originLng] = safePoints[0];
-    const originLabel = isValidLatLng(state.userLocation) ? "你的目前位置" : "站內導航基準起點";
+  if (isValidLatLng(state.userLocation)) {
+    const userPoint = [state.userLocation.lat, state.userLocation.lng];
+    const originLabel = "你的目前位置";
     if (state.navigationActive && isValidLatLng(state.userLocation)) {
       const heading = Number.isFinite(Number(state.navigationHeading))
         ? Number(state.navigationHeading)
         : bearingDegrees(state.userLocation.lat, state.userLocation.lng, school.lat, school.lng) || 0;
-      state.userMarker = L.marker([originLat, originLng], {
+      state.userMarker = L.marker(userPoint, {
         interactive: true,
         icon: L.divIcon({
           className: "navigation-user-marker-shell",
@@ -2477,16 +2566,16 @@ function updateMapRoute(context) {
         })
       }).addTo(state.map).bindPopup(originLabel);
     } else {
-      state.userMarker = L.circleMarker([originLat, originLng], {
+      state.userMarker = L.circleMarker(userPoint, {
         radius: 8,
         color: "#ffffff",
         weight: 3,
-        fillColor: isValidLatLng(state.userLocation) ? "#0f172a" : "#0f8b76",
+        fillColor: "#0f172a",
         fillOpacity: 0.95
       }).addTo(state.map).bindPopup(originLabel);
     }
 
-    if (isValidLatLng(state.userLocation) && Number.isFinite(Number(state.userLocation.accuracy))) {
+    if (Number.isFinite(Number(state.userLocation.accuracy))) {
       state.userAccuracyCircle = L.circle([state.userLocation.lat, state.userLocation.lng], {
         radius: clamp(Number(state.userLocation.accuracy), 8, 180),
         color: "#2563eb",
@@ -2497,7 +2586,9 @@ function updateMapRoute(context) {
         interactive: false
       }).addTo(state.map);
     }
+  }
 
+  if (safePoints.length >= 2) {
     const lineStyle = getRouteLineStyle(state.commute, state.mode);
     state.routeLine = L.polyline(safePoints, {
       className: "commute-route-line",
