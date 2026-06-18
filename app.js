@@ -139,7 +139,7 @@ const els = {};
   "aiRiskLevel", "aiRiskReason", "aiSuggestion", "safeRouteTime", "safeRouteDistance",
   "safeRouteRisk", "safeRouteReason", "fastRouteTime", "fastRouteDistance", "fastRouteRisk",
   "fastRouteReason",
-  "stageSummaryGrid", "impactExposureValue", "impactEarlyValue", "impactDecisionValue",
+  "stageSummaryGrid", "impactSchoolCount", "impactTownCount", "impactExposureValue", "impactEarlyValue", "impactDecisionValue",
   "demoModeButton", "demoStatusText", "demoSteps"
 ].forEach((id) => {
   els[id] = document.getElementById(id);
@@ -774,6 +774,8 @@ async function updateAll(forceCamera = false) {
   if (state.updateInFlight) {
     state.pendingUpdate = true;
     state.pendingForceCamera = state.pendingForceCamera || forceCamera;
+    const pendingSchool = getSelectedSchool();
+    if (pendingSchool) renderCoreViews(buildContext(pendingSchool));
     return;
   }
 
@@ -783,9 +785,11 @@ async function updateAll(forceCamera = false) {
     state.updateInFlight = false;
     return;
   }
+  renderCoreViews(buildContext(school));
 
   try {
     await updateWeather(school);
+    if (getSelectedSchool()?.id !== school.id) return;
     const shouldLoadTransitInBackground = state.commute === "bus";
     if (shouldLoadTransitInBackground) {
       if (!state.transitPlan || state.transitPlan.status !== "ready") {
@@ -797,19 +801,11 @@ async function updateAll(forceCamera = false) {
       await updateTransitPlan(school);
     }
     const context = buildContext(school);
-    renderTopLevel(context);
-    renderDetailMap(context);
-    renderLists(context);
-    renderTraffic(context);
-    updateMapRoute(context);
+    renderCoreViews(context);
     if (shouldLoadTransitInBackground) {
       updateTransitPlan(school).then(() => {
         if (getSelectedSchool()?.id !== school.id || state.commute !== "bus") return;
-        const updatedContext = buildContext(school);
-        renderTopLevel(updatedContext);
-        renderLists(updatedContext);
-        renderTraffic(updatedContext);
-        updateMapRoute(updatedContext);
+        renderCoreViews(buildContext(school));
       }).catch(() => {});
     }
 
@@ -834,6 +830,14 @@ async function updateAll(forceCamera = false) {
       updateAll(shouldForceCamera);
     }
   }
+}
+
+function renderCoreViews(context) {
+  renderTopLevel(context);
+  renderDetailMap(context);
+  renderLists(context);
+  renderTraffic(context);
+  updateMapRoute(context);
 }
 
 function buildContext(school) {
@@ -895,6 +899,8 @@ function renderTopLevel(context) {
   const comparison = buildRouteComparison(context);
 
   setText("heroSchoolCount", schools.length);
+  setText("impactSchoolCount", schools.length);
+  setText("impactTownCount", new Set(schools.map((item) => item.town)).size);
   setText("heroHotspotCount", hotspotCount);
   setText("heroAdviceMode", mode.label);
   setText("schoolStageLabel", STAGE_LABELS[school.stage] || "學校");
@@ -2044,7 +2050,7 @@ async function fetchRoadRouteBetween(origin, destination, profile, commuteKey = 
   const url = template
     .replace("{profile}", profile)
     .replace("{coordinates}", coords)
-    .replace("{query}", "overview=full&geometries=geojson&steps=true&alternatives=true");
+    .replace("{query}", "overview=full&geometries=geojson&steps=true&alternatives=3");
   const response = await fetch(url, { cache: "no-store", signal });
   if (!response.ok) throw new Error(`route ${response.status}`);
   const payload = await response.json();
@@ -2093,7 +2099,7 @@ async function fetchValhallaScooterRoute(origin, destination, modeKey, signal) {
     routeChoice: {
       route,
       distanceKm: route.distance / 1000,
-      turns: estimateTurns(coordinates),
+      turns: estimateRouteTurns(route),
       curveRisk: estimateRouteCurveRisk(coordinates),
       restrictedRisk: 0,
       rank: 0,
@@ -2156,7 +2162,7 @@ async function buildTransitCompositeRoute(candidate, school, signal = undefined)
     commuteKey: "bus",
     modeKey: state.mode,
     distanceKm: Math.max(0.35, distanceKm),
-    turns: estimateTurns(coordinates),
+    turns: clamp(segments.reduce((sum, route) => sum + estimateRouteTurns(route), 0), 0, 24),
     coordinates,
     detailPoints: makeDetailPoints(coordinates),
     transitCandidateKey: candidate.routeKey,
@@ -2868,11 +2874,12 @@ function getRouteSourceLabel(commuteKey = state.commute, modeKey = state.mode, r
 function chooseRouteForCommute(routes, commuteKey = state.commute, modeKey = state.mode) {
   const candidates = routes
     .filter((route) => route && Number.isFinite(Number(route.distance)) && Array.isArray(route.geometry?.coordinates))
-    .map((route) => ({
+    .map((route, sourceIndex) => ({
       route,
+      sourceIndex,
       distanceKm: route.distance / 1000,
       durationMinutes: Number.isFinite(Number(route.duration)) ? Number(route.duration) / 60 : route.distance / 1000,
-      turns: estimateTurns(route.geometry.coordinates),
+      turns: estimateRouteTurns(route),
       curveRisk: estimateRouteCurveRisk(route.geometry.coordinates),
       restrictedRisk: getRestrictedRoadRisk(route, commuteKey)
     }));
@@ -2910,7 +2917,7 @@ function chooseRouteForCommute(routes, commuteKey = state.commute, modeKey = sta
     turns: chosen.turns,
     curveRisk: chosen.curveRisk,
     restrictedRisk: chosen.restrictedRisk,
-    rank: scored.indexOf(chosen),
+    rank: chosen.sourceIndex,
     candidateCount: scored.length
   };
 }
@@ -2959,23 +2966,43 @@ function collectRouteStepText(route) {
   return parts.join(" ");
 }
 
+function estimateRouteTurns(route) {
+  const steps = (route?.legs || []).flatMap((leg) => Array.isArray(leg?.steps) ? leg.steps : []);
+  if (steps.length) {
+    const meaningfulSteps = steps.filter((step) => {
+      const type = String(step?.maneuver?.type || "").toLowerCase();
+      return !["depart", "arrive"].includes(type) && Number(step?.distance || 0) >= 5;
+    });
+    return clamp(meaningfulSteps.length, 0, 24);
+  }
+  return estimateTurns(route?.geometry?.coordinates || []);
+}
+
 function getRouteChoiceDistanceFactor(routeChoice, modeKey = state.mode) {
   return 1;
 }
 
 function estimateRouteCurveRisk(coordinates) {
   if (!Array.isArray(coordinates) || coordinates.length < 3) return 0;
-  let risk = 0;
-  for (let index = 1; index < coordinates.length - 1; index++) {
-    const previous = coordinates[index - 1];
+  const sampled = [coordinates[0]];
+  for (let index = 1; index < coordinates.length - 1; index += 1) {
+    const previous = sampled[sampled.length - 1];
     const current = coordinates[index];
-    const next = coordinates[index + 1];
+    if (haversineKm(previous[1], previous[0], current[1], current[0]) >= 0.04) sampled.push(current);
+  }
+  sampled.push(coordinates[coordinates.length - 1]);
+  if (sampled.length < 3) return 0;
+  let risk = 0;
+  for (let index = 1; index < sampled.length - 1; index++) {
+    const previous = sampled[index - 1];
+    const current = sampled[index];
+    const next = sampled[index + 1];
     if (!previous || !current || !next) continue;
     const before = bearingDegrees(previous[1], previous[0], current[1], current[0]);
     const after = bearingDegrees(current[1], current[0], next[1], next[0]);
     if (!Number.isFinite(before) || !Number.isFinite(after)) continue;
     const delta = Math.abs(((after - before + 540) % 360) - 180);
-    if (delta > 18) risk += Math.min(3.5, delta / 35);
+    if (delta > 20) risk += Math.min(2.5, (delta - 20) / 45);
   }
   return risk;
 }

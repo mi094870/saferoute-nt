@@ -3105,7 +3105,9 @@ select,
   }
 
   body.is-mobile-web[data-mobile-page="monitor"] .lower-grid {
-    grid-template-areas: "traffic";
+    grid-template-areas:
+      "weather"
+      "traffic";
   }
 
   body.is-mobile-web[data-mobile-page="monitor"] .detail-map-panel,
@@ -3751,7 +3753,9 @@ select,
   }
 
   body.is-mobile-web[data-mobile-page="monitor"] .lower-grid {
-    grid-template-areas: "traffic";
+    grid-template-areas:
+      "weather"
+      "traffic";
   }
 
   body.is-mobile-web[data-mobile-page="monitor"] .detail-map-panel,
