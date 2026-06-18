@@ -1406,6 +1406,9 @@ function renderTransitCandidateDetail(candidate) {
     <span>4. 下車後步行約 ${Math.round(candidate.schoolStop.distanceM)} 公尺（約 ${toSchoolMinutes} 分）到「${escapeHtml(school?.name || "所選學校")}」，約 ${timing?.arrivalTimeText || "稍後"} 抵達。</span>
     <span>提醒：目前是依站距、步行、候車緩衝與尖峰狀態推估；尚未接入即時到站班表。</span>
   `;
+  const activeOption = els.mapTransitList?.querySelector(".map-transit-option.is-active");
+  const activeItem = activeOption?.closest("li");
+  if (activeItem) activeItem.appendChild(els.mapTransitDetail);
 }
 
 function getSelectedTransitCandidate() {

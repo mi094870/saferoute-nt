@@ -429,6 +429,10 @@ a:focus-visible {
   margin: 0;
 }
 
+.map-transit-list li > .map-transit-detail {
+  margin-top: 4px;
+}
+
 .map-transit-option {
   width: 100%;
   padding: 7px 9px;
