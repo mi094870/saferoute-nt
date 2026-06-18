@@ -301,6 +301,7 @@ a:focus-visible {
 }
 
 .map-navigation-overlay {
+  --map-control-safe-left: 64px;
   position: absolute;
   inset: 12px;
   z-index: 460;
@@ -320,6 +321,9 @@ a:focus-visible {
 }
 
 .map-nav-top-row {
+  box-sizing: border-box;
+  width: 100%;
+  padding-left: var(--map-control-safe-left);
   justify-content: flex-start;
 }
 
@@ -374,6 +378,11 @@ a:focus-visible {
   line-height: 1.4;
   backdrop-filter: blur(18px) saturate(1.12);
   -webkit-backdrop-filter: blur(18px) saturate(1.12);
+}
+
+.map-mode-notice {
+  max-width: min(360px, calc(100% - var(--map-control-safe-left) - 18px));
+  margin-left: var(--map-control-safe-left);
 }
 
 .map-transit-panel {
@@ -3492,6 +3501,7 @@ select,
   }
 
   body.is-mobile-web .map-navigation-overlay {
+    --map-control-safe-left: 58px;
     inset: 9px;
   }
 
