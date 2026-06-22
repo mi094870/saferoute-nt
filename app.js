@@ -218,7 +218,9 @@ const state = {
   demoMode: false,
   demoStep: 0,
   demoTimerId: null,
-  transitMarkers: []
+  transitMarkers: [],
+  routeAnimationKey: "",
+  mapBearingAnimationFrame: null
 };
 
 document.addEventListener("DOMContentLoaded", init);
@@ -759,11 +761,15 @@ async function focusMapOnUser() {
 
 function centerMapOnUser() {
   if (!state.map || !isValidLatLng(state.userLocation)) return;
-  state.map.setView(
-    [state.userLocation.lat, state.userLocation.lng],
-    Math.max(state.map.getZoom(), 16),
-    { animate: true }
-  );
+  const target = L.latLng(state.userLocation.lat, state.userLocation.lng);
+  const targetZoom = Math.max(state.map.getZoom(), 16);
+  const distance = state.map.distance(state.map.getCenter(), target);
+  if (distance < 2 && state.map.getZoom() === targetZoom) return;
+  state.map.flyTo(target, targetZoom, {
+    animate: true,
+    duration: distance > 1500 ? 1.05 : 0.72,
+    easeLinearity: 0.22
+  });
 }
 
 async function toggleMapOrientation() {
@@ -772,8 +778,9 @@ async function toggleMapOrientation() {
     await startDeviceOrientationTracking();
     if (!isValidLatLng(state.userLocation)) void requestLocation({ keepTracking: state.navigationActive });
   }
-  applyMapOrientation();
-  const bearing = Number(state.map?.getBearing?.()) || 0;
+  applyMapOrientation(null, true);
+  const targetHeading = state.mapOrientation === "heading" ? getMapHeading() : 0;
+  const bearing = Number.isFinite(targetHeading) ? normalizeDegrees(targetHeading) : 0;
   setMapControlStatus(
     state.mapOrientation === "north"
       ? "已切換為北朝上"
@@ -807,12 +814,13 @@ function handleDeviceOrientation(event) {
   if (state.mapOrientation === "heading") applyMapOrientation();
 }
 
-function applyMapOrientation(context = null) {
+function applyMapOrientation(context = null, animate = false) {
   if (!state.map || typeof state.map.setBearing !== "function") return;
   const heading = getMapHeading(context);
   const hasHeading = Number.isFinite(heading);
   const bearing = state.mapOrientation === "heading" && hasHeading ? normalizeDegrees(heading) : 0;
-  state.map.setBearing(bearing);
+  if (animate) animateMapBearing(bearing);
+  else state.map.setBearing(bearing);
   if (els.mapOrientationButton) {
     const headingMode = state.mapOrientation === "heading";
     els.mapOrientationButton.classList.toggle("is-active", headingMode);
@@ -827,6 +835,26 @@ function applyMapOrientation(context = null) {
   setText("mapOrientationLabel", state.mapOrientation === "north" ? "北朝上" : hasHeading ? "方向朝上" : "等待方向");
   const compass = els.mapOrientationButton?.querySelector(".map-compass-icon");
   if (compass) compass.style.transform = `rotate(${-bearing}deg)`;
+}
+
+function animateMapBearing(targetBearing, duration = 520) {
+  if (!state.map || typeof state.map.setBearing !== "function") return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    state.map.setBearing(targetBearing);
+    return;
+  }
+  if (state.mapBearingAnimationFrame !== null) cancelAnimationFrame(state.mapBearingAnimationFrame);
+  const startBearing = normalizeDegrees(Number(state.map.getBearing?.()) || 0);
+  const delta = ((normalizeDegrees(targetBearing) - startBearing + 540) % 360) - 180;
+  const startedAt = performance.now();
+  const step = (now) => {
+    const progress = clamp((now - startedAt) / duration, 0, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    state.map.setBearing(normalizeDegrees(startBearing + delta * eased));
+    if (progress < 1) state.mapBearingAnimationFrame = requestAnimationFrame(step);
+    else state.mapBearingAnimationFrame = null;
+  };
+  state.mapBearingAnimationFrame = requestAnimationFrame(step);
 }
 
 function getMapHeading(context = null) {
@@ -911,8 +939,9 @@ function renderMarkers(filtered) {
     state.markers.delete(id);
   }
 
-  filtered.forEach((school) => {
+  filtered.forEach((school, index) => {
     const marker = L.circleMarker([school.lat, school.lng], {
+      className: `school-map-marker${school.id === state.selectedId ? " is-selected" : ""}`,
       radius: school.id === state.selectedId ? 9 : 6,
       color: school.id === state.selectedId ? "#12243e" : "#ffffff",
       weight: school.id === state.selectedId ? 3 : 2,
@@ -922,6 +951,7 @@ function renderMarkers(filtered) {
 
     marker.bindPopup(`<strong>${escapeHtml(school.name)}</strong><br>${escapeHtml(school.town)}<br>${escapeHtml(school.address)}`);
     marker.on("click", () => selectSchool(school.id));
+    marker.getElement()?.style.setProperty("--marker-delay", `${Math.min(index, 28) * 16}ms`);
     state.markers.set(school.id, marker);
   });
 }
@@ -2787,6 +2817,7 @@ function updateMapRoute(context) {
       weight: id === school.id ? 3 : 2,
       fillColor: STAGE_COLORS[markerSchool?.stage] || "#3c7cc4"
     });
+    marker.getElement()?.classList.toggle("is-selected", id === school.id);
   });
   const selectedMarker = state.markers.get(school.id);
   selectedMarker?.setStyle({ radius: 9, color: "#12243e", weight: 3 });
@@ -2815,6 +2846,7 @@ function updateMapRoute(context) {
       }).addTo(state.map).bindPopup(originLabel);
     } else {
       state.userMarker = L.circleMarker(userPoint, {
+        className: "map-user-position",
         radius: 8,
         color: "#ffffff",
         weight: 3,
@@ -2825,6 +2857,7 @@ function updateMapRoute(context) {
 
     if (Number.isFinite(Number(state.userLocation.accuracy))) {
       state.userAccuracyCircle = L.circle([state.userLocation.lat, state.userLocation.lng], {
+        className: "map-user-accuracy",
         radius: clamp(Number(state.userLocation.accuracy), 8, 180),
         color: "#2563eb",
         weight: 1,
@@ -2845,6 +2878,18 @@ function updateMapRoute(context) {
       opacity: state.navigationActive ? 0.95 : 0.82,
       dashArray: lineStyle.dashArray
     }).addTo(state.map);
+    const animationKey = [
+      school.id,
+      state.commute,
+      state.mode,
+      context.route.source,
+      Number(context.route.distanceKm || 0).toFixed(3),
+      safePoints.length
+    ].join("|");
+    if (animationKey !== state.routeAnimationKey) {
+      animateMapRoute(state.routeLine);
+      state.routeAnimationKey = animationKey;
+    }
   }
 
   if (state.mapFocusUserRequested && isValidLatLng(state.userLocation)) {
@@ -2873,6 +2918,20 @@ function getRouteLineStyle(commuteKey = state.commute, modeKey = state.mode) {
   };
 }
 
+function animateMapRoute(routeLine) {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const path = routeLine?.getElement?.();
+  if (!path || typeof path.getTotalLength !== "function" || typeof path.animate !== "function") return;
+  const length = Math.max(1, Math.ceil(path.getTotalLength()));
+  path.animate(
+    [
+      { strokeDasharray: `${length} ${length}`, strokeDashoffset: length, opacity: 0.18 },
+      { strokeDasharray: `${length} ${length}`, strokeDashoffset: 0, opacity: Number(routeLine.options.opacity) || 0.86 }
+    ],
+    { duration: 920, easing: "cubic-bezier(0.22, 1, 0.36, 1)" }
+  );
+}
+
 function renderTransitMarkers() {
   if (!state.map || !window.L) return;
   state.transitMarkers.forEach((marker) => marker.remove());
@@ -2884,15 +2943,17 @@ function renderTransitMarkers() {
     { stop: selectedCandidate?.originStop || state.transitPlan.originStops?.[0], label: "建議上車站", color: "#2563eb" },
     { stop: selectedCandidate?.schoolStop || state.transitPlan.schoolStops?.[0], label: "學校附近下車站", color: "#0f8b76" }
   ];
-  stops.forEach(({ stop, label, color }) => {
+  stops.forEach(({ stop, label, color }, index) => {
     if (!stop || !Number.isFinite(stop.lat) || !Number.isFinite(stop.lng)) return;
     const marker = L.circleMarker([stop.lat, stop.lng], {
+      className: "transit-map-marker",
       radius: 7,
       color: "#ffffff",
       weight: 3,
       fillColor: color,
       fillOpacity: 0.92
     }).addTo(state.map).bindPopup(`${label}<br>${escapeHtml(stop.name)}`);
+    marker.getElement()?.style.setProperty("--marker-delay", `${index * 140}ms`);
     state.transitMarkers.push(marker);
   });
 }
