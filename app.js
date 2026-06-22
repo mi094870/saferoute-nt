@@ -620,6 +620,7 @@ function bindEvents() {
     state.navigationLastRouteOrigin = null;
     state.navigationStartedAt = 0;
     state.locationLastAcceptedAt = 0;
+    state.mapFocusUserRequested = false;
     els.mapLocateButton?.classList.remove("is-active", "is-loading");
     setText("mapLocateLabel", "我的位置");
     setText("locationPermissionText", "已清除");
@@ -728,6 +729,12 @@ function initMap() {
     attribution: APP_CONFIG.tileAttribution || "&copy; OpenStreetMap contributors",
     maxZoom: 19
   }).addTo(state.map);
+
+  state.map.on("dragstart", () => {
+    state.mapFocusUserRequested = false;
+    if (state.navigationActive) state.navigationFollowUser = false;
+    els.mapLocateButton?.classList.remove("is-active");
+  });
 
   setTimeout(() => state.map?.invalidateSize(), 150);
 }
@@ -2030,6 +2037,7 @@ async function ingestLocationFix(position, isRefining) {
 
 function finishMapLocationRequest(success, message) {
   state.focusLocationWhenReady = false;
+  if (!success) state.mapFocusUserRequested = false;
   els.mapLocateButton?.classList.remove("is-loading");
   els.mapLocateButton?.classList.toggle("is-active", success);
   setText("mapLocateLabel", "我的位置");
@@ -2841,7 +2849,6 @@ function updateMapRoute(context) {
 
   if (state.mapFocusUserRequested && isValidLatLng(state.userLocation)) {
     centerMapOnUser();
-    state.mapFocusUserRequested = false;
   } else if (state.navigationActive && isValidLatLng(state.userLocation) && state.navigationFollowUser) {
     centerMapOnUser();
   } else if (!state.navigationActive && isValidLatLng(state.userLocation) && state.routeLine) {
