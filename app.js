@@ -125,6 +125,7 @@ const els = {};
   "mapWeatherSummary", "mapWeatherTemperature", "mapWeatherRain", "mapNavigationOverlay", "mapModeNotice",
   "mapTransitPanel", "mapTransitStatus", "mapTransitRoute", "mapTransitStops", "mapTransitList", "mapTransitDetail",
   "mapNavStatus", "mapNavSpeed", "mapNavAccuracy", "mapNavHeading", "mapNavRemaining", "mapNavEta", "mapFollowButton",
+  "mapLocateButton", "mapOrientationButton", "mapOrientationLabel",
   "weatherRiskBadge", "weatherDecisionSummary", "weatherDecisionUpdated", "weatherDecisionTemp",
   "weatherDecisionRain", "weatherRiskText", "weatherRiskBars", "weatherAdviceTitle", "weatherAdviceText",
   "hotspots", "cameraText", "futureTrafficText", "factorText", "actionText",
@@ -185,6 +186,10 @@ const state = {
   navigationStartedAt: 0,
   navigationSpeedKmh: null,
   navigationHeading: null,
+  deviceHeading: null,
+  mapOrientation: "north",
+  orientationListening: false,
+  focusLocationWhenReady: false,
   locationLastAcceptedAt: 0,
   wakeLock: null,
   timers: [],
@@ -585,6 +590,8 @@ function bindEvents() {
     state.navigationFollowUser = !state.navigationFollowUser;
     updateAll();
   });
+  els.mapLocateButton?.addEventListener("click", focusMapOnUser);
+  els.mapOrientationButton?.addEventListener("click", toggleMapOrientation);
   els.mapTransitList?.addEventListener("click", (event) => {
     const button = event.target.closest("[data-transit-candidate]");
     if (!button) return;
@@ -705,7 +712,12 @@ function initMap() {
 
   state.map = L.map(els.countyMap, {
     zoomControl: true,
-    attributionControl: true
+    attributionControl: true,
+    rotate: true,
+    bearing: 0,
+    rotateControl: false,
+    shiftKeyRotate: false,
+    touchRotate: false
   }).setView([23.85, 120.9], 10);
 
   L.tileLayer(APP_CONFIG.tileUrl || "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -714,6 +726,103 @@ function initMap() {
   }).addTo(state.map);
 
   setTimeout(() => state.map?.invalidateSize(), 150);
+}
+
+async function focusMapOnUser() {
+  state.navigationFollowUser = true;
+  if (isValidLatLng(state.userLocation)) {
+    centerMapOnUser();
+    updateAll();
+    return;
+  }
+  state.focusLocationWhenReady = true;
+  setText("locationStatusText", "正在取得定位，完成後會自動顯示你的所在位置。");
+  await requestLocation({ keepTracking: state.navigationActive });
+}
+
+function centerMapOnUser() {
+  if (!state.map || !isValidLatLng(state.userLocation)) return;
+  state.map.setView(
+    [state.userLocation.lat, state.userLocation.lng],
+    Math.max(state.map.getZoom(), 16),
+    { animate: true }
+  );
+}
+
+async function toggleMapOrientation() {
+  state.mapOrientation = state.mapOrientation === "north" ? "heading" : "north";
+  if (state.mapOrientation === "heading") {
+    await startDeviceOrientationTracking();
+    if (!isValidLatLng(state.userLocation)) void requestLocation({ keepTracking: state.navigationActive });
+  }
+  applyMapOrientation();
+}
+
+async function startDeviceOrientationTracking() {
+  if (state.orientationListening) return;
+  try {
+    if (typeof window.DeviceOrientationEvent?.requestPermission === "function") {
+      const permission = await window.DeviceOrientationEvent.requestPermission();
+      if (permission !== "granted") return;
+    }
+    window.addEventListener("deviceorientationabsolute", handleDeviceOrientation, { passive: true });
+    window.addEventListener("deviceorientation", handleDeviceOrientation, { passive: true });
+    state.orientationListening = true;
+  } catch {
+    // GPS movement heading remains available if compass permission is unavailable.
+  }
+}
+
+function handleDeviceOrientation(event) {
+  let heading = Number(event.webkitCompassHeading);
+  if (!Number.isFinite(heading) && event.absolute && Number.isFinite(Number(event.alpha))) {
+    heading = 360 - Number(event.alpha);
+  }
+  if (!Number.isFinite(heading)) return;
+  state.deviceHeading = smoothHeading(state.deviceHeading, normalizeDegrees(heading), 0.28);
+  if (state.mapOrientation === "heading") applyMapOrientation();
+}
+
+function applyMapOrientation(context = null) {
+  if (!state.map || typeof state.map.setBearing !== "function") return;
+  const heading = getMapHeading(context);
+  const hasHeading = Number.isFinite(heading);
+  const bearing = state.mapOrientation === "heading" && hasHeading ? normalizeDegrees(heading) : 0;
+  state.map.setBearing(bearing);
+  if (els.mapOrientationButton) {
+    const headingMode = state.mapOrientation === "heading";
+    els.mapOrientationButton.classList.toggle("is-active", headingMode);
+    els.mapOrientationButton.setAttribute("aria-pressed", String(headingMode));
+    els.mapOrientationButton.setAttribute(
+      "aria-label",
+      headingMode
+        ? "目前為使用者方向朝上，點擊切換為北朝上"
+        : "目前為北朝上，點擊切換為使用者方向朝上"
+    );
+  }
+  setText("mapOrientationLabel", state.mapOrientation === "north" ? "北朝上" : hasHeading ? "方向朝上" : "等待方向");
+  const compass = els.mapOrientationButton?.querySelector(".map-compass-icon");
+  if (compass) compass.style.transform = `rotate(${-bearing}deg)`;
+}
+
+function getMapHeading(context = null) {
+  if (Number.isFinite(Number(state.deviceHeading))) return Number(state.deviceHeading);
+  if (Number.isFinite(Number(state.navigationHeading))) return Number(state.navigationHeading);
+  if (context) return getNavigationHeading(context);
+  return null;
+}
+
+function normalizeDegrees(value) {
+  return ((Number(value) % 360) + 360) % 360;
+}
+
+function smoothHeading(previous, next, weight) {
+  if (!Number.isFinite(Number(previous))) return next;
+  const previousRad = normalizeDegrees(previous) * Math.PI / 180;
+  const nextRad = normalizeDegrees(next) * Math.PI / 180;
+  const x = Math.cos(previousRad) * (1 - weight) + Math.cos(nextRad) * weight;
+  const y = Math.sin(previousRad) * (1 - weight) + Math.sin(nextRad) * weight;
+  return normalizeDegrees(Math.atan2(y, x) * 180 / Math.PI);
 }
 
 function renderSchoolOptions() {
@@ -1851,6 +1960,11 @@ async function ingestLocationFix(position, isRefining) {
 
   state.userLocation = refined;
   state.locationLastAcceptedAt = Date.now();
+  if (state.focusLocationWhenReady) {
+    state.focusLocationWhenReady = false;
+    centerMapOnUser();
+  }
+  applyMapOrientation();
   setText("locationPermissionText", "已定位");
   setText(
     "locationStatusText",
@@ -2574,6 +2688,7 @@ async function activateInAppNavigation() {
 
 function updateMapRoute(context) {
   if (!state.map || !window.L) return;
+  applyMapOrientation(context);
   if (state.routeLine) {
     state.routeLine.remove();
     state.routeLine = null;
@@ -2612,11 +2727,12 @@ function updateMapRoute(context) {
       const heading = Number.isFinite(Number(state.navigationHeading))
         ? Number(state.navigationHeading)
         : bearingDegrees(state.userLocation.lat, state.userLocation.lng, school.lat, school.lng) || 0;
+      const markerHeading = normalizeDegrees(heading - (Number(state.map?.getBearing?.()) || 0));
       state.userMarker = L.marker(userPoint, {
         interactive: true,
         icon: L.divIcon({
           className: "navigation-user-marker-shell",
-          html: `<div class="navigation-user-marker" style="--heading:${heading}deg"><span></span></div>`,
+          html: `<div class="navigation-user-marker" style="--heading:${markerHeading}deg"><span></span></div>`,
           iconSize: [36, 36],
           iconAnchor: [18, 18]
         })
