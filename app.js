@@ -125,7 +125,7 @@ const els = {};
   "mapWeatherSummary", "mapWeatherTemperature", "mapWeatherRain", "mapNavigationOverlay", "mapModeNotice",
   "mapTransitPanel", "mapTransitStatus", "mapTransitRoute", "mapTransitStops", "mapTransitList", "mapTransitDetail",
   "mapNavStatus", "mapNavSpeed", "mapNavAccuracy", "mapNavHeading", "mapNavRemaining", "mapNavEta", "mapFollowButton",
-  "mapLocateButton", "mapOrientationButton", "mapOrientationLabel",
+  "mapLocateButton", "mapLocateLabel", "mapOrientationButton", "mapOrientationLabel", "mapControlStatus",
   "weatherRiskBadge", "weatherDecisionSummary", "weatherDecisionUpdated", "weatherDecisionTemp",
   "weatherDecisionRain", "weatherRiskText", "weatherRiskBars", "weatherAdviceTitle", "weatherAdviceText",
   "hotspots", "cameraText", "futureTrafficText", "factorText", "actionText",
@@ -190,6 +190,7 @@ const state = {
   mapOrientation: "north",
   orientationListening: false,
   focusLocationWhenReady: false,
+  mapControlStatusTimer: null,
   locationLastAcceptedAt: 0,
   wakeLock: null,
   timers: [],
@@ -618,6 +619,8 @@ function bindEvents() {
     state.navigationLastRouteOrigin = null;
     state.navigationStartedAt = 0;
     state.locationLastAcceptedAt = 0;
+    els.mapLocateButton?.classList.remove("is-active", "is-loading");
+    setText("mapLocateLabel", "我的位置");
     setText("locationPermissionText", "已清除");
     setText("locationStatusText", "已清除定位，改用學校周邊基準估算。");
     updateAll();
@@ -732,10 +735,15 @@ async function focusMapOnUser() {
   state.navigationFollowUser = true;
   if (isValidLatLng(state.userLocation)) {
     centerMapOnUser();
+    els.mapLocateButton?.classList.add("is-active");
+    setMapControlStatus(`已顯示目前位置，GPS 精度約 ${Math.round(Number(state.userLocation.accuracy) || 0)} 公尺`, "success");
     updateAll();
     return;
   }
   state.focusLocationWhenReady = true;
+  els.mapLocateButton?.classList.add("is-loading");
+  setText("mapLocateLabel", "定位中");
+  setMapControlStatus("正在請求定位權限並搜尋目前位置…", "loading", 0);
   setText("locationStatusText", "正在取得定位，完成後會自動顯示你的所在位置。");
   await requestLocation({ keepTracking: state.navigationActive });
 }
@@ -756,6 +764,13 @@ async function toggleMapOrientation() {
     if (!isValidLatLng(state.userLocation)) void requestLocation({ keepTracking: state.navigationActive });
   }
   applyMapOrientation();
+  const bearing = Number(state.map?.getBearing?.()) || 0;
+  setMapControlStatus(
+    state.mapOrientation === "north"
+      ? "已切換為北朝上"
+      : `已切換為方向朝上（目前 ${Math.round(bearing)}°）`,
+    "success"
+  );
 }
 
 async function startDeviceOrientationTracking() {
@@ -775,7 +790,7 @@ async function startDeviceOrientationTracking() {
 
 function handleDeviceOrientation(event) {
   let heading = Number(event.webkitCompassHeading);
-  if (!Number.isFinite(heading) && event.absolute && Number.isFinite(Number(event.alpha))) {
+  if (!Number.isFinite(heading) && event.absolute && hasFiniteValue(event.alpha)) {
     heading = 360 - Number(event.alpha);
   }
   if (!Number.isFinite(heading)) return;
@@ -806,18 +821,48 @@ function applyMapOrientation(context = null) {
 }
 
 function getMapHeading(context = null) {
-  if (Number.isFinite(Number(state.deviceHeading))) return Number(state.deviceHeading);
-  if (Number.isFinite(Number(state.navigationHeading))) return Number(state.navigationHeading);
+  if (hasFiniteValue(state.deviceHeading)) return Number(state.deviceHeading);
+  if (hasFiniteValue(state.navigationHeading)) return Number(state.navigationHeading);
   if (context) return getNavigationHeading(context);
+  const school = getSelectedSchool();
+  if (school && isValidLatLng(state.userLocation)) {
+    return bearingDegrees(state.userLocation.lat, state.userLocation.lng, school.lat, school.lng);
+  }
+  const coordinates = state.route?.coordinates;
+  if (Array.isArray(coordinates) && coordinates.length >= 2) {
+    const [firstLng, firstLat] = coordinates[0];
+    const [nextLng, nextLat] = coordinates[Math.min(1, coordinates.length - 1)];
+    if ([firstLat, firstLng, nextLat, nextLng].every((value) => Number.isFinite(Number(value)))) {
+      return bearingDegrees(firstLat, firstLng, nextLat, nextLng);
+    }
+  }
   return null;
+}
+
+function setMapControlStatus(message, kind = "", hideAfterMs = 3200) {
+  if (!els.mapControlStatus) return;
+  if (state.mapControlStatusTimer) clearTimeout(state.mapControlStatusTimer);
+  state.mapControlStatusTimer = null;
+  els.mapControlStatus.hidden = !message;
+  els.mapControlStatus.textContent = message || "";
+  els.mapControlStatus.className = `map-control-status${kind ? ` is-${kind}` : ""}`;
+  if (message && hideAfterMs > 0) {
+    state.mapControlStatusTimer = setTimeout(() => {
+      if (els.mapControlStatus) els.mapControlStatus.hidden = true;
+    }, hideAfterMs);
+  }
 }
 
 function normalizeDegrees(value) {
   return ((Number(value) % 360) + 360) % 360;
 }
 
+function hasFiniteValue(value) {
+  return value !== null && value !== undefined && value !== "" && Number.isFinite(Number(value));
+}
+
 function smoothHeading(previous, next, weight) {
-  if (!Number.isFinite(Number(previous))) return next;
+  if (!hasFiniteValue(previous)) return next;
   const previousRad = normalizeDegrees(previous) * Math.PI / 180;
   const nextRad = normalizeDegrees(next) * Math.PI / 180;
   const x = Math.cos(previousRad) * (1 - weight) + Math.cos(nextRad) * weight;
@@ -1637,7 +1682,7 @@ function estimateLiveEtaMinutes(distanceKm, context) {
 }
 
 function getNavigationHeading(context) {
-  if (Number.isFinite(Number(state.navigationHeading))) return Number(state.navigationHeading);
+  if (hasFiniteValue(state.navigationHeading)) return Number(state.navigationHeading);
   if (isValidLatLng(state.userLocation) && isValidLatLng(context.school)) {
     return bearingDegrees(state.userLocation.lat, state.userLocation.lng, context.school.lat, context.school.lng);
   }
@@ -1645,7 +1690,7 @@ function getNavigationHeading(context) {
 }
 
 function formatHeadingText(heading) {
-  if (!Number.isFinite(Number(heading))) return "方向 --";
+  if (!hasFiniteValue(heading)) return "方向 --";
   const directions = ["北", "東北", "東", "東南", "南", "西南", "西", "西北"];
   const index = Math.round((((Number(heading) % 360) + 360) % 360) / 45) % directions.length;
   return `方向 ${directions[index]} ${Math.round(heading)}°`;
@@ -1776,12 +1821,14 @@ async function requestLocation(options = {}) {
   if (!window.isSecureContext) {
     setText("locationPermissionText", "需要 HTTPS");
     setText("locationStatusText", "手機瀏覽器需要 HTTPS 網址才能要求定位權限。");
+    finishMapLocationRequest(false, "定位需要使用 HTTPS 正式網址");
     return;
   }
 
   if (!navigator.geolocation) {
     setText("locationPermissionText", "無法使用");
     setText("locationStatusText", "這個瀏覽器不支援定位。");
+    finishMapLocationRequest(false, "目前瀏覽器不支援定位功能");
     return;
   }
 
@@ -1805,6 +1852,7 @@ async function requestLocation(options = {}) {
       if (state.userLocation) return;
       setText("locationPermissionText", "定位失敗");
       setText("locationStatusText", error.message || "目前無法取得定位。");
+      finishMapLocationRequest(false, getLocationErrorMessage(error));
     },
     geoOptions
   );
@@ -1920,8 +1968,8 @@ async function ingestLocationFix(position, isRefining) {
     lat: position.coords.latitude,
     lng: position.coords.longitude,
     accuracy: clamp(Number(position.coords.accuracy) || 999, 5, 999),
-    heading: Number.isFinite(Number(position.coords.heading)) ? Number(position.coords.heading) : null,
-    speed: Number.isFinite(Number(position.coords.speed)) ? Math.max(0, Number(position.coords.speed)) : null,
+    heading: hasFiniteValue(position.coords.heading) ? Number(position.coords.heading) : null,
+    speed: hasFiniteValue(position.coords.speed) ? Math.max(0, Number(position.coords.speed)) : null,
     timestamp: Date.now()
   };
   if (shouldWaitForBetterGpsFix(sample, isRefining)) {
@@ -1946,7 +1994,7 @@ async function ingestLocationFix(position, isRefining) {
   const previousLocation = state.userLocation && isValidLatLng(state.userLocation)
     ? { ...state.userLocation }
     : null;
-  if (Number.isFinite(Number(refined.speed))) {
+  if (hasFiniteValue(refined.speed)) {
     state.navigationSpeedKmh = clamp(Number(refined.speed) * 3.6, 0, 140);
   } else if (previousLocation?.timestamp && refined.timestamp > previousLocation.timestamp) {
     const deltaHours = (refined.timestamp - previousLocation.timestamp) / 3600000;
@@ -1954,15 +2002,17 @@ async function ingestLocationFix(position, isRefining) {
     const noiseFloorKm = Math.max(0.006, (Number(refined.accuracy) + Number(previousLocation.accuracy || 0)) / 1000 * 0.18);
     if (deltaHours > 0 && movedKm >= noiseFloorKm) state.navigationSpeedKmh = clamp(movedKm / deltaHours, 0, 140);
   }
-  state.navigationHeading = Number.isFinite(Number(refined.heading))
+  state.navigationHeading = hasFiniteValue(refined.heading)
     ? Number(refined.heading)
     : previousLocation ? bearingDegrees(previousLocation.lat, previousLocation.lng, refined.lat, refined.lng) : null;
 
   state.userLocation = refined;
   state.locationLastAcceptedAt = Date.now();
+  els.mapLocateButton?.classList.add("is-active");
   if (state.focusLocationWhenReady) {
     state.focusLocationWhenReady = false;
     centerMapOnUser();
+    finishMapLocationRequest(true, `定位成功，精度約 ${Math.round(refined.accuracy)} 公尺`);
   }
   applyMapOrientation();
   setText("locationPermissionText", "已定位");
@@ -1973,6 +2023,21 @@ async function ingestLocationFix(position, isRefining) {
       : `定位精度約 ${Math.round(refined.accuracy)} 公尺。`
   );
   await handleLiveNavigationAfterLocationFix();
+}
+
+function finishMapLocationRequest(success, message) {
+  state.focusLocationWhenReady = false;
+  els.mapLocateButton?.classList.remove("is-loading");
+  els.mapLocateButton?.classList.toggle("is-active", success);
+  setText("mapLocateLabel", "我的位置");
+  setMapControlStatus(message, success ? "success" : "error", success ? 3200 : 5200);
+}
+
+function getLocationErrorMessage(error) {
+  if (error?.code === 1) return "定位權限未開啟，請允許網站存取位置後再試一次";
+  if (error?.code === 2) return "目前收不到 GPS 位置，請移到較空曠處後再試一次";
+  if (error?.code === 3) return "定位等待逾時，請確認定位服務已開啟後重試";
+  return error?.message || "目前無法取得定位";
 }
 
 async function handleLiveNavigationAfterLocationFix() {
@@ -2724,7 +2789,7 @@ function updateMapRoute(context) {
     const userPoint = [state.userLocation.lat, state.userLocation.lng];
     const originLabel = "你的目前位置";
     if (state.navigationActive && isValidLatLng(state.userLocation)) {
-      const heading = Number.isFinite(Number(state.navigationHeading))
+      const heading = hasFiniteValue(state.navigationHeading)
         ? Number(state.navigationHeading)
         : bearingDegrees(state.userLocation.lat, state.userLocation.lng, school.lat, school.lng) || 0;
       const markerHeading = normalizeDegrees(heading - (Number(state.map?.getBearing?.()) || 0));

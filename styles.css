@@ -351,6 +351,45 @@ a:focus-visible {
   color: var(--green);
 }
 
+.map-view-button.is-loading svg {
+  animation: map-control-pulse 0.9s ease-in-out infinite alternate;
+}
+
+.map-control-status {
+  position: absolute;
+  top: 50%;
+  right: 66px;
+  width: max-content;
+  max-width: min(250px, calc(100vw - 150px));
+  padding: 8px 10px;
+  transform: translateY(-50%);
+  border: 1px solid rgba(18, 36, 62, 0.14);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--ink);
+  font-size: 0.72rem;
+  font-weight: 850;
+  line-height: 1.35;
+  pointer-events: none;
+}
+
+.map-control-status.is-success {
+  color: var(--green);
+}
+
+.map-control-status.is-loading {
+  color: #2563eb;
+}
+
+.map-control-status.is-error {
+  color: #b42318;
+}
+
+@keyframes map-control-pulse {
+  from { opacity: 0.45; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
 .map-view-button:focus-visible {
   outline: 3px solid rgba(37, 99, 235, 0.28);
   outline-offset: 2px;
