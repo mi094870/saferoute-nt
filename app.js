@@ -190,6 +190,7 @@ const state = {
   mapOrientation: "north",
   orientationListening: false,
   focusLocationWhenReady: false,
+  mapFocusUserRequested: false,
   mapControlStatusTimer: null,
   locationLastAcceptedAt: 0,
   wakeLock: null,
@@ -733,6 +734,7 @@ function initMap() {
 
 async function focusMapOnUser() {
   state.navigationFollowUser = true;
+  state.mapFocusUserRequested = true;
   if (isValidLatLng(state.userLocation)) {
     centerMapOnUser();
     els.mapLocateButton?.classList.add("is-active");
@@ -2011,6 +2013,7 @@ async function ingestLocationFix(position, isRefining) {
   els.mapLocateButton?.classList.add("is-active");
   if (state.focusLocationWhenReady) {
     state.focusLocationWhenReady = false;
+    state.mapFocusUserRequested = true;
     centerMapOnUser();
     finishMapLocationRequest(true, `定位成功，精度約 ${Math.round(refined.accuracy)} 公尺`);
   }
@@ -2834,11 +2837,15 @@ function updateMapRoute(context) {
       opacity: state.navigationActive ? 0.95 : 0.82,
       dashArray: lineStyle.dashArray
     }).addTo(state.map);
-    if (state.navigationActive && isValidLatLng(state.userLocation) && state.navigationFollowUser) {
-      state.map.setView([state.userLocation.lat, state.userLocation.lng], Math.max(state.map.getZoom(), 16), { animate: true });
-    } else if (!state.navigationActive && isValidLatLng(state.userLocation)) {
-      state.map.fitBounds(state.routeLine.getBounds().pad(0.2));
-    }
+  }
+
+  if (state.mapFocusUserRequested && isValidLatLng(state.userLocation)) {
+    centerMapOnUser();
+    state.mapFocusUserRequested = false;
+  } else if (state.navigationActive && isValidLatLng(state.userLocation) && state.navigationFollowUser) {
+    centerMapOnUser();
+  } else if (!state.navigationActive && isValidLatLng(state.userLocation) && state.routeLine) {
+    state.map.fitBounds(state.routeLine.getBounds().pad(0.2));
   }
   renderTransitMarkers();
 }
